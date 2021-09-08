@@ -1,6 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/alful/OneDrive/Documents/GitHub/Projek-KP/BaganTurnamen/app/src/main/res/drawable/button_black.xml" value="0.2703125" />
+        <entry key="..\:/Users/alful/OneDrive/Documents/GitHub/Projek-KP/BaganTurnamen/app/src/main/res/drawable/custom_email_icon.xml" value="0.2703125" />
+        <entry key="..\:/Users/alful/OneDrive/Documents/GitHub/Projek-KP/BaganTurnamen/app/src/main/res/drawable/custom_name_icon.xml" value="0.2703125" />
+        <entry key="..\:/Users/alful/OneDrive/Documents/GitHub/Projek-KP/BaganTurnamen/app/src/main/res/drawable/custom_pass_icon.xml" value="0.2703125" />
+        <entry key="..\:/Users/alful/OneDrive/Documents/GitHub/Projek-KP/BaganTurnamen/app/src/main/res/drawable/email.xml" value="0.2703125" />
+        <entry key="..\:/Users/alful/OneDrive/Documents/GitHub/Projek-KP/BaganTurnamen/app/src/main/res/drawable/email_fokus.xml" value="0.2703125" />
+        <entry key="..\:/Users/alful/OneDrive/Documents/GitHub/Projek-KP/BaganTurnamen/app/src/main/res/drawable/name.xml" value="0.2703125" />
+        <entry key="..\:/Users/alful/OneDrive/Documents/GitHub/Projek-KP/BaganTurnamen/app/src/main/res/drawable/password.xml" value="0.2703125" />
+        <entry key="..\:/Users/alful/OneDrive/Documents/GitHub/Projek-KP/BaganTurnamen/app/src/main/res/font/montserratalternates_medium.xml" value="0.284375" />
+        <entry key="..\:/Users/alful/OneDrive/Documents/GitHub/Projek-KP/BaganTurnamen/app/src/main/res/layout/activity_daftar_peserta.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/alful/OneDrive/Documents/GitHub/Projek-KP/BaganTurnamen/app/src/main/res/layout/activity_dashboard_admin.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/alful/OneDrive/Documents/GitHub/Projek-KP/BaganTurnamen/app/src/main/res/layout/activity_main.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/alful/OneDrive/Documents/GitHub/Projek-KP/BaganTurnamen/app/src/main/res/layout/activity_register.xml" value="0.1793478260869565" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">
