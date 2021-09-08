@@ -8,6 +8,7 @@
     tools:context=".DaftarPeserta">
 
     <ImageView
+        android:id="@+id/idIVKembali"
         android:layout_weight="1"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
@@ -22,15 +23,60 @@
         android:textStyle="bold"
         android:textSize="22dp">
     </TextView>
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/idRVDaftarPeserta"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="2"
-        android:orientation="vertical"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        tools:listitem="@layout/list_item_rv_daftar_peserta">
-    </androidx.recyclerview.widget.RecyclerView>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="NO"
+            android:textStyle="bold"
+            android:textSize="20dp">
+        </TextView>
+        <TextView
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="NAMA"
+            android:textSize="20dp"
+            android:textStyle="bold">
+        </TextView>
+        <TextView
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="UMUR"
+            android:textSize="20dp"
+            android:textStyle="bold">
+        </TextView>
+        <TextView
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="UNGGULAN"
+            android:textSize="20dp"
+            android:textStyle="bold">
+        </TextView>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_weight="3"
+        android:layout_width="match_parent"
+        android:layout_height="0dp">
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/idRVDaftarPeserta"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/list_item_rv_daftar_peserta"></androidx.recyclerview.widget.RecyclerView>
+    </LinearLayout>
 
 </LinearLayout>

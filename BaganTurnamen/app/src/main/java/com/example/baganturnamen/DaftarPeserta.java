@@ -22,14 +22,14 @@ import java.util.ArrayList;
 public class DaftarPeserta extends AppCompatActivity {
     RecyclerView RVDaftarPeserta;
     AdapterDaftarPeserta adapterDaftarPeserta;
-    DatabaseReference DBRef = FirebaseDatabase.getInstance().getReference();
-    ArrayList<Peserta> ALPeserta = new ArrayList<Peserta>();
+    DatabaseReference DBRef;
+    ArrayList<Peserta> ALPeserta;
     ArrayList<String> ALNama = new ArrayList<String>();
     ArrayList<Integer> ALUmur = new ArrayList<Integer>();
     ArrayList<String> ALUnggulan = new ArrayList<String>();
     ImageView IVKembali;
     Context context;
-    Peserta peserta = new Peserta();
+//    Peserta peserta = new Peserta();
 
 
     @Override
@@ -40,6 +40,11 @@ public class DaftarPeserta extends AppCompatActivity {
         RVDaftarPeserta = findViewById(R.id.idRVDaftarPeserta);
         IVKembali = findViewById(R.id.idIVKembali);
 
+        ALPeserta = new ArrayList<Peserta>();
+        DBRef = FirebaseDatabase.getInstance().getReference("Peserta");
+
+        RVDaftarPeserta.setHasFixedSize(true);
+
         IVKembali.setOnClickListener(new View.OnClickListener(){
            @Override
            public void onClick(View v){
@@ -49,19 +54,19 @@ public class DaftarPeserta extends AppCompatActivity {
            }
         });
 
-        DBRef.child("Peserta").addValueEventListener(new ValueEventListener() {
+        DBRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     Peserta peserta = dataSnapshot.getValue(Peserta.class);
-                    String nama = dataSnapshot.child("nama").getValue(String.class);
-                    Integer umur = dataSnapshot.child("umur").getValue(Integer.class);
-                    String unggulan = dataSnapshot.child("unggulan").getValue(String.class);
+//                    String nama = dataSnapshot.child("nama").getValue(String.class);
+//                    Integer umur = dataSnapshot.child("umur").getValue(Integer.class);
+//                    String unggulan = dataSnapshot.child("unggulan").getValue(String.class);
 
                     ALPeserta.add(peserta);
-                    ALNama.add(nama);;
-                    ALUmur.add(umur);
-                    ALUnggulan.add(unggulan);
+//                    ALNama.add(nama);;
+//                    ALUmur.add(umur);
+//                    ALUnggulan.add(unggulan);
                 }
 
                 adapterDaftarPeserta = new AdapterDaftarPeserta(context, ALPeserta);
