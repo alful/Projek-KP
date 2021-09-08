@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">BaganTurnamen</string>
+    <string name="my_node">Node</string>
 
 </resources>
