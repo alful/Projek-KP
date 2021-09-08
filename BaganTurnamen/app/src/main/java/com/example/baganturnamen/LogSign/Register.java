@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
 import com.example.baganturnamen.R;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -30,6 +31,7 @@ public class Register extends AppCompatActivity {
     DatabaseReference databaseReference=FirebaseDatabase.getInstance().getReference().child("Admin");
     admin Admin;
     Integer manag=1;
+    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +42,9 @@ public class Register extends AppCompatActivity {
         password= findViewById(R.id.regpasswordusers);
         sign=findViewById(R.id.daftars);
         login=findViewById(R.id.masuks);
+        toolbar=findViewById(R.id.toolbars);
 
+//        setSupportActionBar(toolbar);
         firebaseAuth=FirebaseAuth.getInstance();
         Admin=new admin();
         sign.setOnClickListener(new View.OnClickListener() {

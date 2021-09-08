@@ -7,21 +7,25 @@
     android:orientation="vertical"
     tools:context=".LogSign.Register">
 
+<!--    <include-->
+<!--        android:id="@+id/include"-->
+<!--        layout="@layout/appbar" />-->
 
-    <TextView
-        android:id="@+id/textView"
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:text="Create your account"
-        android:fontFamily="@font/montserratalternates_medium"
-        android:textColor="@color/black"
-        android:textSize="25sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:title="@string/app_name"/>
+    </com.google.android.material.appbar.AppBarLayout>
 
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -32,39 +36,43 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView"
         app:layout_constraintVertical_bias="0.245">
+
         <com.google.android.material.textfield.TextInputLayout
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
             android:hint="Nama">
+
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/regnamausers"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableStart="@drawable/custom_name_icon"
-                android:fontFamily="@font/montserrat_regular"
                 android:drawablePadding="12dp"
+                android:fontFamily="@font/montserrat_regular"
                 android:inputType="textPersonName" />
         </com.google.android.material.textfield.TextInputLayout>
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:hint="E-Mail">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/regemailusers"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:hint="E-Mail">
+                android:drawableStart="@drawable/custom_email_icon"
+                android:drawablePadding="12dp"
+                android:fontFamily="@font/montserrat_regular"
+                android:inputType="textEmailAddress"
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/regemailusers"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:drawableStart="@drawable/custom_email_icon"
-                    android:fontFamily="@font/montserrat_regular"
-                    android:drawablePadding="12dp"
-                    android:inputType="textEmailAddress"
-
-                    />
+                />
         </com.google.android.material.textfield.TextInputLayout>
+
         <com.google.android.material.textfield.TextInputLayout
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
@@ -78,8 +86,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableStart="@drawable/custom_pass_icon"
-                android:fontFamily="@font/montserrat_regular"
                 android:drawablePadding="12dp"
+                android:fontFamily="@font/montserrat_regular"
                 android:inputType="textPassword"
 
                 />
@@ -87,13 +95,15 @@
 
         <Button
             android:id="@+id/daftars"
+            app:backgroundTint="@color/black"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:layout_marginBottom="5dp"
+            android:background="@drawable/button_black"
+            android:fontFamily="@font/montserrat_medium"
             android:text="Sign Up"
             android:textAllCaps="false"
-            android:fontFamily="@font/montserrat_medium"
             android:textColor="@color/white"
             android:textSize="17sp" />
 
@@ -105,8 +115,8 @@
             android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp"
             android:background="@color/white"
-            android:text="Already have an account? Log In"
             android:fontFamily="@font/montserrat_medium"
+            android:text="Already have an account? Log In"
             android:textAllCaps="false"
             android:textColor="@color/black"
             android:textSize="17sp"
@@ -114,5 +124,19 @@
 
 
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="84dp"
+        android:fontFamily="@font/montserratalternates_medium"
+        android:text="Create your account"
+        android:textColor="@color/black"
+        android:textSize="25sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/appBarLayout" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

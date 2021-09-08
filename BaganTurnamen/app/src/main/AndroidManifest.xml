@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BaganTurnamen">
         <activity
+            android:name=".Dashboard.DashboardAdm"
+            android:exported="true" />
+        <activity
             android:name=".LogSign.Login"
             android:exported="true" />
         <activity
