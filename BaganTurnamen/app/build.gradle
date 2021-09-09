@@ -48,5 +48,6 @@ dependencies {
 
     implementation 'com.github.Emil333:TournamentBracketLib:1.0.1'
 
+    implementation 'com.google.android.material:material:<version>'
 
 }

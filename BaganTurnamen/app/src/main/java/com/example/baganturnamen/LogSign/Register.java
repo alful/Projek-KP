@@ -42,9 +42,13 @@ public class Register extends AppCompatActivity {
         password= findViewById(R.id.regpasswordusers);
         sign=findViewById(R.id.daftars);
         login=findViewById(R.id.masuks);
-        toolbar=findViewById(R.id.toolbars);
+//        toolbar=findViewById(R.id.toolbars);
 
 //        setSupportActionBar(toolbar);
+        androidx.appcompat.widget.Toolbar toolbar= (androidx.appcompat.widget.Toolbar) findViewById(R.id.toolbars);
+        setSupportActionBar(toolbar);
+
+
         firebaseAuth=FirebaseAuth.getInstance();
         Admin=new admin();
         sign.setOnClickListener(new View.OnClickListener() {
@@ -124,5 +128,9 @@ public class Register extends AppCompatActivity {
                 startActivity(new Intent(getApplicationContext(),Login.class));
             }
         });
+    }
+
+    private void setSupportActionBar(Toolbar toolbar) {
+
     }
 }
