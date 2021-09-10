@@ -11,6 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.BaganTurnamen">
+        <activity android:name=".edit_peserta"></activity>
         <activity
             android:name=".Bagan.Bagans"
             android:exported="true" />

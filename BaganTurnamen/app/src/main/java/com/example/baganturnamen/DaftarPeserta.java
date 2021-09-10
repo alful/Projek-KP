@@ -24,6 +24,7 @@ public class DaftarPeserta extends AppCompatActivity {
     AdapterDaftarPeserta adapterDaftarPeserta;
     DatabaseReference DBRef;
     ArrayList<Peserta> ALPeserta;
+    ArrayList<String> ALKey = new ArrayList<String>();
     ArrayList<String> ALNama = new ArrayList<String>();
     ArrayList<Integer> ALUmur = new ArrayList<Integer>();
     ArrayList<String> ALUnggulan = new ArrayList<String>();
@@ -59,17 +60,20 @@ public class DaftarPeserta extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     Peserta peserta = dataSnapshot.getValue(Peserta.class);
+                    String key = dataSnapshot.getKey();
+
 //                    String nama = dataSnapshot.child("nama").getValue(String.class);
 //                    Integer umur = dataSnapshot.child("umur").getValue(Integer.class);
 //                    String unggulan = dataSnapshot.child("unggulan").getValue(String.class);
 
                     ALPeserta.add(peserta);
+                    ALKey.add(key);
 //                    ALNama.add(nama);;
 //                    ALUmur.add(umur);
 //                    ALUnggulan.add(unggulan);
                 }
 
-                adapterDaftarPeserta = new AdapterDaftarPeserta(context, ALPeserta);
+                adapterDaftarPeserta = new AdapterDaftarPeserta(context, ALPeserta, ALKey);
                 RVDaftarPeserta.setAdapter(adapterDaftarPeserta);
 
                 adapterDaftarPeserta.notifyDataSetChanged();

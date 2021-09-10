@@ -48,6 +48,20 @@
             android:textSize="20dp"
             android:textStyle="bold">
         </TextView>
+        <ImageView
+            android:id="@+id/idIVHapus"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_baseline_delete_24">
+        </ImageView>
+        <ImageView
+            android:id="@+id/idIVEdit"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_baseline_edit_24">
+        </ImageView>
     </LinearLayout>
 
 </LinearLayout>
