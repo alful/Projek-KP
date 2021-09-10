@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
     DatabaseReference DRef;
 
     Peserta peserta;
+    History history;
 
     ArrayList<String> ALKey = new ArrayList<String>();
     ArrayList<String> ALNama = new ArrayList<String>();
@@ -54,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
         IVKembali = findViewById(R.id.idIVKembali);
 
         peserta = new Peserta();
+        history = new History();
 
         DRef = FirebaseDatabase.getInstance().getReference();
 
@@ -116,7 +118,13 @@ public class MainActivity extends AppCompatActivity {
                                 peserta.setNama(SNama);
                                 peserta.setUmur(IUmur);
                                 peserta.setUnggulan(SCBUnggulan);
+                                history.setBabak1(1);
+                                history.setBabak2(0);
+                                history.setBabak3(0);
+
                                 DRef.child("Peserta").child(SKey).setValue(peserta);
+                                DRef.child("Peserta").child(SKey).child("History").setValue(history);
+
                                 Toast.makeText(MainActivity.this, "berhasil" + ALNama, Toast.LENGTH_SHORT).show();
                             }
                         }
