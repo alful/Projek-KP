@@ -23,15 +23,14 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
-    EditText ETNama, ETUmur;
+    EditText ETNama, ETUmur, ETClub;
     CheckBox CBUnggulan;
     Button BSimpan, BHapus;
     ImageView IVKembali;
 
-    String SNama, SCBUnggulan, SKey;
+    String SNama, SCBUnggulan, SKey, SClub;
     Integer IUmur;
 
-    FirebaseDatabase FDB;
     DatabaseReference DRef;
 
     Peserta peserta;
@@ -40,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
     ArrayList<String> ALKey = new ArrayList<String>();
     ArrayList<String> ALNama = new ArrayList<String>();
     ArrayList<Integer> ALUmur = new ArrayList<Integer>();
+    ArrayList<String> ALClub = new ArrayList<String>();
     ArrayList<String> ALUnggulan = new ArrayList<String>();
 
     @Override
@@ -49,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
 
         ETNama = findViewById(R.id.idETNama);
         ETUmur = findViewById(R.id.idETUmur);
+        ETClub = findViewById(R.id.idETClub);
         CBUnggulan = findViewById(R.id.idCBUnggulan);
         BSimpan = findViewById(R.id.idBSimpan);
         BHapus = findViewById(R.id.idBHapus);
@@ -85,10 +86,14 @@ public class MainActivity extends AppCompatActivity {
                 if(TextUtils.isEmpty(ETUmur.getText().toString())){
                     ETUmur.setError("Masukkan Umur");
                 }
+                if(TextUtils.isEmpty(ETClub.getText().toString())){
+                    ETUmur.setError("Masukkan Club");
+                }
                 else {
                     SKey = DRef.push().getKey();
                     SNama = ETNama.getText().toString();
                     IUmur = Integer.parseInt(ETUmur.getText().toString());
+                    SClub = ETClub.getText().toString();
                     CekUnggulan();
 
 //                DRef.child("Peserta").addValueEventListener(new ValueEventListener() {
@@ -103,12 +108,14 @@ public class MainActivity extends AppCompatActivity {
                                 String Key = dataSnapshot.getKey();
                                 String Nama = dataSnapshot.child("nama").getValue(String.class);
                                 Integer Umur = dataSnapshot.child("umur").getValue(Integer.class);
+                                String Club = dataSnapshot.child("club").getValue(String.class);
                                 String Unggulan = dataSnapshot.child("unggulan").getValue(String.class);
-                                Log.d("TAG", "onDataChange: " + Nama + " NMA " + SNama);
+//                                Log.d("TAG", "onDataChange: " + Nama + " NMA " + SNama);
 //                                if (SNama.equals(Nama)) {
                                     ALKey.add(Key);
                                     ALNama.add(Nama);
                                     ALUmur.add(Umur);
+                                    ALClub.add(Club);
                                     ALUnggulan.add(Unggulan);
 //                                }
                             }
@@ -117,6 +124,7 @@ public class MainActivity extends AppCompatActivity {
                             } else {
                                 peserta.setNama(SNama);
                                 peserta.setUmur(IUmur);
+                                peserta.setClub(SClub);
                                 peserta.setUnggulan(SCBUnggulan);
                                 history.setBabak1(1);
                                 history.setBabak2(0);
@@ -136,7 +144,7 @@ public class MainActivity extends AppCompatActivity {
                     });
 
 
-                    Toast.makeText(MainActivity.this, "Berhasil Simpan:" + SNama + ";" + IUmur + ";" + SCBUnggulan, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "Berhasil Simpan:" + SNama + ";" +SClub+";"+IUmur+ ";"+SCBUnggulan, Toast.LENGTH_SHORT).show();
                 }
                 }
         });

@@ -38,7 +38,7 @@ public class AdapterDaftarPeserta extends RecyclerView.Adapter<AdapterDaftarPese
     }
 
     public static class DaftarPesertaViewHolder extends RecyclerView.ViewHolder{
-        TextView TVNo, TVNama, TVUmur, TVUnggulan;
+        TextView TVNo, TVNama, TVUmur, TVClub, TVUnggulan;
         ImageView IVHapus, IVEdit;
 
         public DaftarPesertaViewHolder(@NonNull View itemView){
@@ -46,6 +46,7 @@ public class AdapterDaftarPeserta extends RecyclerView.Adapter<AdapterDaftarPese
             TVNo = itemView.findViewById(R.id.idTVNo);
             TVNama = itemView.findViewById(R.id.idTVNama);
             TVUmur = itemView.findViewById(R.id.idTVUmur);
+            TVClub = itemView.findViewById(R.id.idTVClub);
             TVUnggulan = itemView.findViewById(R.id.idTVUnggulan);
             IVHapus = itemView.findViewById(R.id.idIVHapus);
             IVEdit = itemView.findViewById(R.id.idIVEdit);
@@ -67,6 +68,7 @@ public class AdapterDaftarPeserta extends RecyclerView.Adapter<AdapterDaftarPese
 //        holder.TVNama.setText(ALPeserta.get(position).getNama());
         holder.TVUmur.setText(Integer.toString(peserta.getUmur()));
 //        holder.TVUmur.setText(Integer.toString(ALPeserta.get(position).getUmur()));
+        holder.TVClub.setText(peserta.getClub());
         holder.TVUnggulan.setText(peserta.getUnggulan());
 //        holder.TVUnggulan.setText(ALPeserta.get(position).getUnggulan());
 //        Log.d("TAG", "ALINo1: "+ALINo);
@@ -116,11 +118,13 @@ public class AdapterDaftarPeserta extends RecyclerView.Adapter<AdapterDaftarPese
                 final DatabaseReference DBRef = FirebaseDatabase.getInstance().getReference("Peserta");
                 final String SKey = ALKey.get(position);
                 final String SNama = peserta.getNama();
+                final String SClub = peserta.getClub();
                 final Integer IUmur = peserta.getUmur();
                 final String SUnggulan = peserta.getUnggulan();
 
                 intent.putExtra("key", SKey);
                 intent.putExtra("nama", SNama);
+                intent.putExtra("club", SClub);
                 intent.putExtra("umur", IUmur);
                 intent.putExtra("unggulan", SUnggulan);
 

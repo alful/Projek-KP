@@ -22,7 +22,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class edit_peserta extends AppCompatActivity {
-    EditText ETNama, ETUmur;
+    EditText ETNama, ETUmur, ETClub;
     CheckBox CBUnggulan;
     DatabaseReference DBRef;
     Button BSimpan;
@@ -30,12 +30,13 @@ public class edit_peserta extends AppCompatActivity {
     ArrayList<Peserta> ALPeserta= new ArrayList<Peserta>();
     ArrayList<String> ALKey= new ArrayList<String>();
     ArrayList<String> ALNama= new ArrayList<String>();
+    ArrayList<String> ALClub= new ArrayList<String>();
     ArrayList<Integer> ALUmur = new ArrayList<Integer>();
     ArrayList<String> ALUnggulan = new ArrayList<String>();
 
     Peserta peserta;
 
-    String SKey, SNama, SUnggulan;
+    String SKey, SNama, SUnggulan, SClub;
     Integer IUmur;
 
     @Override
@@ -45,6 +46,7 @@ public class edit_peserta extends AppCompatActivity {
 
         ETNama = findViewById(R.id.idETNama);
         ETUmur = findViewById(R.id.idETUmur);
+        ETClub = findViewById(R.id.idETClub);
         CBUnggulan = findViewById(R.id.idCBUnggulan);
         BSimpan = findViewById(R.id.idBSimpan);
 
@@ -54,13 +56,15 @@ public class edit_peserta extends AppCompatActivity {
 
         SKey = getIntent().getExtras().getString("key");
         SNama = getIntent().getExtras().getString("nama");
+        SClub = getIntent().getExtras().getString("club");
         SUnggulan = getIntent().getExtras().getString("unggulan");
         IUmur = getIntent().getExtras().getInt("umur");
 
-        Log.d("TAG", "onCreate: "+SKey+SNama+SUnggulan+IUmur);
+        Log.d("TAG", "onCreate: "+SKey+SNama+SClub+SUnggulan+IUmur);
 
         ETNama.setText(SNama);
         ETUmur.setText(IUmur.toString());
+        ETClub.setText(SClub);
         if(SUnggulan.equals("Unggulan")){
             CBUnggulan.setChecked(true);
         }
@@ -75,6 +79,7 @@ public class edit_peserta extends AppCompatActivity {
                 HashMap hashMap = new HashMap();
                 hashMap.put("nama", ETNama.getText().toString());
                 hashMap.put("umur", Integer.parseInt(ETUmur.getText().toString()));
+                hashMap.put("club", ETClub.getText().toString());
                 if(CBUnggulan.isChecked()){
                     SUnggulan = "Unggulan";
                 }
@@ -84,7 +89,7 @@ public class edit_peserta extends AppCompatActivity {
                 hashMap.put("unggulan", SUnggulan);
                 DBRef.child(SKey).updateChildren(hashMap);
 
-                Toast.makeText(edit_peserta.this, "ubah jadi"+SNama+IUmur+SUnggulan, Toast.LENGTH_SHORT).show();
+                Toast.makeText(edit_peserta.this, "ubah jadi"+SNama+IUmur+SClub+SUnggulan, Toast.LENGTH_SHORT).show();
             }
         });
 
