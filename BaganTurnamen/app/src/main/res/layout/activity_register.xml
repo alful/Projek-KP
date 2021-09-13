@@ -22,7 +22,8 @@
 <!--        android:id="@+id/appbar"/>-->
 
     <include
-        layout="@layout/appbar"/>
+        layout="@layout/appbar"
+        />
 
     <LinearLayout
         android:id="@+id/linearLayout"

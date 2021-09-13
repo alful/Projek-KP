@@ -45,7 +45,8 @@ public class Register extends AppCompatActivity {
 //        toolbar=findViewById(R.id.toolbars);
 
 //        setSupportActionBar(toolbar);
-        androidx.appcompat.widget.Toolbar toolbar= (androidx.appcompat.widget.Toolbar) findViewById(R.id.toolbars);
+        androidx.appcompat.widget.Toolbar toolbar= (androidx.appcompat.widget.Toolbar) findViewById(R.id.tolbar);
+        toolbar.setTitle("Register Akun");
         setSupportActionBar(toolbar);
 
 

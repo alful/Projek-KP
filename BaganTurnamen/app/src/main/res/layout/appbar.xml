@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
@@ -8,14 +8,23 @@
     android:id="@+id/toolbars"
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
+<!--        <ImageView-->
+<!--            android:id="@+id/kembali"-->
+<!--            android:layout_width="39dp"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:src="@drawable/ic_baseline_arrow_back_24" />-->
+
         <androidx.appcompat.widget.Toolbar
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:minHeight="?attr/actionBarSize"
             android:theme="?attr/actionBarTheme"
+            android:layout_toRightOf="@+id/kembali"
+            android:id="@+id/tolbar"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:title="@string/app_name"/>
 
-</LinearLayout>
+            />
+
+</RelativeLayout>

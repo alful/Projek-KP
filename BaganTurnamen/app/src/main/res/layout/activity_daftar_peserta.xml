@@ -6,7 +6,9 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".DaftarPeserta">
-
+    <include
+        layout="@layout/appbar"
+        />
     <ImageView
         android:id="@+id/idIVKembali"
         android:layout_weight="1"

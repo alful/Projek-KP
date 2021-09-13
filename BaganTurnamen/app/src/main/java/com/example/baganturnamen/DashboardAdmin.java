@@ -20,7 +20,9 @@ public class DashboardAdmin extends AppCompatActivity {
         IVInputPeserta = findViewById(R.id.idIVInputPeserta);
         IVDaftarPeserta = findViewById(R.id.idIVDaftarPeserta);
         IVLogOff = findViewById(R.id.idIVLoggOff);
-
+        androidx.appcompat.widget.Toolbar toolbar= (androidx.appcompat.widget.Toolbar) findViewById(R.id.tolbar);
+        toolbar.setTitle("Dashboard");
+        setSupportActionBar(toolbar);
         IVInputPeserta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

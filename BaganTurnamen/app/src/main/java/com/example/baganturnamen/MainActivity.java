@@ -54,7 +54,9 @@ public class MainActivity extends AppCompatActivity {
         BSimpan = findViewById(R.id.idBSimpan);
         BHapus = findViewById(R.id.idBHapus);
         IVKembali = findViewById(R.id.idIVKembali);
-
+        androidx.appcompat.widget.Toolbar toolbar= (androidx.appcompat.widget.Toolbar) findViewById(R.id.tolbar);
+        toolbar.setTitle("Tambah Peserta");
+        setSupportActionBar(toolbar);
         peserta = new Peserta();
         history = new History();
 

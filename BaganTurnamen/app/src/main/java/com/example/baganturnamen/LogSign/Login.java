@@ -104,6 +104,9 @@ public class Login extends AppCompatActivity {
         login=findViewById(R.id.loginsss);
         sign=findViewById(R.id.signupsss);
 
+        androidx.appcompat.widget.Toolbar toolbar= (androidx.appcompat.widget.Toolbar) findViewById(R.id.tolbar);
+        toolbar.setTitle("Login Akun");
+        setSupportActionBar(toolbar);
 
         firebaseAuth=FirebaseAuth.getInstance();
         login.setOnClickListener(new View.OnClickListener() {

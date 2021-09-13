@@ -28,7 +28,7 @@ public class DaftarPeserta extends AppCompatActivity {
     ArrayList<String> ALNama = new ArrayList<String>();
     ArrayList<Integer> ALUmur = new ArrayList<Integer>();
     ArrayList<String> ALUnggulan = new ArrayList<String>();
-    ImageView IVKembali;
+    ImageView IVKembali,kembali;
     Context context;
 //    Peserta peserta = new Peserta();
 
@@ -37,6 +37,18 @@ public class DaftarPeserta extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_daftar_peserta);
+//        kembali = findViewById(R.id.kembali);
+
+        androidx.appcompat.widget.Toolbar toolbar= (androidx.appcompat.widget.Toolbar) findViewById(R.id.tolbar);
+        toolbar.setTitle("Daftar Peserta");
+
+        setSupportActionBar(toolbar);
+
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+//        getSupportActionBar().setDisplayUseLogoEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+
 
         RVDaftarPeserta = findViewById(R.id.idRVDaftarPeserta);
         IVKembali = findViewById(R.id.idIVKembali);
@@ -45,6 +57,7 @@ public class DaftarPeserta extends AppCompatActivity {
         DBRef = FirebaseDatabase.getInstance().getReference("Peserta");
 
         RVDaftarPeserta.setHasFixedSize(true);
+
 
         IVKembali.setOnClickListener(new View.OnClickListener(){
            @Override
@@ -86,5 +99,12 @@ public class DaftarPeserta extends AppCompatActivity {
             }
         });
 
+//        kembali.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                startActivity(new Intent(getApplicationContext(),DashboardAdmin.class));
+//            }
+//        });
     }
+
 }

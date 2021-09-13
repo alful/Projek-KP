@@ -31,7 +31,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".DaftarPeserta" />
+        <activity android:name=".DaftarPeserta"
+            android:parentActivityName=".LogSign.Login"
+            />
         <activity android:name=".MainActivity">
 
             <!-- <intent-filter> -->
