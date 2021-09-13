@@ -58,6 +58,7 @@ public class DaftarPeserta extends AppCompatActivity {
         DBRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                ALPeserta.clear();
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     Peserta peserta = dataSnapshot.getValue(Peserta.class);
                     String key = dataSnapshot.getKey();
