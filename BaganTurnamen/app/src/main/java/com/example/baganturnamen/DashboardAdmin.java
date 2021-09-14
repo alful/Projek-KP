@@ -7,11 +7,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.example.baganturnamen.Bagan.Bagans;
 import com.example.baganturnamen.LogSign.Login;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class DashboardAdmin extends AppCompatActivity {
-    ImageView IVInputPeserta, IVDaftarPeserta, IVLogOff;
+    ImageView IVInputPeserta, IVDaftarPeserta, IVBaganTurnamen, IVLogOff;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,6 +20,7 @@ public class DashboardAdmin extends AppCompatActivity {
         setContentView(R.layout.activity_dashboard_admin);
         IVInputPeserta = findViewById(R.id.idIVInputPeserta);
         IVDaftarPeserta = findViewById(R.id.idIVDaftarPeserta);
+        IVBaganTurnamen = findViewById(R.id.idIVBaganTurnamen);
         IVLogOff = findViewById(R.id.idIVLoggOff);
         androidx.appcompat.widget.Toolbar toolbar= (androidx.appcompat.widget.Toolbar) findViewById(R.id.tolbar);
         toolbar.setTitle("Dashboard");
@@ -35,6 +37,14 @@ public class DashboardAdmin extends AppCompatActivity {
             @Override
             public void onClick(View v){
                 Intent intent = new Intent(DashboardAdmin.this, DaftarPeserta.class);
+                startActivity(intent);
+            }
+        });
+
+        IVBaganTurnamen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(DashboardAdmin.this, Bagans.class);
                 startActivity(intent);
             }
         });
