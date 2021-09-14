@@ -11,5 +11,7 @@ public class Viewholder {
 
     Viewholder(View view) {
         textView = view.findViewById(R.id.idTvnode);
+
+
     }
 }
