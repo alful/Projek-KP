@@ -51,7 +51,7 @@ public class DaftarPeserta extends AppCompatActivity {
 
 
         RVDaftarPeserta = findViewById(R.id.idRVDaftarPeserta);
-        IVKembali = findViewById(R.id.idIVKembali);
+//        IVKembali = findViewById(R.id.idIVKembali);
 
         ALPeserta = new ArrayList<Peserta>();
         DBRef = FirebaseDatabase.getInstance().getReference("Peserta");
@@ -59,14 +59,14 @@ public class DaftarPeserta extends AppCompatActivity {
         RVDaftarPeserta.setHasFixedSize(true);
 
 
-        IVKembali.setOnClickListener(new View.OnClickListener(){
-           @Override
-           public void onClick(View v){
-//               Intent intent = new Intent(DaftarPeserta.this, DashboardAdmin.class);
-//               startActivity(intent);
-               finish();
-           }
-        });
+//        IVKembali.setOnClickListener(new View.OnClickListener(){
+//           @Override
+//           public void onClick(View v){
+////               Intent intent = new Intent(DaftarPeserta.this, DashboardAdmin.class);
+////               startActivity(intent);
+//               finish();
+//           }
+//        });
 
         DBRef.addValueEventListener(new ValueEventListener() {
             @Override

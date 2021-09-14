@@ -37,6 +37,7 @@ public class Bagans extends AppCompatActivity {
     ArrayAdapter arrayAdapter;
     ArrayList<String> arrayTampil=new ArrayList<>();
     ArrayList<String> arrayTampil1=new ArrayList<>();
+    ArrayList<String> ALNama = new ArrayList<String>();
     ArrayList<Peserta> ALPeserta = new ArrayList<Peserta>();
     Button ssa;
     TreeView treeView;
@@ -65,7 +66,8 @@ public class Bagans extends AppCompatActivity {
 
                 datas.put(id,nama);
                 ALPeserta.add(peserta);
-                Log.d("TAG", "onChildAddedss: "+datas+ALPeserta);
+                ALNama.add(nama);
+                Log.d("TAG", "onChildAddedss: "+datas+ALPeserta+ALNama);
 
             }
 
@@ -133,91 +135,113 @@ public class Bagans extends AppCompatActivity {
 
         treeView.setAdapter(adapter);
 
-        TreeNode root = new TreeNode("");
-        TreeNode DSA = new TreeNode("");
-        TreeNode aaa = new TreeNode("");
-        TreeNode bbb = new TreeNode("");
-        TreeNode ccc = new TreeNode("ccc");
-        TreeNode ddd = new TreeNode("ddd");
-        TreeNode eee = new TreeNode("eee");
-        TreeNode fff = new TreeNode("fff");
-        TreeNode ggg = new TreeNode("ggg");
-        TreeNode hhh = new TreeNode("hhh");
-        TreeNode iii = new TreeNode("");
-        TreeNode jjj = new TreeNode("jjj");
-        TreeNode ooo = new TreeNode("ooo");
-        TreeNode ppp = new TreeNode("");
-        TreeNode rrr = new TreeNode("rrr");
-        TreeNode mmm = new TreeNode("mmm");
-        TreeNode zzz = new TreeNode("");
-        TreeNode ttt = new TreeNode("ttt");
-        TreeNode qqq = new TreeNode("qqq");
-        TreeNode vvv = new TreeNode("");
-        TreeNode uuu = new TreeNode("uuu");
-        TreeNode kkk = new TreeNode("kkk");
-        TreeNode www = new TreeNode("www");
-        TreeNode wow = new TreeNode("wow");
-        TreeNode wu = new TreeNode("wu");
-        TreeNode cc = new TreeNode("cc");
-        TreeNode cf = new TreeNode("");
-        TreeNode cr = new TreeNode("");
-        TreeNode ct = new TreeNode("");
-        TreeNode fg = new TreeNode("");
-        TreeNode rt = new TreeNode("rt");
-        TreeNode yy = new TreeNode("");
-        TreeNode to = new TreeNode("");
-        TreeNode tp = new TreeNode("");
+        String SData="Mahes";
+        TreeNode Troot = new TreeNode("");
+        TreeNode Troot2 = new TreeNode("");
+        TreeNode Troot3 = new TreeNode("");
+        TreeNode Troot4 = new TreeNode("");
+        for(int x=0; x<ALNama.size(); x++){
+            String SDatas = null;
+            Troot = new TreeNode(ALNama.get(x));  //15 - 30
+            Troot2 = new TreeNode(ALNama.get(x+1));
 
+            if(x%2==0){
+                Troot.addChild(Troot2);
+            }
+            else{
+                Troot3.addChild(Troot4);
+            }
+        }
+//        Troot.addChild(yy);//51
+//        tp.addChild(to);
 
-        tp.addChild(yy);//51
-        tp.addChild(to);
+//        TreeNode root = new TreeNode("");
+//        TreeNode DSA = new TreeNode("");
+//        TreeNode aaa = new TreeNode("");
+//        TreeNode bbb = new TreeNode("");
+//        TreeNode ccc = new TreeNode("ccc");
+//        TreeNode ddd = new TreeNode("ddd");
+//        TreeNode eee = new TreeNode("eee");
+//        TreeNode fff = new TreeNode("fff");
+//        TreeNode ggg = new TreeNode("ggg");
+//        TreeNode hhh = new TreeNode("hhh");
+//        TreeNode iii = new TreeNode("");
+//        TreeNode jjj = new TreeNode("jjj");
+//        TreeNode ooo = new TreeNode("ooo");
+//        TreeNode ppp = new TreeNode("");
+//        TreeNode rrr = new TreeNode("rrr");
+//        TreeNode mmm = new TreeNode("mmm");
+//        TreeNode zzz = new TreeNode("");
+//        TreeNode ttt = new TreeNode("ttt");
+//        TreeNode qqq = new TreeNode("qqq");
+//        TreeNode vvv = new TreeNode("");
+//        TreeNode uuu = new TreeNode("uuu");
+//        TreeNode kkk = new TreeNode("kkk");
+//        TreeNode www = new TreeNode("www");
+//        TreeNode wow = new TreeNode("wow");
+//        TreeNode wu = new TreeNode("wu");
+//        TreeNode cc = new TreeNode("cc");
+//        TreeNode cf = new TreeNode("");
+//        TreeNode cr = new TreeNode("");
+//        TreeNode ct = new TreeNode("");
+//        TreeNode fg = new TreeNode("");
+//        TreeNode rt = new TreeNode("rt");
+//        TreeNode yy = new TreeNode("");
+//        TreeNode to = new TreeNode("");
+//        TreeNode tp = new TreeNode("");
+//
+//
+//        tp.addChild(yy);//51
+//        tp.addChild(to);
+//
+//        yy.addChild(root);//41
+//        yy.addChild(cr);
+//
+//        to.addChild(ct);//31
+//        to.addChild(fg);
+//
+//        root.addChild(DSA);//22
+//        root.addChild(aaa);
+//
+//        cr.addChild(bbb);//23
+//        cr.addChild(iii);
+//
+//        ct.addChild(zzz);//22
+//        ct.addChild(ppp);
+//
+//        fg.addChild(cf);//21
+//        fg.addChild(vvv);
+//
+//        DSA.addChild(fff);//1
+//        DSA.addChild(ggg);
+//
+//        aaa.addChild(ccc);//2
+//        aaa.addChild(ddd);
+//
+//        bbb.addChild(eee);//3
+//        bbb.addChild(hhh);
+//
+//        iii.addChild(jjj);//4
+//        iii.addChild(ooo);
+//
+//        zzz.addChild(qqq);//5
+//        zzz.addChild(ttt);
+//
+//        ppp.addChild(rrr);//6
+//        ppp.addChild(mmm);
+//
+//        www.addChild(kkk);//7
+//        www.addChild(uuu);
+//
+//        vvv.addChild(wow);//8
+//        vvv.addChild(wu);
+//
+//        cf.addChild(cc);//9
+//        cf.addChild(rt);
 
-        yy.addChild(root);//41
-        yy.addChild(cr);
+//        adapter.setRootNode(tp);
 
-        to.addChild(ct);//31
-        to.addChild(fg);
-
-        root.addChild(DSA);//22
-        root.addChild(aaa);
-
-        cr.addChild(bbb);//23
-        cr.addChild(iii);
-
-        ct.addChild(zzz);//22
-        ct.addChild(ppp);
-
-        fg.addChild(cf);//21
-        fg.addChild(vvv);
-
-        DSA.addChild(fff);//1
-        DSA.addChild(ggg);
-
-        aaa.addChild(ccc);//2
-        aaa.addChild(ddd);
-
-        bbb.addChild(eee);//3
-        bbb.addChild(hhh);
-
-        iii.addChild(jjj);//4
-        iii.addChild(ooo);
-
-        zzz.addChild(qqq);//5
-        zzz.addChild(ttt);
-
-        ppp.addChild(rrr);//6
-        ppp.addChild(mmm);
-
-        www.addChild(kkk);//7
-        www.addChild(uuu);
-
-        vvv.addChild(wow);//8
-        vvv.addChild(wu);
-
-        cf.addChild(cc);//9
-        cf.addChild(rt);
-
-        adapter.setRootNode(tp);
+        adapter.setRootNode(Troot);
 
 
     }
