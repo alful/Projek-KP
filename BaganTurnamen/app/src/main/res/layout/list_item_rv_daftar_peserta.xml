@@ -16,16 +16,16 @@
             android:gravity="center"
             android:text="NO"
             android:textStyle="bold"
-            android:textSize="18dp">
+            android:textSize="11dp">
         </TextView>
         <TextView
             android:id="@+id/idTVNama"
-            android:layout_weight="2"
+            android:layout_weight="3"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="NAMA"
-            android:textSize="18dp"
+            android:textSize="11dp"
             android:textStyle="bold">
         </TextView>
         <TextView
@@ -35,27 +35,27 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="UMUR"
-            android:textSize="18dp"
+            android:textSize="11dp"
             android:textStyle="bold">
         </TextView>
         <TextView
             android:id="@+id/idTVClub"
-            android:layout_weight="1"
+            android:layout_weight="2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="CLUB"
             android:textStyle="bold"
-            android:textSize="18dp">
+            android:textSize="11dp">
         </TextView>
         <TextView
             android:id="@+id/idTVUnggulan"
-            android:layout_weight="1"
+            android:layout_weight="2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="UNGGULAN"
-            android:textSize="18dp"
+            android:textSize="11dp"
             android:textStyle="bold">
         </TextView>
         <ImageView

@@ -3,6 +3,8 @@ package com.example.baganturnamen.Bagan;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
+import android.view.View;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -10,6 +12,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 
+import com.example.baganturnamen.Peserta;
 import com.example.baganturnamen.R;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -34,16 +37,19 @@ public class Bagans extends AppCompatActivity {
     ArrayAdapter arrayAdapter;
     ArrayList<String> arrayTampil=new ArrayList<>();
     ArrayList<String> arrayTampil1=new ArrayList<>();
+    ArrayList<Peserta> ALPeserta = new ArrayList<Peserta>();
     Button ssa;
+    TreeView treeView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bagans);
         ssa=findViewById(R.id.ssa);
+        treeView = findViewById(R.id.idTreeView);
         databaseReference= FirebaseDatabase.getInstance().getReference().child("Peserta");
         Log.d("TAG", "onCreate: "+databaseReference);
-        HashMap <String,String> datas=new HashMap<String,String>();
+        HashMap <String,String> datas=new HashMap<String, String>();
 
         databaseReference.addChildEventListener(new ChildEventListener() {
             @Override
@@ -55,9 +61,11 @@ public class Bagans extends AppCompatActivity {
                 String id=snapshot.getKey();
                 String umr= Long.toString(umur);
                 Log.d("TAG", "onChildAdded: "+umur);
+                Peserta peserta = snapshot.getValue(Peserta.class);
 
                 datas.put(id,nama);
-                Log.d("TAG", "onChildAddedss: "+datas);
+                ALPeserta.add(peserta);
+                Log.d("TAG", "onChildAddedss: "+datas+ALPeserta);
 
             }
 
@@ -101,6 +109,115 @@ public class Bagans extends AppCompatActivity {
 
             }
         });
+
+        BaseTreeAdapter<Viewholder> adapter = new BaseTreeAdapter<Viewholder>(this, R.layout.tree_view_node){
+            @NonNull
+            @Override
+            public Viewholder onCreateViewHolder(View view){
+                return new Viewholder(view);
+            }
+
+            @Override
+            public void onBindViewHolder(Viewholder viewHolder, Object data, int position){
+//                Peserta peserta = ALPeserta.get(30);
+                viewHolder.textView.setText(data.toString());
+//                viewHolder.textView.setText(peserta.getNama());
+                viewHolder.textView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Log.d("TAG", "onClick: textview"+data+position);
+                    }
+                });
+            }
+        };
+
+        treeView.setAdapter(adapter);
+
+        TreeNode root = new TreeNode("");
+        TreeNode DSA = new TreeNode("");
+        TreeNode aaa = new TreeNode("");
+        TreeNode bbb = new TreeNode("");
+        TreeNode ccc = new TreeNode("ccc");
+        TreeNode ddd = new TreeNode("ddd");
+        TreeNode eee = new TreeNode("eee");
+        TreeNode fff = new TreeNode("fff");
+        TreeNode ggg = new TreeNode("ggg");
+        TreeNode hhh = new TreeNode("hhh");
+        TreeNode iii = new TreeNode("");
+        TreeNode jjj = new TreeNode("jjj");
+        TreeNode ooo = new TreeNode("ooo");
+        TreeNode ppp = new TreeNode("");
+        TreeNode rrr = new TreeNode("rrr");
+        TreeNode mmm = new TreeNode("mmm");
+        TreeNode zzz = new TreeNode("");
+        TreeNode ttt = new TreeNode("ttt");
+        TreeNode qqq = new TreeNode("qqq");
+        TreeNode vvv = new TreeNode("");
+        TreeNode uuu = new TreeNode("uuu");
+        TreeNode kkk = new TreeNode("kkk");
+        TreeNode www = new TreeNode("www");
+        TreeNode wow = new TreeNode("wow");
+        TreeNode wu = new TreeNode("wu");
+        TreeNode cc = new TreeNode("cc");
+        TreeNode cf = new TreeNode("");
+        TreeNode cr = new TreeNode("");
+        TreeNode ct = new TreeNode("");
+        TreeNode fg = new TreeNode("");
+        TreeNode rt = new TreeNode("rt");
+        TreeNode yy = new TreeNode("");
+        TreeNode to = new TreeNode("");
+        TreeNode tp = new TreeNode("");
+
+
+        tp.addChild(yy);//51
+        tp.addChild(to);
+
+        yy.addChild(root);//41
+        yy.addChild(cr);
+
+        to.addChild(ct);//31
+        to.addChild(fg);
+
+        root.addChild(DSA);//22
+        root.addChild(aaa);
+
+        cr.addChild(bbb);//23
+        cr.addChild(iii);
+
+        ct.addChild(zzz);//22
+        ct.addChild(ppp);
+
+        fg.addChild(cf);//21
+        fg.addChild(vvv);
+
+        DSA.addChild(fff);//1
+        DSA.addChild(ggg);
+
+        aaa.addChild(ccc);//2
+        aaa.addChild(ddd);
+
+        bbb.addChild(eee);//3
+        bbb.addChild(hhh);
+
+        iii.addChild(jjj);//4
+        iii.addChild(ooo);
+
+        zzz.addChild(qqq);//5
+        zzz.addChild(ttt);
+
+        ppp.addChild(rrr);//6
+        ppp.addChild(mmm);
+
+        www.addChild(kkk);//7
+        www.addChild(uuu);
+
+        vvv.addChild(wow);//8
+        vvv.addChild(wu);
+
+        cf.addChild(cc);//9
+        cf.addChild(rt);
+
+        adapter.setRootNode(tp);
 
 
     }
