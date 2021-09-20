@@ -1,5 +1,6 @@
 package com.example.baganturnamen.BracketT;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -7,6 +8,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -16,6 +18,7 @@ import com.example.baganturnamen.Peserta;
 import com.example.baganturnamen.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -42,13 +45,15 @@ public class Bracket extends AppCompatActivity {
     private BracketsFragment bracketsFragment;
     BracketsView bracketsView;
     DatabaseReference databaseReference;
-    ArrayList<String> ALNama;
+    ArrayList<String> ALNama = new ArrayList<String>();
     ArrayList<String> ALNama2;
     ArrayList<Peserta> ALPeserta;
     Peserta peserta;
     CompetitorData mahes, kosong, isi, isi2, isi3, isi4, isi5, isi6, isi7, isi8;
     MatchData MDkosong, MDisi, MD1, MD2, MD3, MD4, MD5;
     ColomnData CLkosong, CL1, CL2, CLfinal;
+    int nos=0;
+    String asa;
 
 //    @Override
 //    protected void onStart(){
@@ -101,10 +106,40 @@ public class Bracket extends AppCompatActivity {
 //        ALNama = new ArrayList<String>();
         peserta = new Peserta();
         ALPeserta = new ArrayList<Peserta>();
+        ALNama = new ArrayList<String>();
+        ALNama=getIntent().getStringArrayListExtra("namas");
+        Log.d("TAG", "ALNama1: "+ALNama);
 
-//        Log.d("TAG", "ALNama1: "+ALNama);
 
-
+//        databaseReference.addChildEventListener(new ChildEventListener() {
+//            @Override
+//            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+//                nos++;
+//                String nama= (String) snapshot.child("nama").getValue();
+//                String nms= nama;
+//                ALNama.add(nms);
+//            }
+//
+//            @Override
+//            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+//
+//            }
+//
+//            @Override
+//            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+//
+//            }
+//
+//            @Override
+//            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+//
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//
+//            }
+//        });
 
 //        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
 //            @Override
@@ -117,13 +152,13 @@ public class Bracket extends AppCompatActivity {
 //
 //                    ALNama.add(nama);
 //                    ALPeserta.add(peserta);
+//                    nos++;
 //                }
 ////                    treeView.setAdapter(adapter);
 //
 ////                Toast.makeText(Bagans.this, "Toast"+ALNama, Toast.LENGTH_SHORT).show();
 //
 //                Log.d("TAG", "ALNama2: " + ALNama+ALPeserta);
-//                alnama(ALNama);
 //
 //
 //            }
@@ -145,21 +180,21 @@ public class Bracket extends AppCompatActivity {
 //            }
 //        });
 
-        readData(new FirebaseCallback() {
-            @Override
-            public void onCallback(ArrayList<String> ALNama) {
-                peserta.setALNama(ALNama);
-                Log.d("TAG", "onCallback: "+peserta.getALNama()+ALNama);
-//                Log.d("TAG", "onCallback: "+ALNama);
-//                mahes = new CompetitorData("mahes","0");
-//                bagan();
-//                peserta.getALNama();
+//        readData(new FirebaseCallback() {
+//            @Override
+//            public void onCallback(ArrayList<String> ALNama) {
+////                Log.d("TAG", "onCallback: "+ALNama);
+////                mahes = new CompetitorData("mahes","0");
+////                bagan();
+////                peserta.getALNama();
+//
+//
+////
+//            }
+//        });
 
-            }
-        });
-        Log.d("TAG", "ALNama3: "+peserta.getALNama());
 
-            bagan();
+        bagan();
 
 //        bagan();
 //        CompetitorData mahes = new CompetitorData("mahes","0");
@@ -196,19 +231,25 @@ public class Bracket extends AppCompatActivity {
 //        bracketsView.setBracketsData(Arrays.asList(CDBabak1, CDBabak2, CDFinal));
 
 //        Toast.makeText(this, ""+bracketsFragment.getBracketsFragment(0), Toast.LENGTH_SHORT).show();
-        
+        Log.d("TAG", "onCreate:sad "+nos);
 
+        for (int a=0;a<nos;a++)
+        {
+            String as=ALNama.get(a);
+            Log.d("TAG", "onCreate:sad "+as);
+        }
 
 
 
     }
 
+
+
+
     public void bagan(){
-        ALNama = new ArrayList<String>();
         ALNama2 = new ArrayList<String>();
         peserta = new Peserta();
 
-        Log.d("TAG", "ALbagan: "+ALNama+peserta.getALNama());
 //        bracketsView = findViewById(R.id.bracket_view);
 
         ALNama2.add("mahes");
@@ -220,7 +261,7 @@ public class Bracket extends AppCompatActivity {
         ALNama2.add("edward");
         ALNama2.add("roger");
 //        ALNama2.add("");
-        Log.d("TAG", "bagan: "+ALNama2);
+        Log.d("TAG", "bagan: "+ALNama);
 //        for(int i=0; i<=6; i++){
 //            if(i==0) {
 //                kosong = new CompetitorData("", "0");
@@ -264,18 +305,18 @@ public class Bracket extends AppCompatActivity {
 //                Log.d("TAG", "i=6 "+CL1+CL2+CLfinal);
 //            }
 //        }
+        Log.d("TAG", "bagan: "+ALNama);
+        mahes = new CompetitorData(ALNama.get(0),"0");
+        CompetitorData arthao = new CompetitorData(ALNama.get(1), "3");
 
-        mahes = new CompetitorData(ALNama2.get(0),"0");
-        CompetitorData arthao = new CompetitorData(ALNama2.get(1), "3");
+        CompetitorData ace = new CompetitorData(ALNama.get(2),"0");
+        CompetitorData luffy = new CompetitorData(ALNama.get(3), "3");
 
-        CompetitorData ace = new CompetitorData(ALNama2.get(2),"0");
-        CompetitorData luffy = new CompetitorData(ALNama2.get(3), "3");
+        CompetitorData sabo = new CompetitorData(ALNama.get(4),"0");
+        CompetitorData teach = new CompetitorData(ALNama.get(5), "3");
 
-        CompetitorData sabo = new CompetitorData(ALNama2.get(4),"0");
-        CompetitorData teach = new CompetitorData(ALNama2.get(5), "3");
-
-        CompetitorData edward = new CompetitorData(ALNama2.get(6),"0");
-        CompetitorData roger = new CompetitorData(ALNama2.get(7), "3");
+        CompetitorData edward = new CompetitorData(ALNama.get(6),"0");
+        CompetitorData roger = new CompetitorData(ALNama.get(7), "3");
 
         CompetitorData kosong = new CompetitorData("","");
 //        CompetitorData kosongf = new CompetitorData("", "");//agar animasi naik turun
@@ -322,13 +363,13 @@ public class Bracket extends AppCompatActivity {
                     ALNama.add(nama);
                     ALPeserta.add(peserta);
                 }
-                Log.d("TAG", "onDataChange: "+ALNama);
+//                Log.d("TAG", "onDataChange: "+ALNama);
                 firebaseCallback.onCallback(ALNama);
 
 //                getDS();
 //                    treeView.setAdapter(adapter);
 //                Toast.makeText(Bagans.this, "Toast"+ALNama, Toast.LENGTH_SHORT).show();
-                Log.d("TAG", "ALNama2: " + ALNama+ALPeserta);
+//                Log.d("TAG", "ALNama2: " + ALNama+ALPeserta);
             }
 
 
@@ -337,6 +378,8 @@ public class Bracket extends AppCompatActivity {
 
             }
         });
+
+
     }
 
     private interface FirebaseCallback{

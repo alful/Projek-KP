@@ -135,6 +135,7 @@ public class Bagans extends AppCompatActivity {
                 Collections.shuffle(list);
                 for (Map.Entry<String, String> entry : list) {
                     System.out.println(entry.getKey() + " :: " + entry.getValue());
+
                 }
 
             }
@@ -158,6 +159,7 @@ public class Bagans extends AppCompatActivity {
                     @Override
                     public void onClick(View view) {
                         Log.d("TAG", "onClick: textview"+data+position);
+                        Log.d("TAG", "onClick: "+ALNama);
                     }
                 });
             }
