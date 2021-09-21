@@ -252,14 +252,14 @@ public class Bracket extends AppCompatActivity {
 
 //        bracketsView = findViewById(R.id.bracket_view);
 
-        ALNama2.add("mahes");
-        ALNama2.add("arthao");
-        ALNama2.add("ace");
-        ALNama2.add("luffy");
-        ALNama2.add("sabo");
-        ALNama2.add("teach");
-        ALNama2.add("edward");
-        ALNama2.add("roger");
+//        ALNama2.add("mahes");
+//        ALNama2.add("arthao");
+//        ALNama2.add("ace");
+//        ALNama2.add("luffy");
+//        ALNama2.add("sabo");
+//        ALNama2.add("teach");
+//        ALNama2.add("edward");
+//        ALNama2.add("roger");
 //        ALNama2.add("");
         Log.d("TAG", "bagan: "+ALNama);
 //        for(int i=0; i<=6; i++){
@@ -333,6 +333,7 @@ public class Bracket extends AppCompatActivity {
         MatchData MD4 = new MatchData(edward, roger);
         MatchData MD5 = new MatchData(kosong, kosong);
 
+
 //        MDkosong.setCompetitorOne();
 
         ColomnData CDBabak1 = new ColomnData(Arrays.asList(MD1, MD2, MD3, MD4));
@@ -347,6 +348,9 @@ public class Bracket extends AppCompatActivity {
             }
         });
         Log.d("TAG", "bracket "+MD1.getCompetitorOne());
+
+
+
 
 
     }
