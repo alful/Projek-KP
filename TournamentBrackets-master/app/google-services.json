@@ -1,0 +1,69 @@
+{
+  "project_info": {
+    "project_number": "10187332914",
+    "firebase_url": "https://projek-kp-default-rtdb.firebaseio.com",
+    "project_id": "projek-kp",
+    "storage_bucket": "projek-kp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:10187332914:android:93390beb8701ffb022cb2b",
+        "android_client_info": {
+          "package_name": "com.ventura.emilp.tournamentbrackets"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "10187332914-rrsa76ml3ciq94sdnq22hmjg7fcucfn7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBYmlsBqKCDOZmN1IJB-IanxPYYDlIirjc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "10187332914-rrsa76ml3ciq94sdnq22hmjg7fcucfn7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:10187332914:android:49a0a23e52e1b69822cb2b",
+        "android_client_info": {
+          "package_name": "com.example.projekkp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "10187332914-rrsa76ml3ciq94sdnq22hmjg7fcucfn7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBYmlsBqKCDOZmN1IJB-IanxPYYDlIirjc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "10187332914-rrsa76ml3ciq94sdnq22hmjg7fcucfn7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
