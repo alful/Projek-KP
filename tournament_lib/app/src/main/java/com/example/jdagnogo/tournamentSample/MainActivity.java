@@ -2,6 +2,7 @@ package com.example.jdagnogo.tournamentSample;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -17,7 +18,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private TournamentView tournamentView;
-    Team arsenal, real, milan, psg;
+    Team arsenal, real, milan, psg, arth, mahes, ace, sabo;
     List<Team> allTeam;
 
     @Override
@@ -38,6 +39,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         real = new Team("Real Madrid");
         milan = new Team("Milan AC");
         psg = new Team("PSG");
+        arth = new Team("arth");
+        mahes = new Team("mahes");
+        ace = new Team("ace");
+        sabo = new Team("sabo");
 
         //Add team into the tournament
         allTeam = new ArrayList<>();
@@ -45,6 +50,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         allTeam.add(real);
         allTeam.add(milan);
         allTeam.add(psg);
+        allTeam.add(arth);
+        allTeam.add(mahes);
+        allTeam.add(ace);
+        allTeam.add(sabo);
 
 
         tournamentView = (TournamentView) findViewById(R.id.tournament_view);
@@ -55,6 +64,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch (v.getId()) {
             case R.id.set_teams:
                 tournamentView.setTournament(new Tournament(allTeam));
+                Log.d("TAG", "Klik Set Team "+allTeam.get(0).getName());
                 tournamentView.startTournament();
                 break;
             case R.id.simulate:

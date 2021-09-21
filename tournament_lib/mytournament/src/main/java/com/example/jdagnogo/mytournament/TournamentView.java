@@ -39,19 +39,38 @@ public class TournamentView extends LinearLayout {
     View rootView;
     LinearLayout mainLayout;
     //semi names
-    TextView semiACard1Textview, semiACard2Textview, semiBCard1Textview, semiBCard2Textview;
-    CardView semiACard1, semiACard2, semiBCard1, semiBCard2;
-    View semiACard1Arrow1, semiACard1Arrow2, semiACard2Arrow1, semiACard2Arrow2, semiBCard1Arrow1, semiBCard1Arrow2, semiBCard2Arrow1, semiBCard2Arrow2;
+    TextView semiACard1Textview, semiACard2Textview,
+            semiBCard1Textview, semiBCard2Textview,
+            semiCCard1Textview, semiCCard2Textview,
+            semiDCard1Textview, semiDCard2Textview;
+    CardView semiACard1, semiACard2,
+            semiBCard1, semiBCard2,
+            semiCCard1, semiCCard2,
+            semiDCard1, semiDCard2;
+    View semiACard1Arrow1, semiACard1Arrow2,
+            semiACard2Arrow1, semiACard2Arrow2,
+            semiBCard1Arrow1, semiBCard1Arrow2,
+            semiBCard2Arrow1, semiBCard2Arrow2,
+            semiCCard1Arrow1, semiCCard1Arrow2,
+            semiCCard2Arrow1, semiCCard2Arrow2,
+            semiDCard1Arrow1, semiDCard1Arrow2,
+            semiDCard2Arrow1, semiDCard2Arrow2;
     //semi score
-    EditText semiACard1TextviewScore, semiACard2TextviewScore, semiBCard1TextviewScore, semiBCard2TextviewScore;
+    EditText semiACard1TextviewScore, semiACard2TextviewScore,
+            semiBCard1TextviewScore, semiBCard2TextviewScore,
+            semiCCard1TextviewScore, semiCCard2TextviewScore,
+            semiDCard1TextviewScore, semiDCard2TextviewScore;
     //final names
-    TextView finalCard1Textview, finalCard2Textview;
-    CardView finalCard1, finalCard2;
+    TextView finalCard1Textview, finalCard2Textview, finalCard3Textview, finalCard4Textview;
+    CardView finalCard1, finalCard2, finalCard3, finalCard4;
     View winnerArrow0;
     TextView winnerTextView;
-    View finalCard1Arrow1, finalCard1Arrow0, finalCard1Arrow2, finalCard2Arrow1, finalCard2Arrow0, finalCard2Arrow2;
+    View finalCard1Arrow1, finalCard1Arrow0,
+            finalCard1Arrow2, finalCard2Arrow1,
+            finalCard2Arrow0, finalCard2Arrow2;
     //final score
-    EditText finalCard1TextviewScore, finalCard2TextviewScore;
+    EditText finalCard1TextviewScore, finalCard2TextviewScore,
+            finalCard3TextviewScore, finalCard4TextviewScore;
 
 
     /*
@@ -100,6 +119,11 @@ public class TournamentView extends LinearLayout {
         semiBCard1Textview = (TextView) rootView.findViewById(R.id.semi_b_card_1_textview);
         semiBCard2Textview = (TextView) rootView.findViewById(R.id.semi_b_card_2_textview);
 
+        semiCCard1Textview = (TextView) rootView.findViewById(R.id.semi_c_card_1_textview);
+        semiCCard2Textview = (TextView) rootView.findViewById(R.id.semi_c_card_2_textview);
+        semiDCard1Textview = (TextView) rootView.findViewById(R.id.semi_d_card_1_textview);
+        semiDCard2Textview = (TextView) rootView.findViewById(R.id.semi_d_card_2_textview);
+
         semiACard1Arrow1 = (View) rootView.findViewById(R.id.semi_a_card_1_arrow_1);
         semiACard1Arrow2 = (View) rootView.findViewById(R.id.semi_a_card_1_arrow_2);
         semiACard2Arrow1 = (View) rootView.findViewById(R.id.semi_a_card_2_arrow_1);
@@ -110,10 +134,25 @@ public class TournamentView extends LinearLayout {
         semiBCard2Arrow1 = (View) rootView.findViewById(R.id.semi_b_card_2_arrow_1);
         semiBCard2Arrow2 = (View) rootView.findViewById(R.id.semi_b_card_2_arrow_2);
 
+        semiCCard1Arrow1 = (View) rootView.findViewById(R.id.semi_c_card_1_arrow_1);
+        semiCCard1Arrow2 = (View) rootView.findViewById(R.id.semi_c_card_1_arrow_2);
+        semiCCard2Arrow1 = (View) rootView.findViewById(R.id.semi_c_card_2_arrow_1);
+        semiCCard2Arrow2 = (View) rootView.findViewById(R.id.semi_c_card_2_arrow_2);
+
+        semiDCard1Arrow1 = (View) rootView.findViewById(R.id.semi_d_card_1_arrow_1);
+        semiDCard1Arrow2 = (View) rootView.findViewById(R.id.semi_d_card_1_arrow_2);
+        semiDCard2Arrow1 = (View) rootView.findViewById(R.id.semi_d_card_2_arrow_1);
+        semiDCard2Arrow2 = (View) rootView.findViewById(R.id.semi_d_card_2_arrow_2);
+
         semiACard1 = (CardView) rootView.findViewById(R.id.semi_a_card_1);
         semiACard2 = (CardView) rootView.findViewById(R.id.semi_a_card_2);
         semiBCard1 = (CardView) rootView.findViewById(R.id.semi_b_card_1);
         semiBCard2 = (CardView) rootView.findViewById(R.id.semi_b_card_2);
+
+        semiCCard1 = (CardView) rootView.findViewById(R.id.semi_c_card_1);
+        semiCCard2 = (CardView) rootView.findViewById(R.id.semi_c_card_2);
+        semiDCard1 = (CardView) rootView.findViewById(R.id.semi_d_card_1);
+        semiDCard2 = (CardView) rootView.findViewById(R.id.semi_d_card_2);
 
         semiACard1TextviewScore = (EditText) rootView.findViewById(R.id.semi_a_card_1_textview_score);
         semiACard1TextviewScore.addTextChangedListener(watcherSemi1);
@@ -124,8 +163,19 @@ public class TournamentView extends LinearLayout {
         semiBCard2TextviewScore = (EditText) rootView.findViewById(R.id.semi_b_card_2_textview_score);
         semiBCard2TextviewScore.addTextChangedListener(watcherSemi2);
 
+        semiCCard1TextviewScore = (EditText) rootView.findViewById(R.id.semi_c_card_1_textview_score);
+        semiCCard1TextviewScore.addTextChangedListener(watcherSemi2);
+        semiCCard2TextviewScore = (EditText) rootView.findViewById(R.id.semi_c_card_2_textview_score);
+        semiCCard2TextviewScore.addTextChangedListener(watcherSemi2);
+        semiDCard1TextviewScore = (EditText) rootView.findViewById(R.id.semi_d_card_1_textview_score);
+        semiDCard1TextviewScore.addTextChangedListener(watcherSemi2);
+        semiDCard2TextviewScore = (EditText) rootView.findViewById(R.id.semi_d_card_2_textview_score);
+        semiDCard2TextviewScore.addTextChangedListener(watcherSemi2);
+
         finalCard1Textview = (TextView) rootView.findViewById(R.id.final_card_1_textview);
         finalCard2Textview = (TextView) rootView.findViewById(R.id.final_card_2_textview);
+        finalCard3Textview = (TextView) rootView.findViewById(R.id.final_card_3_textview);
+        finalCard4Textview = (TextView) rootView.findViewById(R.id.final_card_4_textview);
 
         finalCard1Arrow0 = (View) rootView.findViewById(R.id.final_card_1_arrow_0);
         finalCard1Arrow1 = (View) rootView.findViewById(R.id.final_card_1_arrow_1);
@@ -139,6 +189,8 @@ public class TournamentView extends LinearLayout {
 
         finalCard1 = (CardView) rootView.findViewById(R.id.final_card_1);
         finalCard2 = (CardView) rootView.findViewById(R.id.final_card_2);
+        finalCard3 = (CardView) rootView.findViewById(R.id.final_card_3);
+        finalCard4 = (CardView) rootView.findViewById(R.id.final_card_4);
 
 
         winnerTextView = (TextView) rootView.findViewById(R.id.winner_textview);
@@ -148,12 +200,22 @@ public class TournamentView extends LinearLayout {
         finalCard2TextviewScore = (EditText) rootView.findViewById(R.id.final_card_2_textview_score);
         finalCard2TextviewScore.addTextChangedListener(watcherfinal);
 
+        finalCard3TextviewScore = (EditText) rootView.findViewById(R.id.final_card_3_textview_score);
+        finalCard3TextviewScore.addTextChangedListener(watcherfinal);
+        finalCard4TextviewScore = (EditText) rootView.findViewById(R.id.final_card_4_textview_score);
+        finalCard4TextviewScore.addTextChangedListener(watcherfinal);
+
         // semi names
         semiTextViews = new ArrayList<>();
         semiTextViews.add(semiACard1Textview);
         semiTextViews.add(semiACard2Textview);
         semiTextViews.add(semiBCard1Textview);
         semiTextViews.add(semiBCard2Textview);
+
+        semiTextViews.add(semiCCard1Textview);
+        semiTextViews.add(semiCCard2Textview);
+        semiTextViews.add(semiDCard1Textview);
+        semiTextViews.add(semiDCard2Textview);
 
         // semi cards
         semiCards = new ArrayList<>();
@@ -162,15 +224,26 @@ public class TournamentView extends LinearLayout {
         semiCards.add(semiBCard1);
         semiCards.add(semiBCard2);
 
+        semiCards.add(semiCCard1);
+        semiCards.add(semiCCard2);
+        semiCards.add(semiDCard1);
+        semiCards.add(semiDCard2);
+
 
         // final names
         finalTextViews = new ArrayList<>();
         finalTextViews.add(finalCard1Textview);
         finalTextViews.add(finalCard2Textview);
 
+        finalTextViews.add(finalCard3Textview);
+        finalTextViews.add(finalCard4Textview);
+
         finalCards = new ArrayList<>();
         finalCards.add(finalCard1);
         finalCards.add(finalCard2);
+
+        finalCards.add(finalCard3);
+        finalCards.add(finalCard4);
 
         // semi scnore
         semiTextViewsScore = new ArrayList<>();
@@ -179,10 +252,18 @@ public class TournamentView extends LinearLayout {
         semiTextViewsScore.add(semiBCard1TextviewScore);
         semiTextViewsScore.add(semiBCard2TextviewScore);
 
+        semiTextViewsScore.add(semiCCard1TextviewScore);
+        semiTextViewsScore.add(semiCCard2TextviewScore);
+        semiTextViewsScore.add(semiDCard1TextviewScore);
+        semiTextViewsScore.add(semiDCard2TextviewScore);
+
         // final scnore
         finalTextViewsScore = new ArrayList<>();
         finalTextViewsScore.add(finalCard1TextviewScore);
         finalTextViewsScore.add(finalCard2TextviewScore);
+
+        finalTextViewsScore.add(finalCard3TextviewScore);
+        finalTextViewsScore.add(finalCard4TextviewScore);
 
 
     }

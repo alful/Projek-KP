@@ -173,6 +173,158 @@
                         android:inputType="number" />
                 </LinearLayout>
             </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/semi_c_card_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_between_round">
+
+                <LinearLayout
+                    android:layout_width="200dp"
+                    android:layout_height="50dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/semi_c_card_1_textview"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+
+                        android:gravity="center"
+                        android:text="team" />
+
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:layout_height="match_parent"
+                        android:background="@color/separator_color" />
+
+                    <EditText
+                        android:id="@+id/semi_c_card_1_textview_score"
+                        android:layout_width="50dp"
+                        android:background="@null"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:hint="\?"
+                        android:inputType="number" />
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+            <android.support.v7.widget.CardView
+                android:id="@+id/semi_c_card_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/default_space"
+                android:layout_marginTop="25dp">
+
+                <LinearLayout
+                    android:layout_width="200dp"
+                    android:layout_height="50dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/semi_c_card_2_textview"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="team" />
+
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:layout_height="match_parent"
+                        android:background="@color/separator_color" />
+
+                    <EditText
+                        android:id="@+id/semi_c_card_2_textview_score"
+                        android:layout_width="50dp"
+                        android:background="@null"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:hint="\?"
+                        android:inputType="number" />
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/semi_d_card_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_between_round">
+
+                <LinearLayout
+                    android:layout_width="200dp"
+                    android:layout_height="50dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/semi_d_card_1_textview"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+
+                        android:gravity="center"
+                        android:text="team" />
+
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:layout_height="match_parent"
+                        android:background="@color/separator_color" />
+
+                    <EditText
+                        android:id="@+id/semi_d_card_1_textview_score"
+                        android:layout_width="50dp"
+                        android:background="@null"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:hint="\?"
+                        android:inputType="number" />
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+            <android.support.v7.widget.CardView
+                android:id="@+id/semi_d_card_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/default_space"
+                android:layout_marginTop="25dp">
+
+                <LinearLayout
+                    android:layout_width="200dp"
+                    android:layout_height="50dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/semi_d_card_2_textview"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="team" />
+
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:layout_height="match_parent"
+                        android:background="@color/separator_color" />
+
+                    <EditText
+                        android:id="@+id/semi_d_card_2_textview_score"
+                        android:layout_width="50dp"
+                        android:background="@null"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:hint="\?"
+                        android:inputType="number" />
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+
         </LinearLayout>
 
         <LinearLayout
@@ -186,7 +338,6 @@
                 android:id="@+id/semi_a_card_1_arrow_1"
                 android:layout_marginTop="41dp"
                 android:background="@android:color/white" />
-
             <View
                 android:layout_width="1dp"
                 android:layout_height="37dp"
@@ -199,7 +350,6 @@
                 android:layout_height="37dp"
                 android:layout_gravity="right"
                 android:background="@android:color/white" />
-
             <View
                 android:layout_width="match_parent"
                 android:id="@+id/semi_a_card_2_arrow_1"
@@ -212,7 +362,6 @@
                 android:id="@+id/semi_b_card_1_arrow_1"
                 android:layout_marginTop="150dp"
                 android:background="@android:color/white" />
-
             <View
                 android:layout_width="1dp"
                 android:layout_height="37dp"
@@ -225,12 +374,60 @@
                 android:layout_height="37dp"
                 android:layout_gravity="right"
                 android:background="@android:color/white" />
-
             <View
                 android:layout_width="match_parent"
                 android:id="@+id/semi_b_card_2_arrow_1"
                 android:layout_height="1dp"
                 android:background="@android:color/white" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:id="@+id/semi_c_card_1_arrow_1"
+                android:layout_marginTop="160dp"
+                android:background="@android:color/white" />
+            <View
+                android:layout_width="1dp"
+                android:layout_height="37dp"
+                android:id="@+id/semi_c_card_1_arrow_2"
+                android:layout_gravity="right"
+                android:background="@android:color/white" />
+            <View
+                android:layout_width="1dp"
+                android:id="@+id/semi_c_card_2_arrow_2"
+                android:layout_height="37dp"
+                android:layout_gravity="right"
+                android:background="@android:color/white" />
+            <View
+                android:layout_width="match_parent"
+                android:id="@+id/semi_c_card_2_arrow_1"
+                android:layout_height="1dp"
+                android:background="@android:color/white" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:id="@+id/semi_d_card_1_arrow_1"
+                android:layout_marginTop="170dp"
+                android:background="@android:color/white" />
+            <View
+                android:layout_width="1dp"
+                android:layout_height="37dp"
+                android:id="@+id/semi_d_card_1_arrow_2"
+                android:layout_gravity="right"
+                android:background="@android:color/white" />
+            <View
+                android:layout_width="1dp"
+                android:id="@+id/semi_d_card_2_arrow_2"
+                android:layout_height="37dp"
+                android:layout_gravity="right"
+                android:background="@android:color/white" />
+            <View
+                android:layout_width="match_parent"
+                android:id="@+id/semi_d_card_2_arrow_1"
+                android:layout_height="1dp"
+                android:background="@android:color/white" />
+
         </LinearLayout>
 
         <LinearLayout
@@ -251,6 +448,21 @@
                 android:id="@+id/final_card_2_arrow_0"
                 android:layout_marginTop="225dp"
                 android:background="@android:color/white" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:id="@+id/final_card_3_arrow_0"
+                android:layout_marginTop="235dp"
+                android:background="@android:color/white" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:id="@+id/final_card_4_arrow_0"
+                android:layout_marginTop="235dp"
+                android:background="@android:color/white" />
+
         </LinearLayout>
 
         <LinearLayout
@@ -329,6 +541,84 @@
                         android:background="@null"
                         android:hint="\?"
                         android:inputType="number" />
+
+
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/final_card_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="180dp">
+
+                <LinearLayout
+                    android:layout_width="200dp"
+                    android:layout_height="50dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/final_card_3_textview"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="Final" />
+
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:layout_height="match_parent"
+                        android:background="@color/separator_color" />
+
+                    <EditText
+                        android:id="@+id/final_card_3_textview_score"
+                        android:layout_width="50dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:background="@null"
+                        android:hint="\?"
+                        android:inputType="number" />
+
+
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/final_card_4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="180dp">
+
+                <LinearLayout
+                    android:layout_width="200dp"
+                    android:layout_height="50dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/final_card_4_textview"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="Final" />
+
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:layout_height="match_parent"
+                        android:background="@color/separator_color" />
+
+                    <EditText
+                        android:id="@+id/final_card_4_textview_score"
+                        android:layout_width="50dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:background="@null"
+                        android:hint="\?"
+                        android:inputType="number" />
                 </LinearLayout>
             </android.support.v7.widget.CardView>
         </LinearLayout>
@@ -344,7 +634,6 @@
                 android:id="@+id/final_card_1_arrow_1"
                 android:layout_marginTop="78dp"
                 android:background="@android:color/white" />
-
             <View
                 android:layout_width="1dp"
                 android:id="@+id/final_card_1_arrow_2"
@@ -357,12 +646,36 @@
                 android:id="@+id/final_card_2_arrow_2"
                 android:layout_gravity="right"
                 android:background="@android:color/white" />
-
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:id="@+id/final_card_2_arrow_1"
                 android:background="@android:color/white" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:id="@+id/final_card_3_arrow_1"
+                android:layout_marginTop="230dp"
+                android:background="@android:color/white" />
+            <View
+                android:layout_width="1dp"
+                android:id="@+id/final_card_3_arrow_2"
+                android:layout_height="112dp"
+                android:layout_gravity="right"
+                android:background="@android:color/white" />
+            <View
+                android:layout_width="1dp"
+                android:layout_height="112dp"
+                android:id="@+id/final_card_4_arrow_2"
+                android:layout_gravity="right"
+                android:background="@android:color/white" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:id="@+id/final_card_4_arrow_1"
+                android:background="@android:color/white" />
+
         </LinearLayout>
 
         <LinearLayout
@@ -376,6 +689,14 @@
                 android:id="@+id/winner_arrow_0"
                 android:layout_marginTop="190dp"
                 android:background="@android:color/white" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:id="@+id/winner_arrow_1"
+                android:layout_marginTop="470dp"
+                android:background="@android:color/white" />
+
 
         </LinearLayout>
 
@@ -397,6 +718,27 @@
 
                     <TextView
                         android:id="@+id/winner_textview"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="Winner" />
+
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="400dp">
+
+                <LinearLayout
+                    android:layout_width="150dp"
+                    android:layout_height="50dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/winner2_textview"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
