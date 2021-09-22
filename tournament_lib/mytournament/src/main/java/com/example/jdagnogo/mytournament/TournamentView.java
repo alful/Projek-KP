@@ -487,7 +487,7 @@ public class TournamentView extends LinearLayout {
 //            }
             if (null!=team1)
             {
-                winnerTextView1.setText(team.getName());
+                winnerTextView1.setText(team1.getName());
                 winnerTextView1.setBackgroundColor(context.getResources().getColor(R.color.winner));
                 CustomAnim.NextRoundAnim(winnerTextView1);
 
