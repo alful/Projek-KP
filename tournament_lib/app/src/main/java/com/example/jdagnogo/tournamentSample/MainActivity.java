@@ -70,11 +70,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.simulate:
                 Match semiA = new Match.MatchResultBuilder(arsenal, real).currentPosition(TournamentRound.SemiA).scoreA(0).scoreB(1).build();
                 Match semiB = new Match.MatchResultBuilder(milan, psg).currentPosition(TournamentRound.SemiB).scoreA(1).scoreB(4).build();
+                Match semiC = new Match.MatchResultBuilder(arth, mahes).currentPosition(TournamentRound.SemiA).scoreA(0).scoreB(1).build();
+                Match semiD = new Match.MatchResultBuilder(ace, sabo).currentPosition(TournamentRound.SemiB).scoreA(1).scoreB(4).build();
+
                 Match finalMatch = new Match.MatchResultBuilder(arsenal, milan).currentPosition(TournamentRound.Final).scoreA(4).scoreB(0).build();
 
 
                 // Create a tournament
-                Tournament championLeague = new Tournament.TournamentBuilder(allTeam).addMatch(semiA).addMatch(semiB).build();
+                Tournament championLeague = new Tournament.TournamentBuilder(allTeam).addMatch(semiA).addMatch(semiB).addMatch(semiC).addMatch(semiD).build();
                 championLeague.addMatch(finalMatch);
 
                 tournamentView.setTournament(championLeague);

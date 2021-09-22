@@ -13,9 +13,11 @@ public class Match {
     Team teamA;
     @State(TeamBundler.class)
     Team teamB;
+
     private TournamentRound curentPosition;
     private int scoreA;
     private int scoreB;
+
 
     public Match() {
 
@@ -24,9 +26,11 @@ public class Match {
     private Match(MatchResultBuilder builder) {
         this.teamA = builder.teamA;
         this.teamB = builder.teamB;
+
         this.curentPosition = builder.curentPosition;
         this.scoreA = builder.scoreA;
         this.scoreB = builder.scoreB;
+
 
     }
 
@@ -36,7 +40,8 @@ public class Match {
             return teamA;
         } else if (scoreA == scoreB) {
             return null;
-        } else {
+        }
+        else {
             teamA.setHasBeenEliminated(true);
             return teamB;
         }
@@ -62,6 +67,8 @@ public class Match {
         this.teamB = teamB;
     }
 
+
+
     public void setCurentPosition(TournamentRound curentPosition) {
         this.curentPosition = curentPosition;
     }
@@ -81,6 +88,8 @@ public class Match {
     public void setScoreB(int scoreB) {
         this.scoreB = scoreB;
     }
+
+
 
     public static class MatchResultBuilder {
         private Team teamA;

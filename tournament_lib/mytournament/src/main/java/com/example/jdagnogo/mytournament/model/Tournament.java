@@ -19,8 +19,13 @@ public class Tournament {
     Match semiAMatch;
     @State(MatchBundler.class)
     Match semiBMatch;
+//    @State(MatchBundler.class)
+//    Match semiCMatch;
+//    @State(MatchBundler.class)
+//    Match semiDMatch;
     @State(MatchBundler.class)
     Match finalMatch;
+
 
     public Tournament() {
 
@@ -30,6 +35,8 @@ public class Tournament {
         this.teams = builder.teams;
         this.semiBMatch = builder.semiBMatch;
         this.semiAMatch = builder.semiAMatch;
+//        this.semiCMatch = builder.semiCMatch;
+//        this.semiDMatch = builder.semiDMatch;
         this.finalMatch = builder.finalMatch;
     }
 
@@ -61,6 +68,20 @@ public class Tournament {
         this.semiBMatch = semiBMatch;
     }
 
+//    public Match getSemiCMatch(){
+//        return semiCMatch;
+//    }
+//    public void setSemiCMatch(Match semiCMatch) {
+//        this.semiCMatch = semiCMatch;
+//    }
+//
+//    public Match getSemiDMatch(){
+//        return semiDMatch;
+//    }
+//    public void setSemiDMatch(Match semiDMatch) {
+//        this.semiDMatch = semiDMatch;
+//    }
+
     public Match getFinalMatch() {
         return finalMatch;
     }
@@ -81,6 +102,16 @@ public class Tournament {
                 match.getTeamA().setCurrentPosition(TournamentRound.SemiB);
                 match.getTeamB().setCurrentPosition(TournamentRound.SemiB);
                 break;
+//            case SemiC:
+//                this.semiCMatch = match;
+//                match.getTeamA().setCurrentPosition(TournamentRound.SemiC);
+//                match.getTeamB().setCurrentPosition(TournamentRound.SemiC);
+//                break;
+//            case SemiD:
+//                this.semiDMatch = match;
+//                match.getTeamA().setCurrentPosition(TournamentRound.SemiD);
+//                match.getTeamB().setCurrentPosition(TournamentRound.SemiD);
+//                break;
             case Final:
                 this.finalMatch = match;
                 match.getTeamA().setCurrentPosition(TournamentRound.Final);
@@ -94,6 +125,8 @@ public class Tournament {
         HashMap<TournamentRound, Match> result = new HashMap<>();
         result.put(TournamentRound.SemiA, semiAMatch);
         result.put(TournamentRound.SemiB, semiBMatch);
+//        result.put(TournamentRound.SemiC, semiCMatch);
+//        result.put(TournamentRound.SemiD, semiDMatch);
         result.put(TournamentRound.Final, finalMatch);
 
         return result;
@@ -103,6 +136,8 @@ public class Tournament {
         List<Team> teams;
         private Match semiAMatch;
         private Match semiBMatch;
+//        private Match semiCMatch;
+//        private Match semiDMatch;
         private Match finalMatch;
 
         public TournamentBuilder(List<Team> teams) {
@@ -126,6 +161,18 @@ public class Tournament {
                     match.getTeamA().setCurrentPosition(TournamentRound.SemiB);
                     match.getTeamB().setCurrentPosition(TournamentRound.SemiB);
                     break;
+
+//                case SemiC:
+//                    this.semiCMatch = match;
+//                    match.getTeamA().setCurrentPosition(TournamentRound.SemiC);
+//                    match.getTeamB().setCurrentPosition(TournamentRound.SemiC);
+//                    break;
+//
+//                case SemiD:
+//                    this.semiCMatch = match;
+//                    match.getTeamA().setCurrentPosition(TournamentRound.SemiD);
+//                    match.getTeamB().setCurrentPosition(TournamentRound.SemiD);
+//                    break;
 
                 case Final:
                     this.finalMatch = match;
