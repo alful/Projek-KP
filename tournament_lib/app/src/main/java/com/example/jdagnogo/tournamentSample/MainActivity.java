@@ -18,12 +18,14 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private TournamentView tournamentView;
-    Team arsenal, real, milan, psg, arth, mahes, ace, sabo;
+    Team arsenal, real, milan, psg, arth, mahes, ace, sabo, kosong;
     List<Team> allTeam;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
         init();
     }
 
@@ -53,8 +55,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         allTeam.add(arth);
         allTeam.add(mahes);
         allTeam.add(ace);
-        allTeam.add(sabo);
-
+        if (allTeam.size() %2 != 0)
+        {
+            kosong=new Team("");
+            allTeam.add(kosong);
+        }
+//        allTeam.add(sabo);
 
         tournamentView = (TournamentView) findViewById(R.id.tournament_view);
     }
