@@ -317,6 +317,8 @@ public class TournamentView extends LinearLayout {
         finalTextViewsScore.add(finalCard5TextviewScore);
         finalTextViewsScore.add(finalCard6TextviewScore);
 
+
+
     }
 
     public void startTournament() {
@@ -336,6 +338,9 @@ public class TournamentView extends LinearLayout {
             }
 
         }
+//        if (tournament.getTeams().size()<7){
+//                semiCCard1.removeAllViews();
+//        }
     }
 
 

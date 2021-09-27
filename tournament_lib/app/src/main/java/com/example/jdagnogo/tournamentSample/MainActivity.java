@@ -52,13 +52,24 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         allTeam.add(real);
         allTeam.add(milan);
         allTeam.add(psg);
-        allTeam.add(arth);
-        allTeam.add(mahes);
-        allTeam.add(ace);
-        if (allTeam.size() %2 != 0)
+//        allTeam.add(arth);
+//        allTeam.add(mahes);
+//        allTeam.add(ace);
+        if (allTeam.size() <6)
         {
-            kosong=new Team("");
-            allTeam.add(kosong);
+//            if (allTeam.size() %2 != 0)
+//            {
+//
+//                kosong = new Team("");
+//                allTeam.add(kosong);
+//            }
+
+            while (allTeam.size()<=7)
+            {
+                kosong = new Team("");
+                allTeam.add(kosong);
+            }
+
         }
 //        allTeam.add(sabo);
 
