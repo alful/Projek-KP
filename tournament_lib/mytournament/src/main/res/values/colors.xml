@@ -4,5 +4,7 @@
     <color name="white">#ffffff</color>
     <color name="winner">#45d428</color>
     <color name="loser">#e21621</color>
+    <color name = "cardview_shadow_start_color">#D5BCC4</color>
+
 
 </resources>

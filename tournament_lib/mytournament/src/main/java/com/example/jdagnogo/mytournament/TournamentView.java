@@ -4,8 +4,6 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Typeface;
 import android.os.Parcelable;
-import android.support.annotation.Nullable;
-import android.support.v7.widget.CardView;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
@@ -15,6 +13,8 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.cardview.widget.CardView;
+
 import com.example.jdagnogo.mytournament.anim.CustomAnim;
 import com.example.jdagnogo.mytournament.enums.TournamentRound;
 import com.example.jdagnogo.mytournament.model.BinderTeamTextView;
@@ -23,6 +23,8 @@ import com.example.jdagnogo.mytournament.model.Team;
 import com.example.jdagnogo.mytournament.model.Tournament;
 import com.example.jdagnogo.mytournament.model.bundler.BinderTeamTextViewBundler;
 import com.example.jdagnogo.mytournament.model.bundler.TournamentBundler;
+
+import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.HashMap;

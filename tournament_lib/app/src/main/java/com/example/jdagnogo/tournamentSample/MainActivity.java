@@ -1,21 +1,24 @@
 package com.example.jdagnogo.tournamentSample;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.jdagnogo.mytournament.enums.TournamentRound;
 import com.example.jdagnogo.mytournament.model.Match;
 import com.example.jdagnogo.mytournament.model.Team;
 import com.example.jdagnogo.mytournament.model.Tournament;
 import com.example.jdagnogo.mytournament.TournamentView;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
     private TournamentView tournamentView;
     Team arsenal, real, milan, psg, arth, mahes, ace, sabo, kosong;
@@ -25,6 +28,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("message");
+
+        myRef.setValue("Hello, World!");
 
         init();
     }
