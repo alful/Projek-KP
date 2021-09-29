@@ -11,6 +11,7 @@ import android.widget.ImageView;
 
 import com.example.baganturnamen.Bagan.Bagans;
 import com.example.baganturnamen.BracketT.Bracket;
+import com.example.baganturnamen.BracketT.Bracket2;
 import com.example.baganturnamen.LogSign.Login;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -79,7 +80,7 @@ public class DashboardAdmin extends AppCompatActivity {
         IVBaganTurnamen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(DashboardAdmin.this, Bracket.class);
+                Intent intent = new Intent(DashboardAdmin.this, Bracket2.class);
                 intent.putStringArrayListExtra("namas",ALNama);
                 startActivity(intent);
 
