@@ -7,12 +7,14 @@ import android.os.Parcelable;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 
 import com.example.jdagnogo.mytournament.anim.CustomAnim;
@@ -23,6 +25,11 @@ import com.example.jdagnogo.mytournament.model.Team;
 import com.example.jdagnogo.mytournament.model.Tournament;
 import com.example.jdagnogo.mytournament.model.bundler.BinderTeamTextViewBundler;
 import com.example.jdagnogo.mytournament.model.bundler.TournamentBundler;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import org.jetbrains.annotations.Nullable;
 
@@ -77,6 +84,12 @@ public class TournamentView extends LinearLayout {
     EditText finalCard1TextviewScore, finalCard2TextviewScore,
             finalCard3TextviewScore, finalCard4TextviewScore,
             finalCard5TextviewScore, finalCard6TextviewScore;
+
+
+    FirebaseDatabase firebaseDatabase;
+    DatabaseReference databaseReference1;
+    ArrayList<String> data = new ArrayList<String>();
+    ArrayList<String> keysa = new ArrayList<String>();
 
 
     /*
@@ -422,6 +435,52 @@ public class TournamentView extends LinearLayout {
                     CustomAnim.NextRoundAnim(finalCard1);
                 }
                 updateSemiFinal();
+                databaseReference1=FirebaseDatabase.getInstance().getReference().child("Peserta");
+                Log.d("TAG", "afterTextChanged: "+semiACard1TextviewScore.getText().toString());
+                databaseReference1.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        String skor1= String.valueOf(binderSemi.get(0));
+                        String skor2= String.valueOf(binderSemi.get(1));
+                        for (DataSnapshot dataSnapshot: snapshot.getChildren())
+                        {
+                            String nama=dataSnapshot.child("nama").getValue(String.class);
+                            String key=dataSnapshot.getKey();
+
+                            Log.d("TAG", "onDataChange: "+nama);
+                            Log.d("TAG", "onDataChasange: "+semiACard1Textview.getText().toString());
+                            if (nama.equals(semiACard1Textview.getText().toString()))
+                            {
+                                HashMap hashMap=new HashMap();
+                                hashMap.put("babak1",semiACard1TextviewScore.getText().toString());
+                                databaseReference1.child(key).child("History").updateChildren(hashMap);
+                                Log.d("TAG", "onDataChange: "+skor1);
+                                Log.d("TAG", "onDataChange: "+nama);
+                            }
+
+                            data.add(nama);
+                            keysa.add(key);
+                        }
+
+//                        Log.d("TAG", "onDataChange: "+nama);
+//                        Log.d("TAG", "onDataChasange: "+semiACard1Textview.getText().toString());
+//                        if (nama.equals(semiACard1Textview.getText().toString()))
+//                        {
+//                            HashMap hashMap=new HashMap();
+//                            hashMap.put("babak1",skor1);
+//                            databaseReference1.child("History").updateChildren(hashMap);
+//                            Log.d("TAG", "onDataChange: "+skor1);
+//                            Log.d("TAG", "onDataChange: "+nama);
+//                        }
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+
             }
 
         }

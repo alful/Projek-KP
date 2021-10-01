@@ -52,14 +52,14 @@ public class Bracket2 extends AppCompatActivity implements View.OnClickListener 
 
         // Create all teams
 
-        arsenal = new Team(ALNama.get(0));
-        real = new Team(ALNama.get(1));
-        milan = new Team(ALNama.get(2));
-        psg = new Team(ALNama.get(3));
-        arth = new Team(ALNama.get(4));
-        mahes = new Team(ALNama.get(5));
-        ace = new Team(ALNama.get(6));
-        sabo = new Team(ALNama.get(7));
+        arsenal = new Team(ALNama.get(4));
+        real = new Team(ALNama.get(5));
+        milan = new Team(ALNama.get(6));
+        psg = new Team(ALNama.get(7));
+        arth = new Team(ALNama.get(8));
+        mahes = new Team(ALNama.get(9));
+        ace = new Team(ALNama.get(10));
+        sabo = new Team(ALNama.get(11));
 
 
 //        real = new Team("Real Madrid");
