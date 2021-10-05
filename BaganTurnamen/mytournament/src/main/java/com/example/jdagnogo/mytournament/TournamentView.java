@@ -353,6 +353,98 @@ public class TournamentView extends LinearLayout {
             }
 
         }
+
+        databaseReference1=FirebaseDatabase.getInstance().getReference().child("Peserta");
+        Log.d("TAG", "afterTextChanged: "+semiACard1TextviewScore.getText().toString());
+        databaseReference1.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                String skor1= String.valueOf(binderSemi.get(0));
+                String skor2= String.valueOf(binderSemi.get(1));
+                for (DataSnapshot dataSnapshot: snapshot.getChildren())
+                {
+                    String nama=dataSnapshot.child("nama").getValue(String.class);
+                    Integer sas=dataSnapshot.child("History").child("babak1").getValue(Integer.class);
+                    if (sas != null && nama.equals(semiACard1Textview.getText().toString()))
+                    {
+                        semiACard1TextviewScore.setText(Integer.toString(sas));
+                        Log.d("TAG", "onDataChssasaange: "+sas);
+                    }
+                    else if (sas != null && nama.equals(semiACard2Textview.getText().toString()))
+                    {
+                        semiACard2TextviewScore.setText(Integer.toString(sas));
+                        Log.d("TAG", "onDataChssasaange: "+sas);
+                    }
+                    else if (sas != null && nama.equals(semiBCard1Textview.getText().toString()))
+                    {
+                        semiBCard1TextviewScore.setText(Integer.toString(sas));
+                        Log.d("TAG", "onDataChssasaange: "+sas);
+                    }
+                    else if (sas != null && nama.equals(semiBCard2Textview.getText().toString()))
+                    {
+                        semiBCard2TextviewScore.setText(Integer.toString(sas));
+                        Log.d("TAG", "onDataChssasaange: "+sas);
+                    }
+                    else if (sas != null && nama.equals(semiCCard1Textview.getText().toString()))
+                    {
+                        semiCCard1TextviewScore.setText(Integer.toString(sas));
+                        Log.d("TAG", "onDataChssasaange: "+sas);
+                    }
+                    else if (sas != null && nama.equals(semiCCard2Textview.getText().toString()))
+                    {
+                        semiCCard2TextviewScore.setText(Integer.toString(sas));
+                        Log.d("TAG", "onDataChssasaange: "+sas);
+                    }
+                    else if (sas != null && nama.equals(semiDCard1Textview.getText().toString()))
+                    {
+                        semiDCard1TextviewScore.setText(Integer.toString(sas));
+                        Log.d("TAG", "onDataChssasaange: "+sas);
+                    }
+                    else if (sas != null && nama.equals(semiDCard2Textview.getText().toString()))
+                    {
+                        semiDCard2TextviewScore.setText(Integer.toString(sas));
+                        Log.d("TAG", "onDataChssasaange: "+sas);
+                    }
+
+
+
+//                    String key=dataSnapshot.getKey();
+//
+//                    Log.d("TAG", "onDataChange: "+nama);
+//                    Log.d("TAG", "onDataChasange: "+semiACard1Textview.getText().toString());
+//                    if (nama.equals(semiACard1Textview.getText().toString()))
+//                    {
+//                        HashMap hashMap=new HashMap();
+//                        hashMap.put("babak1",semiACard1TextviewScore.getText().toString());
+//                        databaseReference1.child(key).child("History").updateChildren(hashMap);
+//                        Log.d("TAG", "onDataChange: "+skor1);
+//                        Log.d("TAG", "onDataChange: "+nama);
+//                    }
+//
+//                    data.add(nama);
+//                    keysa.add(key);
+                }
+
+//                        Log.d("TAG", "onDataChange: "+nama);
+//                        Log.d("TAG", "onDataChasange: "+semiACard1Textview.getText().toString());
+//                        if (nama.equals(semiACard1Textview.getText().toString()))
+//                        {
+//                            HashMap hashMap=new HashMap();
+//                            hashMap.put("babak1",skor1);
+//                            databaseReference1.child("History").updateChildren(hashMap);
+//                            Log.d("TAG", "onDataChange: "+skor1);
+//                            Log.d("TAG", "onDataChange: "+nama);
+//                        }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
 //        if (tournament.getTeams().size()<7){
 //                semiCCard1.removeAllViews();
 //        }
@@ -451,11 +543,17 @@ public class TournamentView extends LinearLayout {
                             Log.d("TAG", "onDataChasange: "+semiACard1Textview.getText().toString());
                             if (nama.equals(semiACard1Textview.getText().toString()))
                             {
+                                if (!semiACard1TextviewScore.getText().toString().equals("")){
+
+
                                 HashMap hashMap=new HashMap();
-                                hashMap.put("babak1",semiACard1TextviewScore.getText().toString());
+                                hashMap.put("babak1",Integer.parseInt(semiACard1TextviewScore.getText().toString()) );
                                 databaseReference1.child(key).child("History").updateChildren(hashMap);
                                 Log.d("TAG", "onDataChange: "+skor1);
                                 Log.d("TAG", "onDataChange: "+nama);
+                                }
+                                else
+                                    Log.d("TAG", "onDataChange: "+semiACard1TextviewScore.getText().toString());
                             }
 
                             data.add(nama);
