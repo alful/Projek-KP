@@ -25,6 +25,7 @@ public class Bracket2 extends AppCompatActivity implements View.OnClickListener 
     Team arsenal, real, milan, psg, arth, mahes, ace, sabo, kosong;
     List<Team> allTeam;
     ArrayList<String> ALNama = new ArrayList<String>();
+    private static int SPLASH_SCREEN = 2000;
 
     //    Button set_team,reset,simulate;
     @Override
@@ -50,16 +51,33 @@ public class Bracket2 extends AppCompatActivity implements View.OnClickListener 
         findViewById(R.id.reset).setOnClickListener(this);
         findViewById(R.id.simulate).setOnClickListener(this);
 
-        // Create all teams
+        // Create all teams = jumlah team sesuai dengan jumlah arraylist
+        allTeam = new ArrayList<>();
 
-        arsenal = new Team(ALNama.get(4));
-        real = new Team(ALNama.get(5));
-        milan = new Team(ALNama.get(6));
-        psg = new Team(ALNama.get(7));
-        arth = new Team(ALNama.get(8));
-        mahes = new Team(ALNama.get(9));
-        ace = new Team(ALNama.get(10));
-        sabo = new Team(ALNama.get(11));
+        for (int a=0;a<=ALNama.size()-1;a++)
+        {
+//            Log.d("TAG", "iniasdt: "+ALNama.get(a));
+//
+//            if (ALNama.get(a) != "")
+//            {
+                arsenal=new Team(ALNama.get(a));
+                Log.d("TAG", "init: "+arsenal);
+                Log.d("TAG", "iniasdt: "+ALNama.get(a));
+
+                allTeam.add(arsenal);
+//            }else
+//            {
+//                break;
+//            }
+        }
+//        arsenal = new Team(ALNama.get(0));
+//        real = new Team(ALNama.get(1));
+//        milan = new Team(ALNama.get(2));
+//        psg = new Team(ALNama.get(3));
+//        arth = new Team(ALNama.get(4));
+//        mahes = new Team(ALNama.get(5));
+//        ace = new Team(ALNama.get(6));
+//        sabo = new Team(ALNama.get(7));
 
 
 //        real = new Team("Real Madrid");
@@ -71,17 +89,18 @@ public class Bracket2 extends AppCompatActivity implements View.OnClickListener 
 //        sabo = new Team("sabo");
 
         //Add team into the tournament
-        allTeam = new ArrayList<>();
-        allTeam.add(arsenal);
-        allTeam.add(real);
-        allTeam.add(milan);
-        allTeam.add(psg);
-        allTeam.add(arth);
-        allTeam.add(mahes);
-        allTeam.add(ace);
-        allTeam.add(sabo);
+//        allTeam = new ArrayList<>();
+//        allTeam.add(arsenal);
+//        allTeam.add(real);
+//        allTeam.add(milan);
+//        allTeam.add(psg);
+//        allTeam.add(arth);
+//        allTeam.add(mahes);
+//        allTeam.add(ace);
+//        allTeam.add(sabo);
 
-        if (allTeam.size() <6)
+//        Log.d("TAG", "insadit: "+allTeam.size());
+        if (allTeam.size() <8)
         {
 //            if (allTeam.size() %2 != 0)
 //            {
@@ -90,7 +109,7 @@ public class Bracket2 extends AppCompatActivity implements View.OnClickListener 
 //                allTeam.add(kosong);
 //            }
 
-            while (allTeam.size()<=7)
+            while (allTeam.size()<8)
             {
                 kosong = new Team("");
                 allTeam.add(kosong);
@@ -109,6 +128,7 @@ public class Bracket2 extends AppCompatActivity implements View.OnClickListener 
                 tournamentView.setTournament(new Tournament(allTeam));
                 Log.d("TAG", "Klik Set Team "+allTeam.get(0).getName());
                 tournamentView.startTournament();
+
                 break;
             case R.id.simulate:
                 Match semiA = new Match.MatchResultBuilder(arsenal, real).currentPosition(TournamentRound.SemiA).scoreA(0).scoreB(1).build();

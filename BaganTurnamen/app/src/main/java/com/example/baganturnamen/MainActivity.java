@@ -14,6 +14,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -41,6 +43,8 @@ public class MainActivity extends AppCompatActivity {
     ArrayList<Integer> ALUmur = new ArrayList<Integer>();
     ArrayList<String> ALClub = new ArrayList<String>();
     ArrayList<String> ALUnggulan = new ArrayList<String>();
+    FirebaseUser firebaseUser;
+    String UID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +64,8 @@ public class MainActivity extends AppCompatActivity {
         peserta = new Peserta();
         history = new History();
 
+        firebaseUser= FirebaseAuth.getInstance().getCurrentUser();
+        UID=firebaseUser.getUid();
         DRef = FirebaseDatabase.getInstance().getReference();
 
         IVKembali.setOnClickListener(new View.OnClickListener(){
@@ -100,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
                     CekUnggulan();
 
 //                DRef.child("Peserta").addValueEventListener(new ValueEventListener() {
-                    DRef.child("Peserta").addListenerForSingleValueEvent(new ValueEventListener() {
+                    DRef.child("Admin").child(UID).child("Peserta").addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
                             ALKey.clear();
@@ -129,12 +135,12 @@ public class MainActivity extends AppCompatActivity {
                                 peserta.setUmur(IUmur);
                                 peserta.setClub(SClub);
                                 peserta.setUnggulan(SCBUnggulan);
-                                history.setBabak1(1);
+                                history.setBabak1(0);
                                 history.setBabak2(0);
                                 history.setBabak3(0);
 
-                                DRef.child("Peserta").child(SKey).setValue(peserta);
-                                DRef.child("Peserta").child(SKey).child("History").setValue(history);
+                                DRef.child("Admin").child(UID).child("Peserta").child(SKey).setValue(peserta);
+                                DRef.child("Admin").child(UID).child("Peserta").child(SKey).child("History").setValue(history);
 
                                 Toast.makeText(MainActivity.this, "berhasil" + ALNama, Toast.LENGTH_SHORT).show();
                             }

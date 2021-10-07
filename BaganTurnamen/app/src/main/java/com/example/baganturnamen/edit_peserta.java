@@ -12,6 +12,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -38,11 +40,16 @@ public class edit_peserta extends AppCompatActivity {
 
     String SKey, SNama, SUnggulan, SClub;
     Integer IUmur;
+    FirebaseUser firebaseUser;
+    String UID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_peserta);
+
+        firebaseUser= FirebaseAuth.getInstance().getCurrentUser();
+        UID=firebaseUser.getUid();
 
         ETNama = findViewById(R.id.idETNama);
         ETUmur = findViewById(R.id.idETUmur);
@@ -52,7 +59,7 @@ public class edit_peserta extends AppCompatActivity {
 
         peserta = new Peserta();
 
-        DBRef = FirebaseDatabase.getInstance().getReference("Peserta");
+        DBRef = FirebaseDatabase.getInstance().getReference("Admin").child(UID).child("Peserta");
 
         SKey = getIntent().getExtras().getString("key");
         SNama = getIntent().getExtras().getString("nama");

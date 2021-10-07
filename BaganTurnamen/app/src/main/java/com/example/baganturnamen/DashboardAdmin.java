@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -14,6 +15,7 @@ import com.example.baganturnamen.BracketT.Bracket;
 import com.example.baganturnamen.BracketT.Bracket2;
 import com.example.baganturnamen.LogSign.Login;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -27,6 +29,10 @@ public class DashboardAdmin extends AppCompatActivity {
     DatabaseReference databaseReference;
     ArrayList<String> ALNama = new ArrayList<String>();
     String nama;
+    FirebaseUser firebaseUser;
+    String UID;
+    private static int SPLASH_SCREEN = 3000;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,7 +41,10 @@ public class DashboardAdmin extends AppCompatActivity {
         IVDaftarPeserta = findViewById(R.id.idIVDaftarPeserta);
         IVBaganTurnamen = findViewById(R.id.idIVBaganTurnamen);
         IVLogOff = findViewById(R.id.idIVLoggOff);
-        databaseReference= FirebaseDatabase.getInstance().getReference().child("Peserta");
+        firebaseUser=FirebaseAuth.getInstance().getCurrentUser();
+        UID=firebaseUser.getUid();
+
+        databaseReference= FirebaseDatabase.getInstance().getReference().child("Admin").child(UID).child("Peserta");
         androidx.appcompat.widget.Toolbar toolbar= (androidx.appcompat.widget.Toolbar) findViewById(R.id.tolbar);
         toolbar.setTitle("Dashboard");
         setSupportActionBar(toolbar);
@@ -80,12 +89,24 @@ public class DashboardAdmin extends AppCompatActivity {
         IVBaganTurnamen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(DashboardAdmin.this, Bracket2.class);
-                intent.putStringArrayListExtra("namas",ALNama);
-                startActivity(intent);
 
-                Log.d("TAG", "onClicsask: "+ALNama);
-                finish();
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        Intent intent = new Intent(DashboardAdmin.this, Bracket2.class);
+                        intent.putStringArrayListExtra("namas",ALNama);
+                        startActivity(intent);
+
+                        Log.d("TAG", "onClicsask: "+ALNama);
+                        finish();
+                    }
+                },SPLASH_SCREEN);
+//                Intent intent = new Intent(DashboardAdmin.this, Bracket2.class);
+//                intent.putStringArrayListExtra("namas",ALNama);
+//                startActivity(intent);
+//
+//                Log.d("TAG", "onClicsask: "+ALNama);
+//                finish();
             }
         });
 
