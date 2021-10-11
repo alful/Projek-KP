@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.baganturnamen.R;
+import com.example.jdagnogo.mytournament.TournamentPeserta;
 import com.example.jdagnogo.mytournament.TournamentView;
 import com.example.jdagnogo.mytournament.enums.TournamentRound;
 import com.example.jdagnogo.mytournament.model.Match;
@@ -21,7 +22,7 @@ import java.util.List;
 
 public class Bracket2 extends AppCompatActivity implements View.OnClickListener {
 
-    private TournamentView tournamentView;
+    private TournamentPeserta tournamentView;
     Team arsenal, real, milan, psg, arth, mahes, ace, sabo, kosong;
     List<Team> allTeam;
     ArrayList<String> ALNama = new ArrayList<String>();
@@ -117,7 +118,7 @@ public class Bracket2 extends AppCompatActivity implements View.OnClickListener 
 
         }
 
-        tournamentView = (TournamentView) findViewById(R.id.tournament_view);
+        tournamentView = (TournamentPeserta) findViewById(R.id.tournament_view);
     }
 
 
