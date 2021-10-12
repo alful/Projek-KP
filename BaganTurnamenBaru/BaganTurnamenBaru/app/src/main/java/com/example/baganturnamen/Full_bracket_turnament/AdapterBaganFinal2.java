@@ -106,13 +106,29 @@ public class AdapterBaganFinal2 extends RecyclerView.Adapter<AdapterBaganFinal2.
 //            }
 //
 //        }
+//
+//        Log.d("TAG", "onBindViewHolderasddsa: "+ALSkorPemenangB2Peserta1.get(position));
+//        Log.d("TAG", "onBindViewHolderasddsa: "+ALSkorPemenangB2Peserta2);
 
-        Log.d("TAG", "ALSkorSemua: "+ALSemuaSkorB3);
-        Log.d("TAG", "ALSkor1: "+ALSkorPemenangB3Peserta1);
-        Log.d("TAG", "ALSkor2: "+ALSkorPemenangB3Peserta2);
 //        holder.ETSkorPesertaFinal.setText("aa");
-        if(ALSkorPemenangB2Peserta1.get(position)>ALSkorPemenangB2Peserta2.get(position)){
-            holder.TVNamaPesertaFinal.setText(ALNamaPemenangB1Peserta1.get(position));
+//        if (ALSkorPemenangB2Peserta1.size() == 0 && ALSkorPemenangB2Peserta2.size() ==0)
+//        {
+//
+//        }
+//        else if (ALSkorPemenangB2Peserta1.size() != 0 && ALSkorPemenangB2Peserta2.size() ==0)
+//        {
+//
+//        }
+//
+//        else if (ALSkorPemenangB2Peserta1.size() <n && ALSkorPemenangB2Peserta2.size() <0)
+//        {
+//
+//        }
+        else{
+            if (ALSkorPemenangB2Peserta1.get(position) > ALSkorPemenangB2Peserta2.get(position)) {
+                holder.TVNamaPesertaFinal.setText(ALNamaPemenangB1Peserta1.get(position));
+                Log.d("TAG", "onBindViewHolder: " + ALNamaPemenangB1Peserta1);
+                Log.d("TAG", "onBindViewHolder: " + ALNamaPemenangB1Peserta1.get(position));
 //            if(ALSkorPemenangB3Peserta1.size()!=0&&ALSkorPemenangB3Peserta1.get(position)!=0){
 //            if(ALSkorPemenangB3Peserta1==null) {
 //
@@ -139,7 +155,7 @@ public class AdapterBaganFinal2 extends RecyclerView.Adapter<AdapterBaganFinal2.
 ////                Log.d("TAG", "upload: ");
 ////            if(ALSkorPemenangB3Peserta1.size()!=0&&ALSkorPemenangB3Peserta1.get(position)!=null){
 //            }
-            /////////////
+                /////////////
 //            else if(ALSkorPemenangB3Peserta1.size()!=0&&ALSkorPemenangB3Peserta1.get(position)!=0){
 //            holder.ETSkorPesertaFinal.setText(ALSkorPemenangB3Peserta1.get(position).toString());
 //            Log.d("TAG", "ALB3P1: "+ALSkorPemenangB3Peserta1.get(position));
@@ -150,7 +166,7 @@ public class AdapterBaganFinal2 extends RecyclerView.Adapter<AdapterBaganFinal2.
 ////////                hashMap.put("babak4", 0);
 ////                DBRef.child(ALKeyPemenangB2Peserta1.get(position)).child("History").updateChildren(hashMap);
 //            }
-            ////////////
+                ////////////
 //            else{
 //                HashMap hashMap = new HashMap();
 //                hashMap.put("babak3", 0);
@@ -158,9 +174,8 @@ public class AdapterBaganFinal2 extends RecyclerView.Adapter<AdapterBaganFinal2.
 //                DBRef.child(ALKeyPemenangB2Peserta2.get(position)).child("History").updateChildren(hashMap);
 //                holder.ETSkorPesertaFinal.setText("");
 //            }
-        }
-        else if(ALSkorPemenangB2Peserta1.get(position)<ALSkorPemenangB2Peserta2.get(position)){
-            holder.TVNamaPesertaFinal.setText(ALNamaPemenangB1Peserta2.get(position));
+            } else if (ALSkorPemenangB2Peserta1.get(position) < ALSkorPemenangB2Peserta2.get(position)) {
+                holder.TVNamaPesertaFinal.setText(ALNamaPemenangB1Peserta2.get(position));
 //            if(ALSkorPemenangB3Peserta2.size()!=0&&ALSkorPemenangB3Peserta2.get(position)!=0){
 //            if(ALSkorPemenangB3Peserta2.get(position)!=0){
 //            if(ALSkorPemenangB3Peserta2==null){
@@ -196,66 +211,61 @@ public class AdapterBaganFinal2 extends RecyclerView.Adapter<AdapterBaganFinal2.
 //            else{
 //                holder.ETSkorPesertaFinal.setText("");
 //            }
-        }
-        else{
-            holder.TVNamaPesertaFinal.setText("");
+            } else {
+                holder.TVNamaPesertaFinal.setText("");
 //            holder.ETSkorPesertaFinal.setText("");
-        }
+            }
 //        Log.d("TAG", "onBindViewHolder: "+ALKeyPemenangB2Peserta1.get(position));
 //        Log.d("TAG", "onBindViewHolder: "+ALKeyPemenangB2Peserta2.get(position));
 
-        if (holder.ETSkorPesertaFinal.getText().toString().equals(""))
-        {
-            holder.ETSkorPesertaFinal.setText(Integer.toString(0));
-            HashMap hashMap = new HashMap();
-            hashMap.put("babak3", 0);
+            if (holder.ETSkorPesertaFinal.getText().toString().equals("")) {
+                holder.ETSkorPesertaFinal.setText(Integer.toString(0));
+                HashMap hashMap = new HashMap();
+                hashMap.put("babak3", 0);
 
-            if(ALSkorPemenangB2Peserta1.get(position)>ALSkorPemenangB2Peserta2.get(position)){
-                DBRef.child(ALKeyPemenangB2Peserta1.get(position)).child("History").addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (ALSkorPemenangB2Peserta1.get(position) > ALSkorPemenangB2Peserta2.get(position)) {
+                    DBRef.child(ALKeyPemenangB2Peserta1.get(position)).child("History").addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                        Integer sas=snapshot.child("babak3").getValue(Integer.class);
-                        Log.d("TAG", "onDataChange: "+sas);
-                        if (sas == null){
-                            DBRef.child(ALKeyPemenangB2Peserta1.get(position)).child("History").updateChildren(hashMap);
+                            Integer sas = snapshot.child("babak3").getValue(Integer.class);
+                            Log.d("TAG", "onDataChange: " + sas);
+                            if (sas == null) {
+                                DBRef.child(ALKeyPemenangB2Peserta1.get(position)).child("History").updateChildren(hashMap);
+
+                            } else
+                                holder.ETSkorPesertaFinal.setText(Integer.toString(sas));
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
 
                         }
-                        else
-                        holder.ETSkorPesertaFinal.setText(Integer.toString(sas));
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
-                    }
-                });
+                    });
 
 
 //                DBRef.child(ALKeyPemenangB2Peserta1.get(position)).child("History").updateChildren(hashMap);
-            }
-            else if(ALSkorPemenangB2Peserta1.get(position)<ALSkorPemenangB2Peserta2.get(position)){
-                //                            DBRef.child(ALKeyPemenangB1Peserta2.get(position)).child("History").updateChildren(hashMap);
-                DBRef.child(ALKeyPemenangB2Peserta2.get(position)).child("History").addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                } else if (ALSkorPemenangB2Peserta1.get(position) < ALSkorPemenangB2Peserta2.get(position)) {
+                    //                            DBRef.child(ALKeyPemenangB1Peserta2.get(position)).child("History").updateChildren(hashMap);
+                    DBRef.child(ALKeyPemenangB2Peserta2.get(position)).child("History").addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                        Integer sas=snapshot.child("babak3").getValue(Integer.class);
-                        Log.d("TAG", "onDataChange: "+sas);
-                        if (sas == null){
-                            DBRef.child(ALKeyPemenangB2Peserta2.get(position)).child("History").updateChildren(hashMap);
+                            Integer sas = snapshot.child("babak3").getValue(Integer.class);
+                            Log.d("TAG", "onDataChange: " + sas);
+                            if (sas == null) {
+                                DBRef.child(ALKeyPemenangB2Peserta2.get(position)).child("History").updateChildren(hashMap);
+
+                            } else
+                                holder.ETSkorPesertaFinal.setText(Integer.toString(sas));
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
 
                         }
-                        else
-                            holder.ETSkorPesertaFinal.setText(Integer.toString(sas));
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
-                    }
-                });
-            }
+                    });
+                }
 
 //            DBRef.child(ALKeyPemenangB2Peserta1.get(position)).child("History").addValueEventListener(new ValueEventListener() {
 //                @Override
@@ -271,14 +281,12 @@ public class AdapterBaganFinal2 extends RecyclerView.Adapter<AdapterBaganFinal2.
 //            });
 
 
-
-
-
+            }
         }
-        holder.ETSkorPesertaFinal.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View view, boolean b) {
-                if(b){
+            holder.ETSkorPesertaFinal.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+                @Override
+                public void onFocusChange(View view, boolean b) {
+                    if (b) {
 //                    String et = holder.ETSkorPesertaFinal.getText().toString();
 //                    if(et.equals("")){
 //                        if(ALSkorPemenangB2Peserta1.get(position)>ALSkorPemenangB2Peserta2.get(position)){
@@ -294,52 +302,51 @@ public class AdapterBaganFinal2 extends RecyclerView.Adapter<AdapterBaganFinal2.
 //                            DBRef.child(ALKeyPemenangB2Peserta2.get(position)).child("History").updateChildren(hashMap);
 //                        }
 //                    }
-                    Log.d("TAG", "onFocusChange: pencet");
-                }
-                if(!b){
-                    Log.d("TAG", "onFocusChange: lepas");
+                        Log.d("TAG", "onFocusChange: pencet");
+                    }
+                    if (!b) {
+                        Log.d("TAG", "onFocusChange: lepas");
 //                    String SkorFinals = ALSemuaSkorB3.get(position).toString();
 //                    Log.d("TAG", "sebe3: "+position+SkorFinals+ALSemuaSkorB3);
 //                    if(!SkorFinals.equals("")&&ALSemuaSkorB3.size()/2==ALSkorPemenangB2Peserta1.size()) {
 //                    if(!SkorFinals.equals("")) {
 //                    if(!ALSemuaSkorB3.get(position).equals("")) {
-                    if(!ALSemuaSkorB3.get(position).equals("")) {
-                        Log.d("TAG", "onFocusChange: lepas "+position);
+                        if (!ALSemuaSkorB3.get(position).equals("")) {
+                            Log.d("TAG", "onFocusChange: lepas " + position);
 
 //                        Log.d("TAG", "onFocusChangeseb: "+ALSemuaSkorB3+ALSemuaSkorB3.get(position));
-    //                            Log.d("TAG", "onFocusChangeseb: "+SkorFinal);
-    //                            Log.d("TAG", "onFocusChangeseb: "+position+ALSemuaSkorB3);
+                            //                            Log.d("TAG", "onFocusChangeseb: "+SkorFinal);
+                            //                            Log.d("TAG", "onFocusChangeseb: "+position+ALSemuaSkorB3);
 //                                Log.d("TAG", "sesub: "+position+ALSemuaSkorB3+ALSemuaSkorB3.get(position));
 //                                Log.d("TAG", "sesub2: "+ALSkorPemenangB2Peserta1.get(position));
 //                                Log.d("TAG", "sesub3: "+ALSkorPemenangB2Peserta2.get(position));
-        //                        int inti = Integer.parseInt(SkorFinal);
+                            //                        int inti = Integer.parseInt(SkorFinal);
 //                        HashMap hashMap = new HashMap();
 //                        hashMap.put("babak3", ALSemuaSkorB3.get(position));
 ////
 //                            Log.d("TAG", "onFocusChange: "+ALSemuaSkorB3.get(position));
 ////
-                        if(ALSkorPemenangB2Peserta1.get(position)>ALSkorPemenangB2Peserta2.get(position)){
-                            HashMap hashMap = new HashMap();
-                            hashMap.put("babak3", ALSemuaSkorB3.get(position));
-                            hashMap.put("pemenangB2", ALNamaPemenangB1Peserta1.get(position));
+                            if (ALSkorPemenangB2Peserta1.get(position) > ALSkorPemenangB2Peserta2.get(position)) {
+                                HashMap hashMap = new HashMap();
+                                hashMap.put("babak3", ALSemuaSkorB3.get(position));
+                                hashMap.put("pemenangB2", ALNamaPemenangB1Peserta1.get(position));
 
-                            Log.d("TAG", "sesub2: "+ALSemuaSkorB3.get(position));
-                            Log.d("TAG", "sesub3: "+ALNamaPemenangB1Peserta1.get(position));
-                            Log.d("TAG", "sesub4: "+ALKeyPemenangB2Peserta1.get(position));
-    //                            DBRef.child(ALKeyPemenangB1Peserta1.get(position)).child("History").updateChildren(hashMap);
-                            DBRef.child(ALKeyPemenangB2Peserta1.get(position)).child("History").updateChildren(hashMap);
-                        }
-                        else if(ALSkorPemenangB2Peserta1.get(position)<ALSkorPemenangB2Peserta2.get(position)){
-                            HashMap hashMap = new HashMap();
-                            hashMap.put("babak3", ALSemuaSkorB3.get(position));
-                            hashMap.put("pemenangB2", ALNamaPemenangB1Peserta2.get(position));
+                                Log.d("TAG", "sesub2: " + ALSemuaSkorB3.get(position));
+                                Log.d("TAG", "sesub3: " + ALNamaPemenangB1Peserta1.get(position));
+                                Log.d("TAG", "sesub4: " + ALKeyPemenangB2Peserta1.get(position));
+                                //                            DBRef.child(ALKeyPemenangB1Peserta1.get(position)).child("History").updateChildren(hashMap);
+                                DBRef.child(ALKeyPemenangB2Peserta1.get(position)).child("History").updateChildren(hashMap);
+                            } else if (ALSkorPemenangB2Peserta1.get(position) < ALSkorPemenangB2Peserta2.get(position)) {
+                                HashMap hashMap = new HashMap();
+                                hashMap.put("babak3", ALSemuaSkorB3.get(position));
+                                hashMap.put("pemenangB2", ALNamaPemenangB1Peserta2.get(position));
 
-                            Log.d("TAG", "sesub2: "+ALSemuaSkorB3.get(position));
-                            Log.d("TAG", "sesub3: "+ALNamaPemenangB1Peserta2.get(position));
-                            Log.d("TAG", "sesub4: "+ALKeyPemenangB2Peserta2.get(position));
-    //                            DBRef.child(ALKeyPemenangB1Peserta2.get(position)).child("History").updateChildren(hashMap);
-                            DBRef.child(ALKeyPemenangB2Peserta2.get(position)).child("History").updateChildren(hashMap);
-                        }
+                                Log.d("TAG", "sesub2: " + ALSemuaSkorB3.get(position));
+                                Log.d("TAG", "sesub3: " + ALNamaPemenangB1Peserta2.get(position));
+                                Log.d("TAG", "sesub4: " + ALKeyPemenangB2Peserta2.get(position));
+                                //                            DBRef.child(ALKeyPemenangB1Peserta2.get(position)).child("History").updateChildren(hashMap);
+                                DBRef.child(ALKeyPemenangB2Peserta2.get(position)).child("History").updateChildren(hashMap);
+                            }
 //                        else{
 ////                            holder.ETSkorPesertaFinal.setText("");
 //                        }
@@ -347,7 +354,7 @@ public class AdapterBaganFinal2 extends RecyclerView.Adapter<AdapterBaganFinal2.
 
 //                    else if(!SkorFinal.equals("")&&ALSemuaSkorB3.size()==ALSkorPemenangB2Peserta1.size()){
 //
-                    }
+                        }
 //                    else if(!SkorFinals.equals("")&&position!=0){
 //                        HashMap hashMap = new HashMap();
 //                        hashMap.put("babak3", ALSemuaSkorB3.get(position-1));
@@ -370,60 +377,61 @@ public class AdapterBaganFinal2 extends RecyclerView.Adapter<AdapterBaganFinal2.
 //                    }
 
 
+                    }
                 }
-            }
-        });
+            });
 
-        holder.ETSkorPesertaFinal.addTextChangedListener(new TextWatcher (){
-            @Override
-            public void afterTextChanged(Editable s){
-                if(holder.ETSkorPesertaFinal.isFocused()){
-                    SkorFinal = holder.ETSkorPesertaFinal.getText().toString();
-                    Log.d("TAG", "afterTsssextChanged: "+SkorFinal);
+            holder.ETSkorPesertaFinal.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void afterTextChanged(Editable s) {
+                    if (holder.ETSkorPesertaFinal.isFocused()) {
+                        SkorFinal = holder.ETSkorPesertaFinal.getText().toString();
+                        Log.d("TAG", "afterTsssextChanged: " + SkorFinal);
 //                    if(!SkorFinal.equals("")&&ALSemuaSkorB3.size()!=ALSkorPemenangB2Peserta1.size()) {
-                    if(!SkorFinal.equals("")) {
-                        int inti = Integer.parseInt(SkorFinal);
+                        if (!SkorFinal.equals("")) {
+                            int inti = Integer.parseInt(SkorFinal);
 //                        ALSemuaSkorB3.add(position, inti);
 //                        Log.d("TAG", "sebe: "+position+inti+ALSemuaSkorB3);
 //                        ALSemuaSkorB3.set(position, inti);
 //                        Log.d("TAG", "sebe2: "+position+inti+ALSemuaSkorB3);
 //                        HashMap hashMap = new HashMap();
 //                        hashMap.put("babak3", inti);
-                        if(ALSkorPemenangB2Peserta1.get(position)>ALSkorPemenangB2Peserta2.get(position)){
-                            Log.d("TAG", "sebebes1: "+position+ALSemuaSkorB3+inti);
+                            if (ALSkorPemenangB2Peserta1.get(position) > ALSkorPemenangB2Peserta2.get(position)) {
+                                Log.d("TAG", "sebebes1: " + position + ALSemuaSkorB3 + inti);
 //                            ALSemuaSkorB3.set(position, inti);
-                            ALSemuaSkorB3.add(position, inti);
-                            Log.d("TAG", "sebebes2: "+position+ALSemuaSkorB3+inti);
+                                ALSemuaSkorB3.add(position, inti);
+                                Log.d("TAG", "sebebes2: " + position + ALSemuaSkorB3 + inti);
 //                            DBRef.child(ALKeyPemenangB1Peserta1.get(position)).child("History").updateChildren(hashMap);
-                        }
-                        else if(ALSkorPemenangB2Peserta1.get(position)<ALSkorPemenangB2Peserta2.get(position)){
+                            } else if (ALSkorPemenangB2Peserta1.get(position) < ALSkorPemenangB2Peserta2.get(position)) {
 //                            DBRef.child(ALKeyPemenangB1Peserta2.get(position)).child("History").updateChildren(hashMap);
-                            Log.d("TAG", "sebecil1: "+position+inti+ALSemuaSkorB3);
+                                Log.d("TAG", "sebecil1: " + position + inti + ALSemuaSkorB3);
 //                            ALSemuaSkorB3.set(position, inti);
-                            ALSemuaSkorB3.add(position, inti);
-                            Log.d("TAG", "sebecil2: "+position+inti+ALSemuaSkorB3);
+                                ALSemuaSkorB3.add(position, inti);
+                                Log.d("TAG", "sebecil2: " + position + inti + ALSemuaSkorB3);
+                            }
                         }
-                    }
 //                    else if(!SkorFinal.equals("")&&ALSemuaSkorB3.size()==ALSkorPemenangB2Peserta1.size()){
-                    else if(!SkorFinal.equals("")&&ALSemuaSkorB3.size()==ALSkorPemenangB2Peserta1.size()){
-                        Log.d("TAG", "afterTextChanged3: "+ALSemuaSkorB3+ALSemuaSkorB3.size()+ALSkorPemenangB2Peserta1.size());
-                        int inti = Integer.parseInt(SkorFinal);
-                        ALSemuaSkorB3.set(position, inti);
-                        Log.d("TAG", "afterTextChanged4: "+ALSemuaSkorB3+ALSemuaSkorB3.size()+ALSkorPemenangB2Peserta1.size());
+                        else if (!SkorFinal.equals("") && ALSemuaSkorB3.size() == ALSkorPemenangB2Peserta1.size()) {
+                            Log.d("TAG", "afterTextChanged3: " + ALSemuaSkorB3 + ALSemuaSkorB3.size() + ALSkorPemenangB2Peserta1.size());
+                            int inti = Integer.parseInt(SkorFinal);
+                            ALSemuaSkorB3.set(position, inti);
+                            Log.d("TAG", "afterTextChanged4: " + ALSemuaSkorB3 + ALSemuaSkorB3.size() + ALSkorPemenangB2Peserta1.size());
+                        }
                     }
                 }
-            }
 
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after){
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
-            }
+                }
 
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count){
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
 
-            }
-        });
+                }
+            });
+            //
+
     }
 
     @Override
