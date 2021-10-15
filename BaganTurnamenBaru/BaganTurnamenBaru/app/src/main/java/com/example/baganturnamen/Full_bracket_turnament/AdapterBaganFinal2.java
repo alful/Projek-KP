@@ -107,24 +107,16 @@ public class AdapterBaganFinal2 extends RecyclerView.Adapter<AdapterBaganFinal2.
 //
 //        }
 //
-//        Log.d("TAG", "onBindViewHolderasddsa: "+ALSkorPemenangB2Peserta1.get(position));
-//        Log.d("TAG", "onBindViewHolderasddsa: "+ALSkorPemenangB2Peserta2);
+        Log.d("TAG", "onBindViewHolderasddsa: "+ALSkorPemenangB2Peserta1);
+        Log.d("TAG", "onBindViewHolderasddsa2: "+ALSkorPemenangB2Peserta2);
 
 //        holder.ETSkorPesertaFinal.setText("aa");
-//        if (ALSkorPemenangB2Peserta1.size() == 0 && ALSkorPemenangB2Peserta2.size() ==0)
-//        {
-//
-//        }
-//        else if (ALSkorPemenangB2Peserta1.size() != 0 && ALSkorPemenangB2Peserta2.size() ==0)
-//        {
-//
-//        }
-//
-//        else if (ALSkorPemenangB2Peserta1.size() <n && ALSkorPemenangB2Peserta2.size() <0)
-//        {
-//
-//        }
-        else{
+        if (ALSkorPemenangB2Peserta1.size()==0 && ALSkorPemenangB2Peserta2.size() ==0)
+        {
+            holder.TVNamaPesertaFinal.setText("Kosong");
+
+        }
+        else if (ALSkorPemenangB2Peserta1.size() == ALSkorPemenangB2Peserta2.size()){
             if (ALSkorPemenangB2Peserta1.get(position) > ALSkorPemenangB2Peserta2.get(position)) {
                 holder.TVNamaPesertaFinal.setText(ALNamaPemenangB1Peserta1.get(position));
                 Log.d("TAG", "onBindViewHolder: " + ALNamaPemenangB1Peserta1);
