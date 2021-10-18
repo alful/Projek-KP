@@ -2,4 +2,11 @@
     <string name="app_name">BaganTurnamen</string>
     <string name="my_node">Node</string>
 
+    <string name="anggota1">Anggota 1</string>
+    <string name="anggota2">Anggota 2</string>
+    <string name="anggota3">Anggota 3</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
 </resources>

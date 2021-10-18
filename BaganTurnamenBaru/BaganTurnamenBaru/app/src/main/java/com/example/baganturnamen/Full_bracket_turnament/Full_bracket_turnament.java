@@ -4,9 +4,12 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.example.baganturnamen.About_us;
+import com.example.baganturnamen.DashboardAdmin;
 import com.example.baganturnamen.History;
 import com.example.baganturnamen.Pertandingan;
 import com.example.baganturnamen.Peserta;
@@ -21,10 +24,11 @@ import com.google.firebase.database.core.Context;
 import java.util.ArrayList;
 
 public class Full_bracket_turnament extends AppCompatActivity {
-    private RecyclerView RVBagan, RVBaganFinal2, RVBaganFinal3;
+    private RecyclerView RVBagan, RVBaganFinal2, RVBaganFinal3, RVBaganFinal4;
     AdapterBagan adapterBagan;
     AdapterBaganFinal2 adapterBaganFinal2;
     AdapterBaganFinal3 adapterBaganFinal3;
+    AdapterBaganFinal4 adapterBaganFinal4;
     private DatabaseReference DBRef;
     ArrayList<Peserta> ALPeserta;
     ArrayList<Peserta> ALPeserta2;
@@ -43,7 +47,7 @@ public class Full_bracket_turnament extends AppCompatActivity {
     Context context;
     Peserta peserta, peserta2;
     Pertandingan pertandingan;
-//    History history, history2;
+    //    History history, history2;
     String nama, nama2, SKey1, SKey2, SKeySemua;
     Integer SkorBabak1Peserta1, SkorBabak1Peserta2,
             SkorBabak2Peserta1, SkorBabak2Peserta2,
@@ -56,15 +60,15 @@ public class Full_bracket_turnament extends AppCompatActivity {
     ArrayList<Integer> ALSkorB1Peserta2;
 
 
-//    String semuapemenangB1;
+    //    String semuapemenangB1;
     String semuanamapemenangB1;
     ArrayList<String> ALSemuaNamaPemenangB1;
     ArrayList<String> ALNamaPemenangB1Peserta1;
     ArrayList<String> ALNamaPemenangB1Peserta2;
 
-//    ArrayList<Integer> ALSemuaSkorPemenangB2;
+    //    ArrayList<Integer> ALSemuaSkorPemenangB2;
     ArrayList<Integer> ALSemuaSkorB2;
-//    Integer semuaskorpemenangB2, semuaskorpemenangB3;
+    //    Integer semuaskorpemenangB2, semuaskorpemenangB3;
     Integer semuaskorB2;
     ArrayList<Integer> ALSkorPemenangB2Peserta1;
     ArrayList<Integer> ALSkorPemenangB2Peserta2;
@@ -80,16 +84,31 @@ public class Full_bracket_turnament extends AppCompatActivity {
     ArrayList<String> ALSemuaNamaPemenangB2;
     String semuanamapemenangB2;
 
-//    ArrayList<Integer> ALSemuaSkorPemenangB3;
+    //    ArrayList<Integer> ALSemuaSkorPemenangB3;
     Integer semuaskorB3;
     ArrayList<Integer> ALSemuaSkorB3;
     ArrayList<Integer> ALSkorPemenangB3Peserta1;
     ArrayList<Integer> ALSkorPemenangB3Peserta2;
+    ArrayList<String> ALKeySemuaPemenangB3;
+    ArrayList<String> ALSemuaNamaPemenangB3;
+    ArrayList<String> ALNamaPemenangB3Peserta1;
+    ArrayList<String> ALNamaPemenangB3Peserta2;
+    String semuanamapemenangB3;
+    ArrayList<String> ALKeyPemenangB3Peserta1;
+    ArrayList<String> ALKeyPemenangB3Peserta2;
 
+    ArrayList<Integer> ALSemuaSkorB4;
+    Integer semuaskorB4;
     ArrayList<Integer> ALSemuaSkorPemenangB4;
     ArrayList<Integer> ALSkorPemenangB4Peserta1;
     ArrayList<Integer> ALSkorPemenangB4Peserta2;
     Integer semuaskorpemenangB4;
+
+    ArrayList<String> ALKeySemuaPemenangB4;
+    ArrayList<String> ALKeyPemenangB4Peserta1;
+    ArrayList<String> ALKeyPemenangB4Peserta2;
+    ArrayList<Integer> ALSemuaSkorB5;
+    Integer semuaskorB5;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,6 +119,7 @@ public class Full_bracket_turnament extends AppCompatActivity {
         RVBagan = findViewById(R.id.idRVBagan);
         RVBaganFinal2 = findViewById(R.id.idRVBaganFinal2);
         RVBaganFinal3 = findViewById(R.id.idRVBaganFinal3);
+        RVBaganFinal4 = findViewById(R.id.idRVBaganFinal4);
         ALPeserta = new ArrayList<Peserta>();
         ALPeserta2 = new ArrayList<Peserta>();
         ALNama = new ArrayList<String>();
@@ -135,13 +155,25 @@ public class Full_bracket_turnament extends AppCompatActivity {
         ALKeyPemenangB2Peserta2 = new ArrayList<String>();
 
 //        ALSemuaSkorPemenangB3 = new ArrayList<Integer>();
+        ALKeySemuaPemenangB3 = new ArrayList<String>();
+        ALSemuaNamaPemenangB3 = new ArrayList<String>();
+        ALNamaPemenangB3Peserta1 = new ArrayList<String>();
+        ALNamaPemenangB3Peserta2 = new ArrayList<String>();
+        ALKeyPemenangB3Peserta1 = new ArrayList<String>();
+        ALKeyPemenangB3Peserta2 = new ArrayList<String>();
         ALSemuaSkorB3 = new ArrayList<Integer>();
         ALSkorPemenangB3Peserta1 = new ArrayList<Integer>();
         ALSkorPemenangB3Peserta2 = new ArrayList<Integer>();
 
+        ALSemuaSkorB4 = new ArrayList<Integer>();
         ALSemuaSkorPemenangB4 = new ArrayList<Integer>();
         ALSkorPemenangB4Peserta1 = new ArrayList<Integer>();
         ALSkorPemenangB4Peserta2 = new ArrayList<Integer>();
+
+        ALKeySemuaPemenangB4 = new ArrayList<String>();
+        ALKeyPemenangB4Peserta1 = new ArrayList<String>();
+        ALKeyPemenangB4Peserta2 = new ArrayList<String>();
+        ALSemuaSkorB5 = new ArrayList<Integer>();
 //        RVBagan.setHasFixedSize(true);
 //        RVBagan.setLayoutManager(new LinearLayoutManager(this));
 
@@ -160,6 +192,9 @@ public class Full_bracket_turnament extends AppCompatActivity {
                 ALSkorBabak1Peserta2.clear();
                 ALSkorBabak2Peserta1.clear();
                 ALSkorBabak2Peserta2.clear();
+                ALKeySemuaPemenangB2.clear();
+                ALKeyPemenangB2Peserta1.clear();
+                ALKeyPemenangB2Peserta2.clear();
                 ALSkorBabak3Peserta1.clear();
                 ALSkorBabak3Peserta2.clear();
                 ALSemuaNamaPemenangB1.clear();
@@ -168,6 +203,8 @@ public class Full_bracket_turnament extends AppCompatActivity {
                 ALNamaPemenangB1Peserta2.clear();
                 ALNamaPemenangB2Peserta1.clear();
                 ALNamaPemenangB2Peserta2.clear();
+                ALSkorPemenangB2Peserta1.clear();
+                ALSkorPemenangB2Peserta2.clear();
                 ALSemuaSkorB1.clear();
                 ALSkorB1Peserta1.clear();
                 ALSkorB1Peserta2.clear();
@@ -175,17 +212,33 @@ public class Full_bracket_turnament extends AppCompatActivity {
                 ALSemuaSkorB2.clear();
                 ALSemuaSkorB3.clear();
 //                ALSemuaSkorPemenangB3.clear();
+                ALKeySemuaPemenangB3.clear();
+                ALKeyPemenangB3Peserta1.clear();
+                ALKeyPemenangB3Peserta2.clear();
                 ALSkorPemenangB3Peserta1.clear();
                 ALSkorPemenangB3Peserta2.clear();
+                ALSemuaNamaPemenangB3.clear();
+                ALNamaPemenangB3Peserta1.clear();
+                ALNamaPemenangB3Peserta2.clear();
+                ALSemuaSkorB4.clear();
+                ALSkorPemenangB4Peserta1.clear();
+                ALSkorPemenangB4Peserta2.clear();
                 ALSemuaSkorPemenangB4.clear();
+                ALKeySemuaPemenangB4.clear();
+                ALKeyPemenangB4Peserta1.clear();
+                ALKeyPemenangB4Peserta2.clear();
+                ALSemuaSkorB5.clear();
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
 //                    semuapemenangB1 = dataSnapshot.child("History").child("pemenangB1").getValue(String.class);
                     semuanamapemenangB1 = dataSnapshot.child("History").child("pemenangB1").getValue(String.class);
                     semuanamapemenangB2 = dataSnapshot.child("History").child("pemenangB2").getValue(String.class);
+                    semuanamapemenangB3 = dataSnapshot.child("History").child("pemenangB3").getValue(String.class);
                     semuaskorB1 = dataSnapshot.child("History").child("babak1").getValue(Integer.class);
 //                    semuaskorpemenangB2 = dataSnapshot.child("History").child("babak2").getValue(Integer.class);
                     semuaskorB2 = dataSnapshot.child("History").child("babak2").getValue(Integer.class);
                     semuaskorB3 = dataSnapshot.child("History").child("babak3").getValue(Integer.class);
+                    semuaskorB4 = dataSnapshot.child("History").child("babak4").getValue(Integer.class);
+                    semuaskorB5 = dataSnapshot.child("History").child("babak5").getValue(Integer.class);
                     SKeySemua = dataSnapshot.getKey();
 //                    semuaskorpemenangB3 = dataSnapshot.child("History").child("babak3").getValue(Integer.class);
                     semuaskorpemenangB4 = dataSnapshot.child("History").child("babak4").getValue(Integer.class);
@@ -203,9 +256,24 @@ public class Full_bracket_turnament extends AppCompatActivity {
 //                            ALSemuaSkorB3.add(0);
 //                        }
                         if(semuaskorB3!=null){
+                            ALKeySemuaPemenangB3.add(SKeySemua);
                             ALSemuaSkorB3.add(semuaskorB3);
                             if(semuanamapemenangB2!=null) {
                                 ALSemuaNamaPemenangB2.add(semuanamapemenangB2);
+                            }
+//                            if(semuaskorB3!=0){
+
+//                            }
+                            if(semuanamapemenangB3!=null) {
+                                ALSemuaNamaPemenangB3.add(semuanamapemenangB3);
+                            }
+//                            ALKeySemuaPemenangB3.add(SKeySemua);
+                            if(semuaskorB4!=null){
+                                ALSemuaSkorB4.add(semuaskorB4);
+                                if(semuaskorB5!=null){
+                                    ALKeySemuaPemenangB4.add(SKeySemua);
+                                    ALSemuaSkorB5.add(semuaskorB5);
+                                }
                             }
                         }
                     }
@@ -281,9 +349,9 @@ public class Full_bracket_turnament extends AppCompatActivity {
 //                                                ALSkorBabak1Peserta1, ALSkorBabak1Peserta2,
 //                                                ALSkorBabak2Peserta1, ALSkorBabak2Peserta2);
                 adapterBagan = new AdapterBagan(context, ALNama, ALNama2, ALSKey1, ALSKey2,
-                                                ALSkorBabak1Peserta1, ALSkorBabak1Peserta2,
-                                                ALSkorBabak2Peserta1, ALSkorBabak2Peserta2,
-                                                ALSemuaSkorB2);
+                        ALSkorBabak1Peserta1, ALSkorBabak1Peserta2,
+                        ALSkorBabak2Peserta1, ALSkorBabak2Peserta2,
+                        ALSemuaSkorB2);
                 RVBagan.setAdapter(adapterBagan);
                 adapterBagan.notifyDataSetChanged();
 //                RVBagan.setHasFixedSize(true);
@@ -350,18 +418,18 @@ public class Full_bracket_turnament extends AppCompatActivity {
                 //skorB3
 //                for(int x=0; x<ALSemuaSkorPemenangB3.size(); x++) {
 
-                    for (int x = 0; x < ALSemuaSkorB3.size(); x++) {
-                        if (x % 2 != 0) {
+                for (int x = 0; x < ALSemuaSkorB3.size(); x++) {
+                    if (x % 2 != 0) {
 //                        ALSkorPemenangB3Peserta2.add(ALSemuaSkorPemenangB3.get(x));
-                            ALSkorPemenangB3Peserta2.add(ALSemuaSkorB3.get(x));
-                        } else if (x % 2 == 0) {
-                            ALSkorPemenangB3Peserta1.add(ALSemuaSkorB3.get(x));
-                        }
+                        ALSkorPemenangB3Peserta2.add(ALSemuaSkorB3.get(x));
+                    } else if (x % 2 == 0) {
+                        ALSkorPemenangB3Peserta1.add(ALSemuaSkorB3.get(x));
                     }
-                Log.d("TAG", "onDataChangeAL: "+ALSemuaSkorB3);
-                Log.d("TAG", "onDataChangeALs: "+ALSemuaSkorB2.size());
-                Log.d("TAG", "onDataChange1: "+ALSkorPemenangB3Peserta1);
-                Log.d("TAG", "onDataChange2: "+ALSkorPemenangB3Peserta2);
+                }
+//                Log.d("TAG", "onDataChangeAL: "+ALSemuaSkorB3);
+//                Log.d("TAG", "onDataChangeALs: "+ALSemuaSkorB2.size());
+//                Log.d("TAG", "onDataChange1: "+ALSkorPemenangB3Peserta1);
+//                Log.d("TAG", "onDataChange2: "+ALSkorPemenangB3Peserta2);
 
                 //skorB4
                 for(int x=0; x<ALSemuaSkorPemenangB4.size(); x++) {
@@ -377,10 +445,11 @@ public class Full_bracket_turnament extends AppCompatActivity {
 
                 adapterBaganFinal2 = new AdapterBaganFinal2(context, ALNama,
                         ALNamaPemenangB1Peserta1, ALNamaPemenangB1Peserta2,
+                        ALNamaPemenangB2Peserta1, ALNamaPemenangB2Peserta2,
                         ALKeyPemenangB2Peserta1, ALKeyPemenangB2Peserta2,
                         ALSkorPemenangB2Peserta1, ALSkorPemenangB2Peserta2,
                         ALSkorPemenangB3Peserta1, ALSkorPemenangB3Peserta2,
-                        ALSemuaSkorB3);
+                        ALSemuaSkorB3, ALSemuaSkorB2);
                 RVBaganFinal2.setAdapter(adapterBaganFinal2);
 //                RVBagan.setHasFixedSize(true);
 
@@ -388,10 +457,69 @@ public class Full_bracket_turnament extends AppCompatActivity {
 
 
 
+                for(int x=0; x<ALKeySemuaPemenangB3.size(); x++) {
+                    if (x % 2 != 0) {
+//                        ALSkorPemenangB2Peserta2.add(ALSemuaSkorPemenangB2.get(x));
+                        ALKeyPemenangB3Peserta2.add(ALKeySemuaPemenangB3.get(x));
+                    }
+                    else if(x%2==0){
+//                        ALSkorPemenangB2Peserta1.add(ALSemuaSkorPemenangB2.get(x));
+                        ALKeyPemenangB3Peserta1.add(ALKeySemuaPemenangB3.get(x));
+                    }
+                }
+
+                for(int x=0; x<ALSemuaNamaPemenangB3.size(); x++) {
+                    if (x % 2 != 0) {
+//                        ALSkorPemenangB2Peserta2.add(ALSemuaSkorPemenangB2.get(x));
+                        ALNamaPemenangB3Peserta2.add(ALSemuaNamaPemenangB3.get(x));
+                    }
+                    else if(x%2==0){
+//                        ALSkorPemenangB2Peserta1.add(ALSemuaSkorPemenangB2.get(x));
+                        ALNamaPemenangB3Peserta1.add(ALSemuaNamaPemenangB3.get(x));
+                    }
+                }
+
+                for(int x=0; x<ALSemuaSkorB4.size(); x++) {
+                    if (x % 2 != 0) {
+//                        ALSkorPemenangB2Peserta2.add(ALSemuaSkorPemenangB2.get(x));
+                        ALSkorPemenangB4Peserta2.add(ALSemuaSkorB4.get(x));
+                    }
+                    else if(x%2==0){
+//                        ALSkorPemenangB2Peserta1.add(ALSemuaSkorPemenangB2.get(x));
+                        ALSkorPemenangB4Peserta1.add(ALSemuaSkorB4.get(x));
+                    }
+                }
+
                 adapterBaganFinal3 = new AdapterBaganFinal3(context,
-                        ALSkorPemenangB3Peserta1, ALSkorPemenangB3Peserta2);
+                        ALKeySemuaPemenangB3,
+                        ALKeyPemenangB2Peserta1, ALKeyPemenangB2Peserta2,
+                        ALKeyPemenangB3Peserta1, ALKeyPemenangB3Peserta2,
+                        ALNamaPemenangB2Peserta1, ALNamaPemenangB2Peserta2,
+                        ALSkorPemenangB3Peserta1, ALSkorPemenangB3Peserta2,
+                        ALSemuaSkorB4,
+                        ALNamaPemenangB3Peserta1, ALNamaPemenangB3Peserta2);
                 RVBaganFinal3.setAdapter(adapterBaganFinal3);
                 adapterBaganFinal3.notifyDataSetChanged();
+
+
+                for(int x=0; x<ALKeySemuaPemenangB4.size(); x++) {
+                    if (x % 2 != 0) {
+//                        ALSkorPemenangB2Peserta2.add(ALSemuaSkorPemenangB2.get(x));
+                        ALKeyPemenangB4Peserta2.add(ALKeySemuaPemenangB4.get(x));
+                    }
+                    else if(x%2==0){
+//                        ALSkorPemenangB2Peserta1.add(ALSemuaSkorPemenangB2.get(x));
+                        ALKeyPemenangB4Peserta1.add(ALKeySemuaPemenangB4.get(x));
+                    }
+                }
+
+                adapterBaganFinal4 = new AdapterBaganFinal4(context, ALSemuaSkorB5,
+                        ALKeySemuaPemenangB4,
+                        ALSkorPemenangB4Peserta1, ALSkorPemenangB4Peserta2,
+                        ALKeyPemenangB4Peserta1, ALKeyPemenangB4Peserta2,
+                        ALNamaPemenangB3Peserta1, ALNamaPemenangB3Peserta2);
+                RVBaganFinal4.setAdapter(adapterBaganFinal4);
+                adapterBaganFinal4.notifyDataSetChanged();
 
 
             }
@@ -401,5 +529,13 @@ public class Full_bracket_turnament extends AppCompatActivity {
 
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+
+        finish();
+        Intent intent = new Intent(Full_bracket_turnament.this, DashboardAdmin.class);
+        startActivity(intent);
     }
 }

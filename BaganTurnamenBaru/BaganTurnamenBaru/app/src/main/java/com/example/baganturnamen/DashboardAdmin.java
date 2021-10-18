@@ -21,7 +21,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 public class DashboardAdmin extends AppCompatActivity {
-    ImageView IVInputPeserta, IVDaftarPeserta, IVBaganTurnamen, IVLogOff;
+    ImageView IVInputPeserta, IVDaftarPeserta, IVBaganTurnamen, IVLogOff, aboutus;
     DatabaseReference databaseReference;
     ArrayList<String> ALNama = new ArrayList<String>();
     String nama;
@@ -32,11 +32,12 @@ public class DashboardAdmin extends AppCompatActivity {
         IVInputPeserta = findViewById(R.id.idIVInputPeserta);
         IVDaftarPeserta = findViewById(R.id.idIVDaftarPeserta);
         IVBaganTurnamen = findViewById(R.id.idIVBaganTurnamen);
+        aboutus=findViewById(R.id.aboutus);
         IVLogOff = findViewById(R.id.idIVLoggOff);
         databaseReference= FirebaseDatabase.getInstance().getReference().child("Peserta");
-        androidx.appcompat.widget.Toolbar toolbar= (androidx.appcompat.widget.Toolbar) findViewById(R.id.tolbar);
-        toolbar.setTitle("Dashboard");
-        setSupportActionBar(toolbar);
+//        androidx.appcompat.widget.Toolbar toolbar= (androidx.appcompat.widget.Toolbar) findViewById(R.id.tolbar);
+//        toolbar.setTitle("Dashboard");
+//        setSupportActionBar(toolbar);
 
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -85,6 +86,15 @@ public class DashboardAdmin extends AppCompatActivity {
                 startActivity(intent);
 
                 Log.d("TAG", "onClicsask: "+ALNama);
+                finish();
+            }
+        });
+
+        aboutus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(DashboardAdmin.this,About_us.class);
+                startActivity(intent);
                 finish();
             }
         });

@@ -53,7 +53,6 @@ public class MainActivity extends AppCompatActivity {
         CBUnggulan = findViewById(R.id.idCBUnggulan);
         BSimpan = findViewById(R.id.idBSimpan);
         BHapus = findViewById(R.id.idBHapus);
-        IVKembali = findViewById(R.id.idIVKembali);
         androidx.appcompat.widget.Toolbar toolbar= (androidx.appcompat.widget.Toolbar) findViewById(R.id.tolbar);
         toolbar.setTitle("Tambah Peserta");
         setSupportActionBar(toolbar);
@@ -62,13 +61,6 @@ public class MainActivity extends AppCompatActivity {
 
         DRef = FirebaseDatabase.getInstance().getReference();
 
-        IVKembali.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                Intent intent = new Intent(MainActivity.this, DashboardAdmin.class);
-                startActivity(intent);
-            }
-        });
 
         BHapus.setOnClickListener(new View.OnClickListener() {
             @Override

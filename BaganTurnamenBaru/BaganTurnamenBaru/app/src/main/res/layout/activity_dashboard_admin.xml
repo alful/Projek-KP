@@ -4,34 +4,46 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+
     tools:context=".DashboardAdmin">
+
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#FFFFFF">
-        <include
-            layout="@layout/appbar"
-            android:id="@+id/toolbar"/>
+
+        <LinearLayout
+            android:id="@+id/headbg"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:background="@drawable/bgs"
+            android:padding="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <TextView
             android:id="@+id/textView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="24dp"
             android:text="Tournament"
+            android:textColor="@color/white"
             android:textSize="30sp"
+            android:layout_marginTop="15dp"
             app:layout_constraintEnd_toStartOf="@+id/imageView"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+            app:layout_constraintTop_toTopOf="parent" />
         <TextView
             android:id="@+id/textView2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:textColor="@color/white"
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
-            android:text="Start a new Athlet"
+            android:text="Create a new Athlet"
             app:layout_constraintEnd_toStartOf="@+id/imageView"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView" />
@@ -43,7 +55,6 @@
             android:layout_marginRight="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/textView"
-            app:layout_constraintTop_toBottomOf="@+id/toolbar"
              />
         <LinearLayout
             android:id="@+id/linearLayout"
@@ -59,6 +70,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_margin="10dp"
+                android:backgroundTint="#F9EFEF"
                 android:layout_weight="1">
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -86,6 +98,8 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_margin="10dp"
+                android:backgroundTint="#C2EFEB"
+
                 android:layout_weight="1">
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -124,6 +138,8 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_margin="10dp"
+                android:backgroundTint="#DBF4AD"
+
                 android:layout_weight="1">
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -137,7 +153,7 @@
                         android:layout_marginTop="10dp"
                         android:text="Turnamen"
                         android:textSize="24sp"
-                         />
+                        />
                     <ImageView
                         android:id="@+id/idIVBaganTurnamen"
                         android:layout_width="75dp"
@@ -151,6 +167,49 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_margin="10dp"
+                android:backgroundTint="#B4EBCA"
+
+                android:layout_weight="1">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/textView8"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/aboutus"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="10dp"
+                        android:text="About Us"
+                        android:textSize="24sp" />
+
+                    <ImageView
+                        android:id="@+id/aboutus"
+                        android:layout_width="75dp"
+                        android:layout_height="75dp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="15dp"
+                        app:srcCompat="@drawable/ic_baseline_group_24" />
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/linearLayout3"
+            android:layout_width="0dp"
+            android:layout_height="175dp"
+            android:orientation="horizontal"
+            android:padding="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
+            <androidx.cardview.widget.CardView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:backgroundTint="#C6CABD"
                 android:layout_weight="1">
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -164,7 +223,7 @@
                         android:layout_marginTop="10dp"
                         android:text="Log out"
                         android:textSize="24sp"
-                         />
+                        />
                     <ImageView
                         android:id="@+id/idIVLoggOff"
                         android:layout_width="75dp"
@@ -174,6 +233,7 @@
                         app:srcCompat="@drawable/logout" />
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>
+
         </LinearLayout>
 <!--        <LinearLayout-->
 <!--            android:layout_width="0dp"-->

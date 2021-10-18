@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/universitas"
+        android:icon="@drawable/udinus"
+        android:title="Universitas"/>
+    <item android:id="@+id/anggotas1"
+        android:icon="@drawable/ic_baseline_person_24"
+        android:title="Anggota 1"/>
+    <item android:id="@+id/anggotas2"
+        android:icon="@drawable/ic_baseline_person_24"
+        android:title="Anggota 2"/>
+    <item android:id="@+id/anggotas3"
+        android:icon="@drawable/ic_baseline_person_24"
+        android:title="Anggota 3"/>
+</menu>
