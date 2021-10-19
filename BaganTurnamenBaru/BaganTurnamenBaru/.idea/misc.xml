@@ -9,12 +9,15 @@
         <entry key="..\:/Users/Lenovo/OneDrive/Documents/GitHub/Projek-KP/BaganTurnamenBaru/BaganTurnamenBaru/app/src/main/res/drawable/ic_bg_splash.xml" value="0.18555555555555556" />
         <entry key="..\:/Users/Lenovo/OneDrive/Documents/GitHub/Projek-KP/BaganTurnamenBaru/BaganTurnamenBaru/app/src/main/res/drawable/item_selected.xml" value="0.2703125" />
         <entry key="..\:/Users/Lenovo/OneDrive/Documents/GitHub/Projek-KP/BaganTurnamenBaru/BaganTurnamenBaru/app/src/main/res/layout/activity_about_us.xml" value="0.264" />
+        <entry key="..\:/Users/Lenovo/OneDrive/Documents/GitHub/Projek-KP/BaganTurnamenBaru/BaganTurnamenBaru/app/src/main/res/layout/activity_awalmasuk.xml" value="0.3625254582484725" />
         <entry key="..\:/Users/Lenovo/OneDrive/Documents/GitHub/Projek-KP/BaganTurnamenBaru/BaganTurnamenBaru/app/src/main/res/layout/activity_bagans.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Lenovo/OneDrive/Documents/GitHub/Projek-KP/BaganTurnamenBaru/BaganTurnamenBaru/app/src/main/res/layout/activity_bot_nav.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Lenovo/OneDrive/Documents/GitHub/Projek-KP/BaganTurnamenBaru/BaganTurnamenBaru/app/src/main/res/layout/activity_bracket.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Lenovo/OneDrive/Documents/GitHub/Projek-KP/BaganTurnamenBaru/BaganTurnamenBaru/app/src/main/res/layout/activity_daftar_peserta.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Lenovo/OneDrive/Documents/GitHub/Projek-KP/BaganTurnamenBaru/BaganTurnamenBaru/app/src/main/res/layout/activity_daftar_tournamen.xml" value="0.25025641025641027" />
         <entry key="..\:/Users/Lenovo/OneDrive/Documents/GitHub/Projek-KP/BaganTurnamenBaru/BaganTurnamenBaru/app/src/main/res/layout/activity_dashboard_adm.xml" value="0.25025641025641027" />
-        <entry key="..\:/Users/Lenovo/OneDrive/Documents/GitHub/Projek-KP/BaganTurnamenBaru/BaganTurnamenBaru/app/src/main/res/layout/activity_dashboard_admin.xml" value="0.4" />
+        <entry key="..\:/Users/Lenovo/OneDrive/Documents/GitHub/Projek-KP/BaganTurnamenBaru/BaganTurnamenBaru/app/src/main/res/layout/activity_dashboard_admin.xml" value="0.2" />
+        <entry key="..\:/Users/Lenovo/OneDrive/Documents/GitHub/Projek-KP/BaganTurnamenBaru/BaganTurnamenBaru/app/src/main/res/layout/activity_edit_admin.xml" value="0.25025641025641027" />
         <entry key="..\:/Users/Lenovo/OneDrive/Documents/GitHub/Projek-KP/BaganTurnamenBaru/BaganTurnamenBaru/app/src/main/res/layout/activity_edit_peserta.xml" value="0.13020833333333334" />
         <entry key="..\:/Users/Lenovo/OneDrive/Documents/GitHub/Projek-KP/BaganTurnamenBaru/BaganTurnamenBaru/app/src/main/res/layout/activity_full_bracket_turnament.xml" value="0.1" />
         <entry key="..\:/Users/Lenovo/OneDrive/Documents/GitHub/Projek-KP/BaganTurnamenBaru/BaganTurnamenBaru/app/src/main/res/layout/activity_login.xml" value="0.16055555555555556" />
@@ -25,8 +28,8 @@
         <entry key="..\:/Users/Lenovo/OneDrive/Documents/GitHub/Projek-KP/BaganTurnamenBaru/BaganTurnamenBaru/app/src/main/res/layout/fragment_anggota1.xml" value="0.176" />
         <entry key="..\:/Users/Lenovo/OneDrive/Documents/GitHub/Projek-KP/BaganTurnamenBaru/BaganTurnamenBaru/app/src/main/res/layout/fragment_anggota2.xml" value="0.13020833333333334" />
         <entry key="..\:/Users/Lenovo/OneDrive/Documents/GitHub/Projek-KP/BaganTurnamenBaru/BaganTurnamenBaru/app/src/main/res/layout/fragment_anggota3.xml" value="0.264" />
-        <entry key="..\:/Users/Lenovo/OneDrive/Documents/GitHub/Projek-KP/BaganTurnamenBaru/BaganTurnamenBaru/app/src/main/res/layout/fragment_university.xml" value="0.264" />
-        <entry key="..\:/Users/Lenovo/OneDrive/Documents/GitHub/Projek-KP/BaganTurnamenBaru/BaganTurnamenBaru/app/src/main/res/layout/listitem_bagan.xml" value="0.1" />
+        <entry key="..\:/Users/Lenovo/OneDrive/Documents/GitHub/Projek-KP/BaganTurnamenBaru/BaganTurnamenBaru/app/src/main/res/layout/fragment_university.xml" value="0.1" />
+        <entry key="..\:/Users/Lenovo/OneDrive/Documents/GitHub/Projek-KP/BaganTurnamenBaru/BaganTurnamenBaru/app/src/main/res/layout/listitem_bagan.xml" value="0.4" />
         <entry key="..\:/Users/Lenovo/OneDrive/Documents/GitHub/Projek-KP/BaganTurnamenBaru/BaganTurnamenBaru/app/src/main/res/layout/listitem_baganfinal.xml" value="0.1" />
         <entry key="..\:/Users/Lenovo/OneDrive/Documents/GitHub/Projek-KP/BaganTurnamenBaru/BaganTurnamenBaru/app/src/main/res/layout/listitem_baganfinal2.xml" value="0.1" />
         <entry key="..\:/Users/Lenovo/OneDrive/Documents/GitHub/Projek-KP/BaganTurnamenBaru/BaganTurnamenBaru/app/src/main/res/layout/listitem_baganfinal3.xml" value="0.1" />

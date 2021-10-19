@@ -12,6 +12,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BaganTurnamen">
         <activity
+            android:name=".Pesertasi.DaftarTournament"
+            android:exported="true" />
+        <activity
+            android:name=".Pesertasi.DaftarTournamen"
+            android:exported="true" />
+        <activity
+            android:name=".Awalmasuk"
+            android:exported="true" />
+        <activity
+            android:name=".Edit.edit_Admin"
+            android:exported="true" />
+        <activity
             android:name=".BotNav"
             android:exported="true" />
         <activity
@@ -19,14 +31,14 @@
             android:exported="true" />
         <activity
             android:name=".SplashScreen"
-            android:exported="true" />
-        <activity android:name=".Full_bracket_turnament.Full_bracket_turnament">
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".Full_bracket_turnament.Full_bracket_turnament" />
         <activity android:name=".BracketT.Bracket">
 
             <!-- <intent-filter> -->
@@ -50,11 +62,13 @@
             android:name=".LogSign.Register"
             android:exported="true" />
         <activity android:name=".DashboardAdmin">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
+
+
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- </intent-filter> -->
         </activity>
         <activity
             android:name=".DaftarPeserta"

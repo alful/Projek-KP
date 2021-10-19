@@ -9,7 +9,7 @@ import android.os.Handler;
 import com.example.baganturnamen.LogSign.Login;
 
 public class SplashScreen extends AppCompatActivity {
-    private static int SPLASH_SCREEN = 3000;
+    private static int SPLASH_SCREEN = 2000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

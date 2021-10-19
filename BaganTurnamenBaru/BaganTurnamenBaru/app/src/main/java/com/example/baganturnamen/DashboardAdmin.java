@@ -9,9 +9,11 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.example.baganturnamen.Edit.edit_Admin;
 import com.example.baganturnamen.Full_bracket_turnament.Full_bracket_turnament;
 import com.example.baganturnamen.LogSign.Login;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -22,9 +24,11 @@ import java.util.ArrayList;
 
 public class DashboardAdmin extends AppCompatActivity {
     ImageView IVInputPeserta, IVDaftarPeserta, IVBaganTurnamen, IVLogOff, aboutus;
-    DatabaseReference databaseReference;
+    DatabaseReference databaseReference,databaseReference2;
     ArrayList<String> ALNama = new ArrayList<String>();
     String nama;
+    String Snama,Skey,Spass,Semail;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -107,5 +111,39 @@ public class DashboardAdmin extends AppCompatActivity {
                 finish();
             }
         });
+    }
+
+    public void EditAdmin(View view) {
+        Intent intent=new Intent(DashboardAdmin.this, edit_Admin.class);
+        String uid;
+        uid= FirebaseAuth.getInstance().getCurrentUser().getUid();
+        databaseReference2=FirebaseDatabase.getInstance().getReference().child("Admin").child(uid);
+        databaseReference2.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                Semail=snapshot.child("email").getValue(String.class);
+                Spass=snapshot.child("password").getValue(String.class);
+                Snama=snapshot.child("nama").getValue(String.class);
+                intent.putExtra("idkeys",uid);
+                intent.putExtra("idemails",Semail);
+                intent.putExtra("idpasss",Spass);
+                intent.putExtra("idnamas",Snama);
+                startActivity(intent);
+                finish();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+//        intent.putExtra("idkeys",Skey);
+//        intent.putExtra("idemails",Semail);
+//        intent.putExtra("idpasss",Spass);
+//        intent.putExtra("idnamas",Snama);
+//        Log.d("TAG", "onClicssasak: "+Semail);
+//        Log.d("TAG", "onClicasaask: "+Skey);
+
+//        startActivity(intent);
     }
 }

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Awalmasuk">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        android:orientation="vertical"
+        >
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Pilih role"
+            android:textSize="30dp"
+            android:textAlignment="center"
+            android:layout_margin="50dp"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Panitia"
+            android:backgroundTint="@color/blue"
+            android:layout_margin="10dp"
+            android:id="@+id/panitias"/>
+        <Button
+            android:layout_margin="10dp"
+            android:layout_width="wrap_content"
+            android:layout_gravity="center"
+            android:backgroundTint="@color/material_on_surface_emphasis_high_type"
+            android:layout_height="wrap_content"
+            android:text="Peserta"
+            android:id="@+id/pesertas"/>
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
