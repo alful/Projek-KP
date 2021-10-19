@@ -12,6 +12,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BaganTurnamen">
         <activity
+            android:name=".Pesertasi.BracketPeserta"
+            android:exported="true" />
+        <activity
+            android:name=".Pesertasi.LihatTUnamen"
+            android:exported="true" />
+        <activity
             android:name=".Pesertasi.DaftarTournament"
             android:exported="true" />
         <activity

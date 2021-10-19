@@ -1,0 +1,303 @@
+package com.example.baganturnamen.Pesertasi;
+
+import android.text.Editable;
+import android.text.InputType;
+import android.text.TextWatcher;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.baganturnamen.Full_bracket_turnament.AdapterBagan;
+import com.example.baganturnamen.R;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.core.Context;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+
+public class AdapterBaganPeserta extends RecyclerView.Adapter<AdapterBaganPeserta.BaganPesertaViewHolder> {
+
+    public AdapterBaganPeserta(Context context, ArrayList<String> ALNama, ArrayList<String> ALNama2,
+                               ArrayList<String> ALSKey1 , ArrayList<String> ALSKey2,
+                               ArrayList<Integer> ALSkorBabak1Peserta1, ArrayList<Integer> ALSkorBabak1Peserta2,
+                               ArrayList<Integer> ALSkorBabak2Peserta1, ArrayList<Integer> ALSkorBabak2Peserta2,
+                               ArrayList<Integer> ALSemuaSkorB2){
+        this.context = context;
+        this.ALNama = ALNama;
+        this.ALNama2 = ALNama2;
+        this.ALSKey1 = ALSKey1;
+        this.ALSKey2 = ALSKey2;
+        this.ALSkorBabak1Peserta1 = ALSkorBabak1Peserta1;
+        this.ALSkorBabak1Peserta2 = ALSkorBabak1Peserta2;
+        this.ALSkorBabak2Peserta1 = ALSkorBabak2Peserta1;
+        this.ALSkorBabak2Peserta2 = ALSkorBabak2Peserta2;
+        this.ALSemuaSkorB2 = ALSemuaSkorB2;
+    }
+
+    Context context;
+    ArrayList<String> ALNama;
+    ArrayList<String> ALNama2;
+    ArrayList<String> ALSKey1;
+    ArrayList<String> ALSKey2;
+
+    ArrayList<Integer> ALSkorBabak1Peserta1;
+    ArrayList<Integer> ALSkorBabak1Peserta2;
+    ArrayList<Integer> ALSkorBabak2Peserta1;
+    ArrayList<Integer> ALSkorBabak2Peserta2;
+
+    ArrayList<Integer> ALSemuaSkorB2;
+
+    DatabaseReference DBRef;
+
+    String skorbaru, skorbaru2, skorfinal, skey1, skey2, skeymenang1, skeymenang2;
+
+    int skora, skorb;
+    int iskorbaru, iskorbaru2;
+
+    public static class BaganPesertaViewHolder extends RecyclerView.ViewHolder {
+        CardView CVPeserta1, CVPeserta2, CVPemenangB1;
+        TextView TVNamaPeserta1, TVNamaPeserta2, TVNamaPemenangB1;
+        EditText ETSkorPeserta1, ETSkorPeserta2, ETSkorPemenangB1;
+
+
+        public BaganPesertaViewHolder(@NonNull View itemView) {
+            super(itemView);
+            CVPeserta1 = itemView.findViewById(R.id.idCVPeserta1);
+            CVPeserta2 = itemView.findViewById(R.id.idCVPeserta2);
+            CVPemenangB1 = itemView.findViewById(R.id.idCVPemenangB1);
+            TVNamaPeserta1 = itemView.findViewById(R.id.idTVNamaPeserta1);
+            TVNamaPeserta2 = itemView.findViewById(R.id.idTVNamaPeserta2);
+            TVNamaPemenangB1 = itemView.findViewById(R.id.idTVNamaPemenangB1);
+            ETSkorPeserta1 = itemView.findViewById(R.id.idETSkorPeserta1);
+            ETSkorPeserta2 = itemView.findViewById(R.id.idETSkorPeserta2);
+            ETSkorPemenangB1 = itemView.findViewById(R.id.idETSkorPemenangB1);
+
+        }
+    }
+        @NonNull
+    @Override
+    public AdapterBaganPeserta.BaganPesertaViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+            View VItem = LayoutInflater.from(parent.getContext()).inflate(R.layout.listitem_bagan, parent, false);
+            return new AdapterBaganPeserta.BaganPesertaViewHolder(VItem);
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull AdapterBaganPeserta.BaganPesertaViewHolder holder, int position) {
+        DBRef = FirebaseDatabase.getInstance().getReference("Peserta");
+        holder.ETSkorPeserta1.setInputType(InputType.TYPE_NULL);
+        holder.ETSkorPeserta1.setFocusable(false);
+        holder.ETSkorPeserta2.setInputType(InputType.TYPE_NULL);
+        holder.ETSkorPeserta2.setFocusable(false);
+        holder.ETSkorPemenangB1.setInputType(InputType.TYPE_NULL);
+        holder.ETSkorPemenangB1.setFocusable(false);
+
+        holder.TVNamaPeserta1.setText(ALNama.get(position));
+        holder.TVNamaPeserta2.setText(ALNama2.get(position));
+
+        if(ALSkorBabak1Peserta1.get(position)==null&&ALSkorBabak1Peserta2.get(position)==null){
+            HashMap hashMap = new HashMap();
+            hashMap.put("babak1", 0);
+            hashMap.put("babak2", 0);
+            hashMap.put("babak3", 0);
+            hashMap.put("pemenangB1", "");
+            DBRef.child(ALSKey1.get(position)).child("History").updateChildren(hashMap);
+            DBRef.child(ALSKey2.get(position)).child("History").updateChildren(hashMap);
+            holder.ETSkorPeserta1.setText("01");
+            holder.ETSkorPeserta2.setText("01");
+        }
+        else if(ALSkorBabak1Peserta1.get(position)==0&&ALSkorBabak1Peserta2.get(position)==0&&
+                ALSkorBabak2Peserta1.get(position)==0&&ALSkorBabak2Peserta2.get(position)==0){
+            holder.ETSkorPeserta1.setText("0");
+            holder.ETSkorPeserta2.setText("0");
+            holder.ETSkorPemenangB1.setText("0");
+        }
+        else if(ALSkorBabak1Peserta1.get(position)>ALSkorBabak1Peserta2.get(position)){
+            FirebaseDatabase.getInstance().getReference("Peserta").child(ALSKey2.get(position)).child("History").child("babak2").setValue(null);
+            FirebaseDatabase.getInstance().getReference("Peserta").child(ALSKey2.get(position)).child("History").child("babak3").setValue(null);
+            FirebaseDatabase.getInstance().getReference("Peserta").child(ALSKey2.get(position)).child("History").child("pemenangB1").setValue(null);
+
+            HashMap hashMap = new HashMap();
+            hashMap.put("pemenangB1", ALNama.get(position));
+            if(ALSkorBabak2Peserta1.get(position)==null){
+                hashMap.put("babak2", 0);
+                hashMap.put("babak3", 0);
+            }
+            DBRef.child(ALSKey1.get(position)).child("History").updateChildren(hashMap);
+            holder.TVNamaPemenangB1.setText(ALNama.get(position));
+            holder.ETSkorPeserta1.setText(ALSkorBabak1Peserta1.get(position).toString());
+            holder.ETSkorPeserta2.setText(ALSkorBabak1Peserta2.get(position).toString());
+            holder.ETSkorPemenangB1.setText(ALSemuaSkorB2.get(position).toString());
+        }
+        else if(ALSkorBabak1Peserta1.get(position)<ALSkorBabak1Peserta2.get(position)){
+            FirebaseDatabase.getInstance().getReference("Peserta").child(ALSKey1.get(position)).child("History").child("babak2").setValue(null);
+            FirebaseDatabase.getInstance().getReference("Peserta").child(ALSKey1.get(position)).child("History").child("babak3").setValue(null);
+            FirebaseDatabase.getInstance().getReference("Peserta").child(ALSKey1.get(position)).child("History").child("pemenangB1").setValue(null);
+
+            HashMap hashMap = new HashMap();
+            hashMap.put("pemenangB1", ALNama2.get(position));
+            if(ALSkorBabak2Peserta2.get(position)==null){
+                hashMap.put("babak2", 0);
+                hashMap.put("babak3", 0);
+            }
+
+            DBRef.child(ALSKey2.get(position)).child("History").updateChildren(hashMap);
+
+            holder.TVNamaPemenangB1.setText(ALNama2.get(position));
+            holder.ETSkorPeserta2.setText(ALSkorBabak1Peserta2.get(position).toString());
+            holder.ETSkorPeserta1.setText(ALSkorBabak1Peserta1.get(position).toString());
+            holder.ETSkorPemenangB1.setText(ALSemuaSkorB2.get(position).toString());
+        }
+
+        holder.ETSkorPeserta1.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View view, boolean b) {
+                if(!b){
+                    if(skorbaru!=null) {
+                        HashMap hashMap = new HashMap();
+                        hashMap.put("babak1", ALSkorBabak1Peserta1.get(position));
+                        DBRef.child(ALSKey1.get(position)).child("History").updateChildren(hashMap);
+                    }
+                }
+            }
+        });
+
+
+        holder.ETSkorPeserta1.addTextChangedListener(new TextWatcher(){
+
+
+            @Override
+            public void afterTextChanged(Editable s){
+//                            if(holder.ETSkorPeserta1.isFocused()){
+                skorbaru = holder.ETSkorPeserta1.getText().toString();
+                if(!skorbaru.equals("")){
+                    iskorbaru = Integer.parseInt(skorbaru);
+                    ALSkorBabak1Peserta1.set(position, iskorbaru);
+                }
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after){
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count){
+
+            }
+
+
+        });
+
+
+        holder.ETSkorPeserta2.addTextChangedListener(new TextWatcher(){
+
+            @Override
+            public void afterTextChanged(Editable s){
+                if(holder.ETSkorPeserta2.isFocused()){
+                    skorbaru2 = holder.ETSkorPeserta2.getText().toString();
+                    if(!skorbaru2.equals("")) {
+                        int iskorbaru2 = Integer.parseInt(skorbaru2);
+                        ALSkorBabak1Peserta2.set(position, iskorbaru2);
+                    }
+                }
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after){
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count){
+
+            }
+        });
+
+        holder.ETSkorPeserta2.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View view, boolean bfokus) {
+                if(!bfokus){
+                    if(skorbaru2!=null) {
+                        HashMap hashMap = new HashMap();
+                        hashMap.put("babak1", ALSkorBabak1Peserta2.get(position));
+//                        hashMap.put("babak2", 0);
+//                        DBRef.child(skey2).child("History").updateChildren(hashMap);
+                        DBRef.child(ALSKey2.get(position)).child("History").updateChildren(hashMap);
+                    }
+                }
+            }
+        });
+
+
+        holder.ETSkorPemenangB1.addTextChangedListener(new TextWatcher(){
+            @Override
+            public void afterTextChanged(Editable s){
+                if(holder.ETSkorPemenangB1.isFocused()){
+                    skorfinal = holder.ETSkorPemenangB1.getText().toString();
+                    if(!skorfinal.equals("")&&ALSemuaSkorB2.size()<getItemCount()) {
+                        int ifinal = Integer.parseInt(skorfinal);
+//                        ALSemuaSkorB2.set(position, ifinal);
+                        ALSemuaSkorB2.add(position, ifinal);
+                    }
+                    else if(!skorfinal.equals("")&&ALSemuaSkorB2.size()==getItemCount()){
+                        int ifinal = Integer.parseInt(skorfinal);
+                        ALSemuaSkorB2.set(position, ifinal);
+                    }
+
+                }
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after){
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count){
+
+            }
+        });
+
+        holder.ETSkorPemenangB1.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View view, boolean bfokus) {
+                if(!bfokus){
+                    if(skorfinal!=null) {
+//                    if(ALSemuaSkorB2.get(position)!=null) {
+                        HashMap hashMap = new HashMap();
+                        hashMap.put("babak2", ALSemuaSkorB2.get(position));
+                        if(ALSkorBabak1Peserta1.get(position)>ALSkorBabak1Peserta2.get(position)) {
+//                            FirebaseDatabase.getInstance().getReference("Peserta2").child(ALSKey2.get(position)).child("History").child("babak3").setValue(null);
+//                            FirebaseDatabase.getInstance().getReference("Peserta2").child(ALSKey2.get(position)).child("History").child("pemenangB2").setValue(null);
+
+                            hashMap.put("pemenangB1", ALNama.get(position));
+                            DBRef.child(ALSKey1.get(position)).child("History").updateChildren(hashMap);
+                        }
+//                        else if(Integer.parseInt(holder.ETSkorPeserta1.getText().toString())<Integer.parseInt(holder.ETSkorPeserta2.getText().toString())) {
+                        else if(ALSkorBabak1Peserta1.get(position)<ALSkorBabak1Peserta2.get(position)) {
+//                            FirebaseDatabase.getInstance().getReference("Peserta2").child(ALSKey1.get(position)).child("History").child("babak3").setValue(null);
+//                            FirebaseDatabase.getInstance().getReference("Peserta2").child(ALSKey1.get(position)).child("History").child("pemenangB2").setValue(null);
+
+                            hashMap.put("pemenangB1", ALNama2.get(position));
+                            DBRef.child(ALSKey2.get(position)).child("History").updateChildren(hashMap);
+                        }
+                    }
+                }
+            }
+        });
+
+    }
+
+    @Override
+    public int getItemCount() {
+        return ALNama.size();
+    }
+
+}
