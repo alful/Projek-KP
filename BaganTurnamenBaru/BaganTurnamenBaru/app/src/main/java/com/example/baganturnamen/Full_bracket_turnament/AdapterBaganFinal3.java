@@ -14,6 +14,8 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.baganturnamen.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.core.Context;
@@ -33,8 +35,12 @@ public class AdapterBaganFinal3 extends RecyclerView.Adapter<AdapterBaganFinal3.
     ArrayList<String> ALNamaPemenangB2Peserta1;
     ArrayList<String> ALNamaPemenangB2Peserta2;
     ArrayList<Integer> ALSemuaSkorB4;
+    ArrayList<String> ALNama;
+
 
     DatabaseReference DBRef;
+    String ids;
+    int n=0;
 
     public AdapterBaganFinal3(Context context,
                               ArrayList<String> ALKeySemuaPemenangB3,
@@ -42,7 +48,7 @@ public class AdapterBaganFinal3 extends RecyclerView.Adapter<AdapterBaganFinal3.
                               ArrayList<String> ALKeyPemenangB3Peserta1, ArrayList<String> ALKeyPemenangB3Peserta2,
                               ArrayList<String> ALNamaPemenangB2Peserta1, ArrayList<String> ALNamaPemenangB2Peserta2,
                               ArrayList<Integer> ALSkorPemenangB3Peserta1, ArrayList<Integer> ALSkorPemenangB3Peserta2,
-                              ArrayList<Integer> ALSemuaSkorB4, ArrayList<String> ALNamaPemenangB3Peserta1, ArrayList<String> ALNamaPemenangB3Peserta2){
+                              ArrayList<Integer> ALSemuaSkorB4, ArrayList<String> ALNamaPemenangB3Peserta1, ArrayList<String> ALNamaPemenangB3Peserta2,String ids,ArrayList<String> ALNama){
         this.context = context;
         this.ALKeySemuaPemenangB3 = ALKeySemuaPemenangB3;
         this.ALKeyPemenangB2Peserta1 = ALKeyPemenangB2Peserta1;
@@ -54,6 +60,8 @@ public class AdapterBaganFinal3 extends RecyclerView.Adapter<AdapterBaganFinal3.
         this.ALSkorPemenangB3Peserta1 = ALSkorPemenangB3Peserta1;
         this.ALSkorPemenangB3Peserta2 = ALSkorPemenangB3Peserta2;
         this.ALSemuaSkorB4 = ALSemuaSkorB4;
+        this.ids=ids;
+        this.ALNama=ALNama;
     }
 
     public static class BaganFinal3ViewHolder extends RecyclerView.ViewHolder{
@@ -78,7 +86,11 @@ public class AdapterBaganFinal3 extends RecyclerView.Adapter<AdapterBaganFinal3.
 
     @Override
     public void onBindViewHolder(@NonNull BaganFinal3ViewHolder holder, int position) {
-        DBRef = FirebaseDatabase.getInstance().getReference("Peserta");
+        FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        String UID=firebaseUser.getUid();
+
+        DBRef = FirebaseDatabase.getInstance().getReference("Admin/"+ids+"/Peserta");
+
 //        Log.d("TAG", "onBindViewHolder: "+ALSemuaSkorB3);
 
         if(ALSemuaSkorB4.size()==0&&ALKeyPemenangB3Peserta1.size()!=0&&ALKeyPemenangB3Peserta2.size()!=0) {
@@ -111,9 +123,9 @@ public class AdapterBaganFinal3 extends RecyclerView.Adapter<AdapterBaganFinal3.
                 holder.ETSkorPesertaFinal2.setText("");
             }
             else if(ALSkorPemenangB3Peserta1.get(position)>ALSkorPemenangB3Peserta2.get(position)){
-                FirebaseDatabase.getInstance().getReference("Peserta").child(ALKeyPemenangB3Peserta2.get(position)).child("History").child("babak5").setValue(null);
-                FirebaseDatabase.getInstance().getReference("Peserta").child(ALKeyPemenangB3Peserta2.get(position)).child("History").child("babak4").setValue(null);
-                FirebaseDatabase.getInstance().getReference("Peserta").child(ALKeyPemenangB3Peserta2.get(position)).child("History").child("pemenangB3").setValue(null);
+                FirebaseDatabase.getInstance().getReference("Admin/"+ids+"/Peserta").child(ALKeyPemenangB3Peserta2.get(position)).child("History").child("babak5").setValue(null);
+                FirebaseDatabase.getInstance().getReference("Admin/"+ids+"/Peserta").child(ALKeyPemenangB3Peserta2.get(position)).child("History").child("babak4").setValue(null);
+                FirebaseDatabase.getInstance().getReference("Admin/"+ids+"/Peserta").child(ALKeyPemenangB3Peserta2.get(position)).child("History").child("pemenangB3").setValue(null);
                 HashMap hashMap = new HashMap();
                 hashMap.put("babak4", ALSemuaSkorB4.get(position));
                 hashMap.put("pemenangB3", ALNamaPemenangB2Peserta1.get(position));
@@ -124,9 +136,9 @@ public class AdapterBaganFinal3 extends RecyclerView.Adapter<AdapterBaganFinal3.
                 holder.ETSkorPesertaFinal2.setText(ALSemuaSkorB4.get(position).toString());
             }
             else if(ALSkorPemenangB3Peserta1.get(position)<ALSkorPemenangB3Peserta2.get(position)){
-                FirebaseDatabase.getInstance().getReference("Peserta").child(ALKeyPemenangB3Peserta1.get(position)).child("History").child("babak5").setValue(null);
-                FirebaseDatabase.getInstance().getReference("Peserta").child(ALKeyPemenangB3Peserta1.get(position)).child("History").child("babak4").setValue(null);
-                FirebaseDatabase.getInstance().getReference("Peserta").child(ALKeyPemenangB3Peserta1.get(position)).child("History").child("pemenangB3").setValue(null);
+                FirebaseDatabase.getInstance().getReference("Admin/"+ids+"/Peserta").child(ALKeyPemenangB3Peserta1.get(position)).child("History").child("babak5").setValue(null);
+                FirebaseDatabase.getInstance().getReference("Admin/"+ids+"/Peserta").child(ALKeyPemenangB3Peserta1.get(position)).child("History").child("babak4").setValue(null);
+                FirebaseDatabase.getInstance().getReference("Admin/"+ids+"/Peserta").child(ALKeyPemenangB3Peserta1.get(position)).child("History").child("pemenangB3").setValue(null);
                 HashMap hashMap = new HashMap();
                 hashMap.put("babak4", ALSemuaSkorB4.get(position));
                 hashMap.put("pemenangB3", ALNamaPemenangB2Peserta2.get(position));
@@ -195,6 +207,13 @@ public class AdapterBaganFinal3 extends RecyclerView.Adapter<AdapterBaganFinal3.
 
     @Override
     public int getItemCount() {
-        return 2;
+        n = ALNama.size();
+        if(n%2==0){
+            n = n/4;
+        }
+        else{
+            n = (n/4)+1;
+        }
+        return n;
     }
 }

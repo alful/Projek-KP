@@ -14,6 +14,8 @@ import com.example.baganturnamen.History;
 import com.example.baganturnamen.Pertandingan;
 import com.example.baganturnamen.Peserta;
 import com.example.baganturnamen.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -110,12 +112,25 @@ public class Full_bracket_turnament extends AppCompatActivity {
     ArrayList<Integer> ALSemuaSkorB5;
     Integer semuaskorB5;
 
+    String UID;
+    String UIDS;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_full_bracket_turnament);
 
-        DBRef = FirebaseDatabase.getInstance().getReference("Peserta");
+
+        Intent intent=getIntent();
+        UIDS=intent.getStringExtra("idkeys");
+        if (UID == null){
+            UID=UIDS;
+            UIDS=null;
+
+        }
+
+
+        DBRef = FirebaseDatabase.getInstance().getReference("Admin/"+UID+"/Peserta");
         RVBagan = findViewById(R.id.idRVBagan);
         RVBaganFinal2 = findViewById(R.id.idRVBaganFinal2);
         RVBaganFinal3 = findViewById(R.id.idRVBaganFinal3);
@@ -344,6 +359,11 @@ public class Full_bracket_turnament extends AppCompatActivity {
                         ALSkorB1Peserta1.add(ALSemuaSkorB1.get(x));
                     }
                 }
+
+//                FirebaseUser firebaseUser=FirebaseAuth.getInstance().getUid();
+//                String ada= firebaseUser.getUid();
+//                Log.d("TAG", "onDataChange: "+ada);
+
 //                adapterBagan = new AdapterBagan(context, ALNama, ALNama2, ALSKey1, ALSKey2);
 //                adapterBagan = new AdapterBagan(context, ALNama, ALNama2, ALSKey1, ALSKey2,
 //                                                ALSkorBabak1Peserta1, ALSkorBabak1Peserta2,
@@ -351,7 +371,7 @@ public class Full_bracket_turnament extends AppCompatActivity {
                 adapterBagan = new AdapterBagan(context, ALNama, ALNama2, ALSKey1, ALSKey2,
                         ALSkorBabak1Peserta1, ALSkorBabak1Peserta2,
                         ALSkorBabak2Peserta1, ALSkorBabak2Peserta2,
-                        ALSemuaSkorB2);
+                        ALSemuaSkorB2,UID);
                 RVBagan.setAdapter(adapterBagan);
                 adapterBagan.notifyDataSetChanged();
 //                RVBagan.setHasFixedSize(true);
@@ -449,7 +469,7 @@ public class Full_bracket_turnament extends AppCompatActivity {
                         ALKeyPemenangB2Peserta1, ALKeyPemenangB2Peserta2,
                         ALSkorPemenangB2Peserta1, ALSkorPemenangB2Peserta2,
                         ALSkorPemenangB3Peserta1, ALSkorPemenangB3Peserta2,
-                        ALSemuaSkorB3, ALSemuaSkorB2);
+                        ALSemuaSkorB3, ALSemuaSkorB2,UID);
                 RVBaganFinal2.setAdapter(adapterBaganFinal2);
 //                RVBagan.setHasFixedSize(true);
 
@@ -497,7 +517,7 @@ public class Full_bracket_turnament extends AppCompatActivity {
                         ALNamaPemenangB2Peserta1, ALNamaPemenangB2Peserta2,
                         ALSkorPemenangB3Peserta1, ALSkorPemenangB3Peserta2,
                         ALSemuaSkorB4,
-                        ALNamaPemenangB3Peserta1, ALNamaPemenangB3Peserta2);
+                        ALNamaPemenangB3Peserta1, ALNamaPemenangB3Peserta2,UID,ALNama);
                 RVBaganFinal3.setAdapter(adapterBaganFinal3);
                 adapterBaganFinal3.notifyDataSetChanged();
 
@@ -517,7 +537,7 @@ public class Full_bracket_turnament extends AppCompatActivity {
                         ALKeySemuaPemenangB4,
                         ALSkorPemenangB4Peserta1, ALSkorPemenangB4Peserta2,
                         ALKeyPemenangB4Peserta1, ALKeyPemenangB4Peserta2,
-                        ALNamaPemenangB3Peserta1, ALNamaPemenangB3Peserta2);
+                        ALNamaPemenangB3Peserta1, ALNamaPemenangB3Peserta2,UID,ALNama);
                 RVBaganFinal4.setAdapter(adapterBaganFinal4);
                 adapterBaganFinal4.notifyDataSetChanged();
 

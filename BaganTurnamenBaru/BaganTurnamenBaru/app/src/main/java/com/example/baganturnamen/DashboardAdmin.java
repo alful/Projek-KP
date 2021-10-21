@@ -28,6 +28,10 @@ public class DashboardAdmin extends AppCompatActivity {
     ArrayList<String> ALNama = new ArrayList<String>();
     String nama;
     String Snama,Skey,Spass,Semail;
+    FirebaseUser firebaseUser;
+    String UID;
+    String ssd;
+    FirebaseDatabase firebaseDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,37 +42,62 @@ public class DashboardAdmin extends AppCompatActivity {
         IVBaganTurnamen = findViewById(R.id.idIVBaganTurnamen);
         aboutus=findViewById(R.id.aboutus);
         IVLogOff = findViewById(R.id.idIVLoggOff);
-        databaseReference= FirebaseDatabase.getInstance().getReference().child("Peserta");
-//        androidx.appcompat.widget.Toolbar toolbar= (androidx.appcompat.widget.Toolbar) findViewById(R.id.tolbar);
-//        toolbar.setTitle("Dashboard");
-//        setSupportActionBar(toolbar);
-
-        databaseReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                ALPeserta.clear();
-                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                    nama = dataSnapshot.child("nama").getValue(String.class);
-
-                    ALNama.add(nama);
-//                Log.d("TAG", "onDataChange: "+nama);
-
-                }
-                Log.d("TAG", "onDataChange: "+ALNama);
-            }
-
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
+        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+//        UID=firebaseUser.getUid();
+        Intent intent=getIntent();
+        UID=intent.getStringExtra("idkey");
+//
+//        databaseReference= FirebaseDatabase.getInstance().getReference().child("Admin").child(UID).child("Peserta");
+////        androidx.appcompat.widget.Toolbar toolbar= (androidx.appcompat.widget.Toolbar) findViewById(R.id.tolbar);
+////        toolbar.setTitle("Dashboard");
+////        setSupportActionBar(toolbar);
+//
+//
+//
+//        databaseReference.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot snapshot) {
+////                ALPeserta.clear();
+//                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+//                    nama = dataSnapshot.child("nama").getValue(String.class);
+//
+//                    ALNama.add(nama);
+////                Log.d("TAG", "onDataChange: "+nama);
+//
+//                }
+//                Log.d("TAG", "onDataChange: "+ALNama);
+//            }
+//
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//
+//            }
+//        });
 
         IVInputPeserta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(DashboardAdmin.this, MainActivity.class);
-                startActivity(intent);
+                String uid;
+                uid= FirebaseAuth.getInstance().getCurrentUser().getUid();
+                databaseReference2=FirebaseDatabase.getInstance().getReference().child("Admin").child(uid);
+                databaseReference2.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        Semail=snapshot.child("email").getValue(String.class);
+                        Spass=snapshot.child("password").getValue(String.class);
+                        Snama=snapshot.child("nama").getValue(String.class);
+                        intent.putExtra("idkeys",uid);
+                        startActivity(intent);
+                        finish();
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
             }
         });
 
@@ -86,11 +115,26 @@ public class DashboardAdmin extends AppCompatActivity {
 //                Intent intent = new Intent(DashboardAdmin.this, Bracket.class);
 //                Intent intent = new Intent(DashboardAdmin.this, BracketTurnamen.class);
                 Intent intent = new Intent(DashboardAdmin.this, Full_bracket_turnament.class);
-                intent.putStringArrayListExtra("namas",ALNama);
-                startActivity(intent);
+                String uid;
+                uid= FirebaseAuth.getInstance().getCurrentUser().getUid();
+                databaseReference2=FirebaseDatabase.getInstance().getReference().child("Admin").child(UID);
+                databaseReference2.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        Semail=snapshot.child("email").getValue(String.class);
+                        Spass=snapshot.child("password").getValue(String.class);
+                        Snama=snapshot.child("nama").getValue(String.class);
+                        String keys=snapshot.child("uid").getValue(String.class);
+                        intent.putExtra("idkeys",keys);
+                        startActivity(intent);
+                        finish();
+                    }
 
-                Log.d("TAG", "onClicsask: "+ALNama);
-                finish();
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
             }
         });
 

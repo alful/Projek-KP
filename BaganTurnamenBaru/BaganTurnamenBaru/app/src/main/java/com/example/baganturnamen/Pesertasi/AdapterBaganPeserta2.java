@@ -35,20 +35,23 @@ public class AdapterBaganPeserta2 extends RecyclerView.Adapter<AdapterBaganPeser
     ArrayList<Integer> ALSkorPemenangB2Peserta2;
     ArrayList<Integer> ALSkorPemenangB3Peserta1;
     ArrayList<Integer> ALSkorPemenangB3Peserta2;
+    String ids;
 
     public AdapterBaganPeserta2(Context context, ArrayList<String> ALNama,
-                                ArrayList<String> ALNamaPemenangB1Peserta1, ArrayList<String> ALNamaPemenangB1Peserta2,
-                                ArrayList<String> ALNamaPemenangB2Peserta1, ArrayList<String> ALNamaPemenangB2Peserta2,
-                                ArrayList<String> ALKeyPemenangB2Peserta1, ArrayList<String> ALKeyPemenangB2Peserta2,
-                                ArrayList<Integer> ALSkorPemenangB2Peserta1, ArrayList<Integer> ALSkorPemenangB2Peserta2,
-                                ArrayList<Integer> ALSkorPemenangB3Peserta1, ArrayList<Integer> ALSkorPemenangB3Peserta2,
-                                ArrayList<Integer> ALSemuaSkorB3, ArrayList<Integer> ALSemuaSkorB2){
+                              ArrayList<String> ALNamaPemenangB1Peserta1, ArrayList<String> ALNamaPemenangB1Peserta2,
+                              ArrayList<String> ALNamaPemenangB2Peserta1, ArrayList<String> ALNamaPemenangB2Peserta2,
+                              ArrayList<String> ALKeyPemenangB2Peserta1, ArrayList<String> ALKeyPemenangB2Peserta2,
+                              ArrayList<Integer> ALSkorPemenangB2Peserta1, ArrayList<Integer> ALSkorPemenangB2Peserta2,
+                              ArrayList<Integer> ALSkorPemenangB3Peserta1, ArrayList<Integer> ALSkorPemenangB3Peserta2,
+                              ArrayList<Integer> ALSemuaSkorB3, ArrayList<Integer> ALSemuaSkorB2,String ids){
         this.context = context;
         this.ALNama = ALNama;
         this.ALNamaPemenangB1Peserta1 = ALNamaPemenangB1Peserta1;
         this.ALNamaPemenangB1Peserta2 = ALNamaPemenangB1Peserta2;
         this.ALNamaPemenangB2Peserta1 = ALNamaPemenangB2Peserta1;
         this.ALNamaPemenangB2Peserta2 = ALNamaPemenangB2Peserta2;
+//        this.ALKeyPemenangB1Peserta1 = ALKeyPemenangB1Peserta1;
+//        this.ALKeyPemenangB1Peserta2 = ALKeyPemenangB1Peserta2;
         this.ALKeyPemenangB2Peserta1 = ALKeyPemenangB2Peserta1;
         this.ALKeyPemenangB2Peserta2 = ALKeyPemenangB2Peserta2;
         this.ALSkorPemenangB2Peserta1 = ALSkorPemenangB2Peserta1;
@@ -57,7 +60,9 @@ public class AdapterBaganPeserta2 extends RecyclerView.Adapter<AdapterBaganPeser
         this.ALSkorPemenangB3Peserta2 = ALSkorPemenangB3Peserta2;
         this.ALSemuaSkorB3 = ALSemuaSkorB3;
         this.ALSemuaSkorB2 = ALSemuaSkorB2;
+        this.ids=ids;
     }
+
 
     ArrayList<Integer> ALSemuaSkorB3;
     ArrayList<Integer> ALSemuaSkorB2;
@@ -91,11 +96,15 @@ public class AdapterBaganPeserta2 extends RecyclerView.Adapter<AdapterBaganPeser
 
     @Override
     public void onBindViewHolder(@NonNull AdapterBaganPeserta2.BaganPeserta2ViewHolder holder, int position) {
-        DBRef = FirebaseDatabase.getInstance().getReference("Peserta");
 
+        DBRef = FirebaseDatabase.getInstance().getReference("Admin/"+ids+"/Peserta");
 
         holder.ETSkorPesertaFinal.setInputType(InputType.TYPE_NULL);
         holder.ETSkorPesertaFinal.setFocusable(false);
+
+
+
+
 
         if(ALSkorPemenangB2Peserta1.size()!=0&&ALSkorPemenangB2Peserta2.size()!=0&&
                 ALNamaPemenangB1Peserta1.size()!=0&&ALNamaPemenangB1Peserta2.size()!=0){
@@ -106,8 +115,8 @@ public class AdapterBaganPeserta2 extends RecyclerView.Adapter<AdapterBaganPeser
             }
             else if(ALSkorPemenangB2Peserta1.get(position)>ALSkorPemenangB2Peserta2.get(position)){
 //                FirebaseDatabase.getInstance().getReference("Peserta2").child(ALKeyPemenangB2Peserta2.get(position)).child("History").child("babak4").setValue(null);
-                FirebaseDatabase.getInstance().getReference("Peserta").child(ALKeyPemenangB2Peserta2.get(position)).child("History").child("babak3").setValue(null);
-                FirebaseDatabase.getInstance().getReference("Peserta").child(ALKeyPemenangB2Peserta2.get(position)).child("History").child("pemenangB2").setValue(null);
+                FirebaseDatabase.getInstance().getReference("Admin/"+ids+"/Peserta").child(ALKeyPemenangB2Peserta2.get(position)).child("History").child("babak3").setValue(null);
+                FirebaseDatabase.getInstance().getReference("Admin/"+ids+"/Peserta").child(ALKeyPemenangB2Peserta2.get(position)).child("History").child("pemenangB2").setValue(null);
 
                 HashMap hashMap = new HashMap();
 //                if(ALSkorPemenangB3Peserta1.size()<ALKeyPemenangB2Peserta1.size()){
@@ -139,8 +148,8 @@ public class AdapterBaganPeserta2 extends RecyclerView.Adapter<AdapterBaganPeser
             }
             else if(ALSkorPemenangB2Peserta1.get(position)<ALSkorPemenangB2Peserta2.get(position)){
 //                FirebaseDatabase.getInstance().getReference("Peserta2").child(ALKeyPemenangB2Peserta1.get(position)).child("History").child("babak4").setValue(null);
-                FirebaseDatabase.getInstance().getReference("Peserta").child(ALKeyPemenangB2Peserta1.get(position)).child("History").child("babak3").setValue(null);
-                FirebaseDatabase.getInstance().getReference("Peserta").child(ALKeyPemenangB2Peserta1.get(position)).child("History").child("pemenangB2").setValue(null);
+                FirebaseDatabase.getInstance().getReference("Admin/"+ids+"/Peserta").child(ALKeyPemenangB2Peserta1.get(position)).child("History").child("babak3").setValue(null);
+                FirebaseDatabase.getInstance().getReference("Admin/"+ids+"/Peserta").child(ALKeyPemenangB2Peserta1.get(position)).child("History").child("pemenangB2").setValue(null);
 
 
 //                holder.TVNamaPesertaFinal.setText(ALNamaPemenangB1Peserta2.get(position));
@@ -241,7 +250,7 @@ public class AdapterBaganPeserta2 extends RecyclerView.Adapter<AdapterBaganPeser
             }
         });
 
-        holder.ETSkorPesertaFinal.addTextChangedListener(new TextWatcher(){
+        holder.ETSkorPesertaFinal.addTextChangedListener(new TextWatcher (){
             @Override
             public void afterTextChanged(Editable s){
                 if(holder.ETSkorPesertaFinal.isFocused()){
@@ -302,7 +311,7 @@ public class AdapterBaganPeserta2 extends RecyclerView.Adapter<AdapterBaganPeser
             n = n/2;
         }
         else{
-            n = n%2;
+            n = (n/2)+1;
         }
         return n;
     }

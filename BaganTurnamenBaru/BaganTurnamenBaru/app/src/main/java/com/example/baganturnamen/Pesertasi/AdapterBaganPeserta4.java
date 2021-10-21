@@ -33,13 +33,16 @@ public class AdapterBaganPeserta4 extends RecyclerView.Adapter<AdapterBaganPeser
     ArrayList<String> ALNamaPemenangB3Peserta1;
     ArrayList<String> ALNamaPemenangB3Peserta2;
 
-    DatabaseReference DBRef;
+    ArrayList<String> ALNama;
+    int n=0;
 
+    DatabaseReference DBRef;
+    String ids;
     public AdapterBaganPeserta4(Context context, ArrayList<Integer> ALSemuaSkorB5,
-                                ArrayList<String> ALKeySemuaPemenangB4,
-                                ArrayList<Integer> ALSkorPemenangB4Peserta1, ArrayList<Integer> ALSkorPemenangB4Peserta2,
-                                ArrayList<String> ALKeyPemenangB4Peserta1, ArrayList<String> ALKeyPemenangB4Peserta2,
-                                ArrayList<String> ALNamaPemenangB3Peserta1, ArrayList<String> ALNamaPemenangB3Peserta2) {
+                              ArrayList<String> ALKeySemuaPemenangB4,
+                              ArrayList<Integer> ALSkorPemenangB4Peserta1, ArrayList<Integer> ALSkorPemenangB4Peserta2,
+                              ArrayList<String> ALKeyPemenangB4Peserta1, ArrayList<String> ALKeyPemenangB4Peserta2,
+                              ArrayList<String> ALNamaPemenangB3Peserta1, ArrayList<String> ALNamaPemenangB3Peserta2, String ids,ArrayList<String> ALNama) {
         this.context = context;
         this.ALSemuaSkorB5 = ALSemuaSkorB5;
         this.ALKeySemuaPemenangB4 = ALKeySemuaPemenangB4;
@@ -49,6 +52,8 @@ public class AdapterBaganPeserta4 extends RecyclerView.Adapter<AdapterBaganPeser
         this.ALKeyPemenangB4Peserta2 = ALKeyPemenangB4Peserta2;
         this.ALNamaPemenangB3Peserta1 = ALNamaPemenangB3Peserta1;
         this.ALNamaPemenangB3Peserta2 = ALNamaPemenangB3Peserta2;
+        this.ids=ids;
+        this.ALNama=ALNama;
     }
 
     public static class BaganPeserta4ViewHolder extends RecyclerView.ViewHolder {
@@ -74,9 +79,12 @@ public class AdapterBaganPeserta4 extends RecyclerView.Adapter<AdapterBaganPeser
 
         @Override
     public void onBindViewHolder(@NonNull AdapterBaganPeserta4.BaganPeserta4ViewHolder holder, int position) {
-            DBRef = FirebaseDatabase.getInstance().getReference("Peserta");
+            DBRef = FirebaseDatabase.getInstance().getReference("Admin/"+ids+"/Peserta");
+
             holder.ETSkorPesertaFinal3.setInputType(InputType.TYPE_NULL);
             holder.ETSkorPesertaFinal3.setFocusable(false);
+
+
 
             if(ALSemuaSkorB5.size()==0&&ALKeyPemenangB4Peserta1.size()!=0&&ALKeyPemenangB4Peserta2.size()!=0) {
                 HashMap hashMap = new HashMap();
@@ -173,7 +181,14 @@ public class AdapterBaganPeserta4 extends RecyclerView.Adapter<AdapterBaganPeser
         }
 
     @Override
-    public int getItemCount() {
-        return 1;
+    public int getItemCount(){
+        n = ALNama.size();
+        if(n%2==0){
+            n = n/8;
+        }
+        else{
+            n = (n/8)+1;
+        }
+        return n;
     }
 }

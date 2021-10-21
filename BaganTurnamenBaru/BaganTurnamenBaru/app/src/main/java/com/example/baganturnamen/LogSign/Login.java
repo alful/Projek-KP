@@ -26,26 +26,34 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+
 public class Login extends AppCompatActivity {
 
     EditText email,password;
     Button login,sign;
     FirebaseAuth firebaseAuth;
     FirebaseDatabase firebaseDatabase;
-    DatabaseReference databaseReference;
+    DatabaseReference databaseReference,databaseReference2;
     admin Admin;
     FirebaseUser firebaseUser;
 
     String UID;
+    ArrayList<String> ALKey = new ArrayList<String>();
+
 
     @Override
     protected void onStart() {
         super.onStart();
+
+
+
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         if(firebaseUser!=null)
         {
             String UID;
             UID=firebaseUser.getUid();
+
             databaseReference=FirebaseDatabase.getInstance().getReference().child("Admin").child(UID);
             databaseReference.addValueEventListener(new ValueEventListener() {
                 @Override
@@ -59,7 +67,7 @@ public class Login extends AppCompatActivity {
                     if (manage.equals(1))
                     {
                         Intent intent =new Intent(Login.this, DashboardAdmin.class);
-//                        intent.putExtra("idkey",key);
+                        intent.putExtra("idkey",key);
 //                        intent.putExtra("idemail",email);
 //                        intent.putExtra("idpass",password);
 //                        intent.putExtra("idnama",nama);
@@ -154,7 +162,7 @@ public class Login extends AppCompatActivity {
                                                 Toast.makeText(Login.this, "Berhasil Masuk", Toast.LENGTH_SHORT).show();
 
                                                 Intent intent = new Intent(Login.this, DashboardAdmin.class);
-//                                                intent.putExtra("idkey", key);
+                                                intent.putExtra("idkey", key);
 //                                                intent.putExtra("idemail", email);
 //                                                intent.putExtra("idpass", password);
 //                                                intent.putExtra("idnama", nama);

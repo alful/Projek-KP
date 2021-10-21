@@ -14,6 +14,9 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.example.baganturnamen.Full_bracket_turnament.Full_bracket_turnament;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -29,9 +32,9 @@ public class MainActivity extends AppCompatActivity {
     ImageView IVKembali;
 
     String SNama, SCBUnggulan, SKey, SClub;
+    String UID;
     Integer IUmur;
 
-    DatabaseReference DRef;
 
     Peserta peserta;
     History history;
@@ -41,6 +44,9 @@ public class MainActivity extends AppCompatActivity {
     ArrayList<Integer> ALUmur = new ArrayList<Integer>();
     ArrayList<String> ALClub = new ArrayList<String>();
     ArrayList<String> ALUnggulan = new ArrayList<String>();
+    DatabaseReference DRef,DREF2;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,7 +65,10 @@ public class MainActivity extends AppCompatActivity {
         peserta = new Peserta();
         history = new History();
 
-        DRef = FirebaseDatabase.getInstance().getReference();
+        Intent intent=getIntent();
+        UID=intent.getStringExtra("idkeys");
+
+        DRef= FirebaseDatabase.getInstance().getReference().child("Admin");
 
 
         BHapus.setOnClickListener(new View.OnClickListener() {
@@ -85,14 +94,16 @@ public class MainActivity extends AppCompatActivity {
                     ETUmur.setError("Masukkan Club");
                 }
                 else {
+
                     SKey = DRef.push().getKey();
                     SNama = ETNama.getText().toString();
                     IUmur = Integer.parseInt(ETUmur.getText().toString());
                     SClub = ETClub.getText().toString();
                     CekUnggulan();
+                    String ids=UID;
 
 //                DRef.child("Peserta").addValueEventListener(new ValueEventListener() {
-                    DRef.child("Peserta").addListenerForSingleValueEvent(new ValueEventListener() {
+                    DRef.child(UID).child("Peserta").addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
                             ALKey.clear();
@@ -125,9 +136,9 @@ public class MainActivity extends AppCompatActivity {
 //                                history.setBabak2(0);
 //                                history.setBabak3(0);
 
-                                DRef.child("Peserta").child(SKey).setValue(peserta);
+                                DRef.child(UID).child("Peserta").child(SKey).setValue(peserta);
 //                                DRef.child("Peserta").child(SKey).child("History").setValue(history);
-
+                                Log.d("TAG", "onDataChange: "+DRef.child("Peserta").child(SKey));
                                 Toast.makeText(MainActivity.this, "berhasil" + ALNama, Toast.LENGTH_SHORT).show();
                             }
                         }
@@ -138,8 +149,8 @@ public class MainActivity extends AppCompatActivity {
                         }
                     });
 
+                    Toast.makeText(MainActivity.this, "Berhasil Sasdasdimpan:" + SNama + ";" +SClub+";"+IUmur+ ";"+SCBUnggulan, Toast.LENGTH_SHORT).show();
 
-                    Toast.makeText(MainActivity.this, "Berhasil Simpan:" + SNama + ";" +SClub+";"+IUmur+ ";"+SCBUnggulan, Toast.LENGTH_SHORT).show();
                 }
                 }
         });
@@ -156,5 +167,13 @@ public class MainActivity extends AppCompatActivity {
 
     public void CekText(){
 
+    }
+
+    @Override
+    public void onBackPressed() {
+
+        finish();
+        Intent intent = new Intent(MainActivity.this, DashboardAdmin.class);
+        startActivity(intent);
     }
 }

@@ -67,7 +67,7 @@ public class AdapterPesertaTour extends RecyclerView.Adapter<AdapterPesertaTour.
         holder.adm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent =new Intent(context, LihatTUnamen.class);
+                Intent intent =new Intent(context, BracketPeserta.class);
                 String key=ALKey.get(position);
                 intent.putExtra("adminkey",key);
                 context.startActivity(intent);

@@ -112,12 +112,17 @@ public class BracketPeserta extends AppCompatActivity {
     ArrayList<Integer> ALSemuaSkorB5;
     Integer semuaskorB5;
 
+    String UID;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bracket_peserta);
+        Intent intent=getIntent();
+        UID=intent.getStringExtra("adminkey");
 
-        DBRef = FirebaseDatabase.getInstance().getReference("Peserta");
+        DBRef = FirebaseDatabase.getInstance().getReference("Admin/"+UID+"/Peserta");
+
         RVBagan = findViewById(R.id.idRVBagan);
         RVBaganFinal2 = findViewById(R.id.idRVBaganFinal2);
         RVBaganFinal3 = findViewById(R.id.idRVBaganFinal3);
@@ -353,7 +358,7 @@ public class BracketPeserta extends AppCompatActivity {
                 adapterBagan = new AdapterBaganPeserta(context, ALNama, ALNama2, ALSKey1, ALSKey2,
                         ALSkorBabak1Peserta1, ALSkorBabak1Peserta2,
                         ALSkorBabak2Peserta1, ALSkorBabak2Peserta2,
-                        ALSemuaSkorB2);
+                        ALSemuaSkorB2,UID);
                 RVBagan.setAdapter(adapterBagan);
                 adapterBagan.notifyDataSetChanged();
 //                RVBagan.setHasFixedSize(true);
@@ -451,7 +456,7 @@ public class BracketPeserta extends AppCompatActivity {
                         ALKeyPemenangB2Peserta1, ALKeyPemenangB2Peserta2,
                         ALSkorPemenangB2Peserta1, ALSkorPemenangB2Peserta2,
                         ALSkorPemenangB3Peserta1, ALSkorPemenangB3Peserta2,
-                        ALSemuaSkorB3, ALSemuaSkorB2);
+                        ALSemuaSkorB3, ALSemuaSkorB2,UID);
                 RVBaganFinal2.setAdapter(adapterBaganFinal2);
 //                RVBagan.setHasFixedSize(true);
 
@@ -499,7 +504,7 @@ public class BracketPeserta extends AppCompatActivity {
                         ALNamaPemenangB2Peserta1, ALNamaPemenangB2Peserta2,
                         ALSkorPemenangB3Peserta1, ALSkorPemenangB3Peserta2,
                         ALSemuaSkorB4,
-                        ALNamaPemenangB3Peserta1, ALNamaPemenangB3Peserta2);
+                        ALNamaPemenangB3Peserta1, ALNamaPemenangB3Peserta2,UID,ALNama);
                 RVBaganFinal3.setAdapter(adapterBaganFinal3);
                 adapterBaganFinal3.notifyDataSetChanged();
 
@@ -519,7 +524,7 @@ public class BracketPeserta extends AppCompatActivity {
                         ALKeySemuaPemenangB4,
                         ALSkorPemenangB4Peserta1, ALSkorPemenangB4Peserta2,
                         ALKeyPemenangB4Peserta1, ALKeyPemenangB4Peserta2,
-                        ALNamaPemenangB3Peserta1, ALNamaPemenangB3Peserta2);
+                        ALNamaPemenangB3Peserta1, ALNamaPemenangB3Peserta2,UID,ALNama);
                 RVBaganFinal4.setAdapter(adapterBaganFinal4);
                 adapterBaganFinal4.notifyDataSetChanged();
 
@@ -537,7 +542,7 @@ public class BracketPeserta extends AppCompatActivity {
     public void onBackPressed() {
 
         finish();
-        Intent intent = new Intent(BracketPeserta.this, DaftarTournament.class);
+        Intent intent = new Intent(BracketPeserta.this, DashboardAdmin.class);
         startActivity(intent);
     }
 }

@@ -34,29 +34,35 @@ public class AdapterBaganPeserta3 extends RecyclerView.Adapter<AdapterBaganPeser
     ArrayList<String> ALNamaPemenangB2Peserta1;
     ArrayList<String> ALNamaPemenangB2Peserta2;
     ArrayList<Integer> ALSemuaSkorB4;
+    ArrayList<String> ALNama;
+
 
     DatabaseReference DBRef;
+    int n=0;
+
+    String ids;
 
     public AdapterBaganPeserta3(Context context,
-                                ArrayList<String> ALKeySemuaPemenangB3,
-                                ArrayList<String> ALKeyPemenangB2Peserta1, ArrayList<String> ALKeyPemenangB2Peserta2,
-                                ArrayList<String> ALKeyPemenangB3Peserta1, ArrayList<String> ALKeyPemenangB3Peserta2,
-                                ArrayList<String> ALNamaPemenangB2Peserta1, ArrayList<String> ALNamaPemenangB2Peserta2,
-                                ArrayList<Integer> ALSkorPemenangB3Peserta1, ArrayList<Integer> ALSkorPemenangB3Peserta2,
-                                ArrayList<Integer> ALSemuaSkorB4, ArrayList<String> ALNamaPemenangB3Peserta1, ArrayList<String> ALNamaPemenangB3Peserta2){
+                              ArrayList<String> ALKeySemuaPemenangB3,
+                              ArrayList<String> ALKeyPemenangB2Peserta1, ArrayList<String> ALKeyPemenangB2Peserta2,
+                              ArrayList<String> ALKeyPemenangB3Peserta1, ArrayList<String> ALKeyPemenangB3Peserta2,
+                              ArrayList<String> ALNamaPemenangB2Peserta1, ArrayList<String> ALNamaPemenangB2Peserta2,
+                              ArrayList<Integer> ALSkorPemenangB3Peserta1, ArrayList<Integer> ALSkorPemenangB3Peserta2,
+                              ArrayList<Integer> ALSemuaSkorB4, ArrayList<String> ALNamaPemenangB3Peserta1, ArrayList<String> ALNamaPemenangB3Peserta2,String ids,ArrayList<String> ALNama){
         this.context = context;
         this.ALKeySemuaPemenangB3 = ALKeySemuaPemenangB3;
-        this.ALSkorPemenangB3Peserta1 = ALSkorPemenangB3Peserta1;
-        this.ALSkorPemenangB3Peserta2 = ALSkorPemenangB3Peserta2;
-        this.ALKeyPemenangB3Peserta1 = ALKeyPemenangB3Peserta1;
-        this.ALKeyPemenangB3Peserta2 = ALKeyPemenangB3Peserta2;
         this.ALKeyPemenangB2Peserta1 = ALKeyPemenangB2Peserta1;
         this.ALKeyPemenangB2Peserta2 = ALKeyPemenangB2Peserta2;
+        this.ALKeyPemenangB3Peserta1 = ALKeyPemenangB3Peserta1;
+        this.ALKeyPemenangB3Peserta2 = ALKeyPemenangB3Peserta2;
         this.ALNamaPemenangB2Peserta1 = ALNamaPemenangB2Peserta1;
         this.ALNamaPemenangB2Peserta2 = ALNamaPemenangB2Peserta2;
+        this.ALSkorPemenangB3Peserta1 = ALSkorPemenangB3Peserta1;
+        this.ALSkorPemenangB3Peserta2 = ALSkorPemenangB3Peserta2;
         this.ALSemuaSkorB4 = ALSemuaSkorB4;
+        this.ids=ids;
+        this.ALNama=ALNama;
     }
-
     public static class BaganPeserta3ViewHolder extends RecyclerView.ViewHolder {
         CardView CVPesertaFinal2;
         TextView TVNamaPesertaFinal2;
@@ -79,10 +85,14 @@ public class AdapterBaganPeserta3 extends RecyclerView.Adapter<AdapterBaganPeser
 
     @Override
     public void onBindViewHolder(@NonNull BaganPeserta3ViewHolder holder, int position) {
-        DBRef = FirebaseDatabase.getInstance().getReference("Peserta");
+        DBRef = FirebaseDatabase.getInstance().getReference("Admin/"+ids+"/Peserta");
+
 //        Log.d("TAG", "onBindViewHolder: "+ALSemuaSkorB3);
         holder.ETSkorPesertaFinal2.setInputType(InputType.TYPE_NULL);
         holder.ETSkorPesertaFinal2.setFocusable(false);
+
+
+//        Log.d("TAG", "onBindViewHolder: "+ALSemuaSkorB3);
 
         if(ALSemuaSkorB4.size()==0&&ALKeyPemenangB3Peserta1.size()!=0&&ALKeyPemenangB3Peserta2.size()!=0) {
 //        if(ALSemuaSkorB4.size()==0&&ALNamaPemenangB2Peserta1.size()!=0&&ALNamaPemenangB2Peserta2.size()!=0) {
@@ -114,9 +124,9 @@ public class AdapterBaganPeserta3 extends RecyclerView.Adapter<AdapterBaganPeser
                 holder.ETSkorPesertaFinal2.setText("");
             }
             else if(ALSkorPemenangB3Peserta1.get(position)>ALSkorPemenangB3Peserta2.get(position)){
-                FirebaseDatabase.getInstance().getReference("Peserta").child(ALKeyPemenangB3Peserta2.get(position)).child("History").child("babak5").setValue(null);
-                FirebaseDatabase.getInstance().getReference("Peserta").child(ALKeyPemenangB3Peserta2.get(position)).child("History").child("babak4").setValue(null);
-                FirebaseDatabase.getInstance().getReference("Peserta").child(ALKeyPemenangB3Peserta2.get(position)).child("History").child("pemenangB3").setValue(null);
+                FirebaseDatabase.getInstance().getReference("Admin/"+ids+"/Peserta").child(ALKeyPemenangB3Peserta2.get(position)).child("History").child("babak5").setValue(null);
+                FirebaseDatabase.getInstance().getReference("Admin/"+ids+"/Peserta").child(ALKeyPemenangB3Peserta2.get(position)).child("History").child("babak4").setValue(null);
+                FirebaseDatabase.getInstance().getReference("Admin/"+ids+"/Peserta").child(ALKeyPemenangB3Peserta2.get(position)).child("History").child("pemenangB3").setValue(null);
                 HashMap hashMap = new HashMap();
                 hashMap.put("babak4", ALSemuaSkorB4.get(position));
                 hashMap.put("pemenangB3", ALNamaPemenangB2Peserta1.get(position));
@@ -127,9 +137,9 @@ public class AdapterBaganPeserta3 extends RecyclerView.Adapter<AdapterBaganPeser
                 holder.ETSkorPesertaFinal2.setText(ALSemuaSkorB4.get(position).toString());
             }
             else if(ALSkorPemenangB3Peserta1.get(position)<ALSkorPemenangB3Peserta2.get(position)){
-                FirebaseDatabase.getInstance().getReference("Peserta").child(ALKeyPemenangB3Peserta1.get(position)).child("History").child("babak5").setValue(null);
-                FirebaseDatabase.getInstance().getReference("Peserta").child(ALKeyPemenangB3Peserta1.get(position)).child("History").child("babak4").setValue(null);
-                FirebaseDatabase.getInstance().getReference("Peserta").child(ALKeyPemenangB3Peserta1.get(position)).child("History").child("pemenangB3").setValue(null);
+                FirebaseDatabase.getInstance().getReference("Admin/"+ids+"/Peserta").child(ALKeyPemenangB3Peserta1.get(position)).child("History").child("babak5").setValue(null);
+                FirebaseDatabase.getInstance().getReference("Admin/"+ids+"/Peserta").child(ALKeyPemenangB3Peserta1.get(position)).child("History").child("babak4").setValue(null);
+                FirebaseDatabase.getInstance().getReference("Admin/"+ids+"/Peserta").child(ALKeyPemenangB3Peserta1.get(position)).child("History").child("pemenangB3").setValue(null);
                 HashMap hashMap = new HashMap();
                 hashMap.put("babak4", ALSemuaSkorB4.get(position));
                 hashMap.put("pemenangB3", ALNamaPemenangB2Peserta2.get(position));
@@ -198,6 +208,13 @@ public class AdapterBaganPeserta3 extends RecyclerView.Adapter<AdapterBaganPeser
 
     @Override
     public int getItemCount() {
-        return 2;
+        n = ALNama.size();
+        if(n%2==0){
+            n = n/4;
+        }
+        else{
+            n = (n/4)+1;
+        }
+        return n;
     }
 }

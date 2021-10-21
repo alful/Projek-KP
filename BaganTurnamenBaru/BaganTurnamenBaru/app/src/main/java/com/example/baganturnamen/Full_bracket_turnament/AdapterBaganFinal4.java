@@ -13,6 +13,8 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.baganturnamen.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.core.Context;
@@ -30,14 +32,17 @@ public class AdapterBaganFinal4 extends RecyclerView.Adapter<AdapterBaganFinal4.
     ArrayList<String> ALKeyPemenangB4Peserta2;
     ArrayList<String> ALNamaPemenangB3Peserta1;
     ArrayList<String> ALNamaPemenangB3Peserta2;
+    ArrayList<String> ALNama;
+    int n=0;
 
     DatabaseReference DBRef;
+    String ids;
 
     public AdapterBaganFinal4(Context context, ArrayList<Integer> ALSemuaSkorB5,
                               ArrayList<String> ALKeySemuaPemenangB4,
                               ArrayList<Integer> ALSkorPemenangB4Peserta1, ArrayList<Integer> ALSkorPemenangB4Peserta2,
                               ArrayList<String> ALKeyPemenangB4Peserta1, ArrayList<String> ALKeyPemenangB4Peserta2,
-                              ArrayList<String> ALNamaPemenangB3Peserta1, ArrayList<String> ALNamaPemenangB3Peserta2) {
+                              ArrayList<String> ALNamaPemenangB3Peserta1, ArrayList<String> ALNamaPemenangB3Peserta2, String ids,ArrayList<String> ALNama) {
         this.context = context;
         this.ALSemuaSkorB5 = ALSemuaSkorB5;
         this.ALKeySemuaPemenangB4 = ALKeySemuaPemenangB4;
@@ -47,6 +52,8 @@ public class AdapterBaganFinal4 extends RecyclerView.Adapter<AdapterBaganFinal4.
         this.ALKeyPemenangB4Peserta2 = ALKeyPemenangB4Peserta2;
         this.ALNamaPemenangB3Peserta1 = ALNamaPemenangB3Peserta1;
         this.ALNamaPemenangB3Peserta2 = ALNamaPemenangB3Peserta2;
+        this.ids=ids;
+        this.ALNama=ALNama;
     }
 
     public static class BaganFinal4ViewHolder extends RecyclerView.ViewHolder{
@@ -71,7 +78,11 @@ public class AdapterBaganFinal4 extends RecyclerView.Adapter<AdapterBaganFinal4.
 
     @Override
     public void onBindViewHolder(@NonNull BaganFinal4ViewHolder holder, int position) {
-        DBRef = FirebaseDatabase.getInstance().getReference("Peserta");
+        FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        String UID=firebaseUser.getUid();
+
+        DBRef = FirebaseDatabase.getInstance().getReference("Admin/"+ids+"/Peserta");
+
 
         if(ALSemuaSkorB5.size()==0&&ALKeyPemenangB4Peserta1.size()!=0&&ALKeyPemenangB4Peserta2.size()!=0) {
             HashMap hashMap = new HashMap();
@@ -168,7 +179,14 @@ public class AdapterBaganFinal4 extends RecyclerView.Adapter<AdapterBaganFinal4.
     }
 
     @Override
-    public int getItemCount() {
-        return 1;
+    public int getItemCount(){
+        n = ALNama.size();
+        if(n%2==0){
+            n = n/8;
+        }
+        else{
+            n = (n/8)+1;
+        }
+        return n;
     }
 }
