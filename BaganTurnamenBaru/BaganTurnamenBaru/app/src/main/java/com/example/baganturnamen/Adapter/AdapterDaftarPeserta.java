@@ -15,6 +15,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.baganturnamen.Peserta;
 import com.example.baganturnamen.R;
 import com.example.baganturnamen.edit_peserta;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -30,6 +32,8 @@ public class AdapterDaftarPeserta extends RecyclerView.Adapter<AdapterDaftarPese
     ArrayList<Peserta> ALPeserta;
     ArrayList<Integer> ALINo = new ArrayList<Integer>();
     ArrayList<String> ALKey = new ArrayList<String>();
+    FirebaseUser firebaseUser;
+    String UID;
 
     public AdapterDaftarPeserta(Context context, ArrayList<Peserta> ALPeserta, ArrayList<String> ALKey){
         this.context = context;
@@ -83,7 +87,14 @@ public class AdapterDaftarPeserta extends RecyclerView.Adapter<AdapterDaftarPese
         holder.IVHapus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final DatabaseReference DBRef = FirebaseDatabase.getInstance().getReference("Peserta");
+                firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+                if(firebaseUser!=null) {
+
+                    UID = firebaseUser.getUid();
+                }
+
+
+                final DatabaseReference DBRef = FirebaseDatabase.getInstance().getReference("Admin/"+UID+"/Peserta");
                 final String SNama = peserta.getNama();
 //                Log.d("TAG", "klik hapus"+SNama+ALPeserta);
                 DBRef.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -115,7 +126,14 @@ public class AdapterDaftarPeserta extends RecyclerView.Adapter<AdapterDaftarPese
             public void onClick(View view) {
                 Log.d("TAG", "klik edit");
                 Intent intent = new Intent(view.getContext(), edit_peserta.class);
-                final DatabaseReference DBRef = FirebaseDatabase.getInstance().getReference("Peserta");
+                firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+                if(firebaseUser!=null) {
+
+                    UID = firebaseUser.getUid();
+                }
+
+
+                final DatabaseReference DBRef = FirebaseDatabase.getInstance().getReference("Admin/"+UID+"/Peserta");
                 final String SKey = ALKey.get(position);
                 final String SNama = peserta.getNama();
                 final String SClub = peserta.getClub();

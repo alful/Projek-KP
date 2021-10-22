@@ -10,6 +10,8 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.example.baganturnamen.Adapter.AdapterDaftarPeserta;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -31,6 +33,8 @@ public class DaftarPeserta extends AppCompatActivity {
     ImageView IVKembali,kembali;
     Context context;
 //    Peserta peserta = new Peserta();
+    FirebaseUser firebaseUser;
+    String UID;
 
 
     @Override
@@ -54,7 +58,12 @@ public class DaftarPeserta extends AppCompatActivity {
 //        IVKembali = findViewById(R.id.idIVKembali);
 
         ALPeserta = new ArrayList<Peserta>();
-        DBRef = FirebaseDatabase.getInstance().getReference("Peserta");
+        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        if(firebaseUser!=null) {
+
+            UID = firebaseUser.getUid();
+        }
+        DBRef = FirebaseDatabase.getInstance().getReference("Admin/"+UID+"/Peserta");
 
         RVDaftarPeserta.setHasFixedSize(true);
 

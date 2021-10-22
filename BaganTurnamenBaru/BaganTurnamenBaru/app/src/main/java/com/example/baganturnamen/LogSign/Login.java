@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.baganturnamen.Dashboard.DashboardAdm;
@@ -40,6 +41,7 @@ public class Login extends AppCompatActivity {
 
     String UID;
     ArrayList<String> ALKey = new ArrayList<String>();
+    ProgressBar progressBar;
 
 
     @Override
@@ -64,6 +66,7 @@ public class Login extends AppCompatActivity {
                     String email=snapshot.child("email").getValue(String.class);
                     String password=snapshot.child("password").getValue(String.class);
                     Log.d("TAG", "onStart: "+manage);
+
                     if (manage.equals(1))
                     {
                         Intent intent =new Intent(Login.this, DashboardAdmin.class);
@@ -73,6 +76,7 @@ public class Login extends AppCompatActivity {
 //                        intent.putExtra("idnama",nama);
 
                         startActivity(intent);
+
                         finish();
                     }
 //                    else if (manage.equals("0"))

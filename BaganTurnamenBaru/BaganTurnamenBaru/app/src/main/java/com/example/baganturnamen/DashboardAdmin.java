@@ -43,9 +43,9 @@ public class DashboardAdmin extends AppCompatActivity {
         aboutus=findViewById(R.id.aboutus);
         IVLogOff = findViewById(R.id.idIVLoggOff);
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-//        UID=firebaseUser.getUid();
-        Intent intent=getIntent();
-        UID=intent.getStringExtra("idkey");
+        UID=firebaseUser.getUid();
+//        Intent intent=getIntent();
+//        UID=intent.getStringExtra("idkey");
 //
 //        databaseReference= FirebaseDatabase.getInstance().getReference().child("Admin").child(UID).child("Peserta");
 ////        androidx.appcompat.widget.Toolbar toolbar= (androidx.appcompat.widget.Toolbar) findViewById(R.id.tolbar);

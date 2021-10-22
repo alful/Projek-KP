@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.baganturnamen.R;
@@ -31,6 +32,7 @@ public class edit_Admin extends AppCompatActivity {
     EditText nama,pass,email;
     Button edit;
     String Skey,Snama,Semail,Spass;
+    ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +60,7 @@ public class edit_Admin extends AppCompatActivity {
             public void onClick(View v) {
                 Log.d("TAG", "onClick: "+Semail);
                 Log.d("TAG", "onClick: "+Skey);
+
                 UpdateData();
 
 
@@ -117,6 +120,7 @@ public class edit_Admin extends AppCompatActivity {
                         hashMap.put("email", mail);
                         hashMap.put("password", password);
                         databaseReference.child(Skey).updateChildren(hashMap);
+
                         Toast.makeText(edit_Admin.this, "Data Tersimpan", Toast.LENGTH_SHORT).show();
                     }
                 }

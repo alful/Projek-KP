@@ -9,9 +9,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -39,6 +42,9 @@ public class edit_peserta extends AppCompatActivity {
     String SKey, SNama, SUnggulan, SClub;
     Integer IUmur;
 
+    FirebaseUser firebaseUser;
+    String UID;
+    ProgressBar progressBar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,8 +57,15 @@ public class edit_peserta extends AppCompatActivity {
         BSimpan = findViewById(R.id.idBSimpan);
 
         peserta = new Peserta();
+        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        if(firebaseUser!=null) {
 
-        DBRef = FirebaseDatabase.getInstance().getReference("Peserta");
+            UID = firebaseUser.getUid();
+        }
+
+
+
+        DBRef = FirebaseDatabase.getInstance().getReference("Admin/"+UID+"/Peserta");
 
         SKey = getIntent().getExtras().getString("key");
         SNama = getIntent().getExtras().getString("nama");
@@ -88,7 +101,7 @@ public class edit_peserta extends AppCompatActivity {
                 }
                 hashMap.put("unggulan", SUnggulan);
                 DBRef.child(SKey).updateChildren(hashMap);
-
+                progressBar.setIndeterminate(true);
                 Toast.makeText(edit_peserta.this, "ubah jadi"+SNama+IUmur+SClub+SUnggulan, Toast.LENGTH_SHORT).show();
             }
         });

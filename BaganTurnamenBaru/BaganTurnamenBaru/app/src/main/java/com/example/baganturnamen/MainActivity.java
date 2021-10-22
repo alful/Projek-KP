@@ -3,6 +3,7 @@ package com.example.baganturnamen;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -12,6 +13,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.baganturnamen.Full_bracket_turnament.Full_bracket_turnament;
@@ -45,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
     ArrayList<String> ALClub = new ArrayList<String>();
     ArrayList<String> ALUnggulan = new ArrayList<String>();
     DatabaseReference DRef,DREF2;
-
+    ProgressBar progressBar;
 
 
     @Override
@@ -91,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
                     ETUmur.setError("Masukkan Umur");
                 }
                 if(TextUtils.isEmpty(ETClub.getText().toString())){
-                    ETUmur.setError("Masukkan Club");
+                    ETClub.setError("Masukkan Club");
                 }
                 else {
 
@@ -101,6 +103,7 @@ public class MainActivity extends AppCompatActivity {
                     SClub = ETClub.getText().toString();
                     CekUnggulan();
                     String ids=UID;
+
 
 //                DRef.child("Peserta").addValueEventListener(new ValueEventListener() {
                     DRef.child(UID).child("Peserta").addListenerForSingleValueEvent(new ValueEventListener() {
@@ -153,7 +156,10 @@ public class MainActivity extends AppCompatActivity {
 
                 }
                 }
+
+
         });
+
     }
 
     public void CekUnggulan(){
