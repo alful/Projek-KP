@@ -22,6 +22,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 
 public class edit_peserta extends AppCompatActivity {
@@ -31,13 +32,13 @@ public class edit_peserta extends AppCompatActivity {
     Button BSimpan;
 
     ArrayList<String> ALUnggulan = new ArrayList<String>();
+    ArrayList<String> ALUnggulanYa = new ArrayList<String>();
 
     String SKey, SNama, SUnggulan, SClub;
     Integer IUmur;
 
     FirebaseUser firebaseUser;
     String UID;
-    ProgressBar progressBar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -84,36 +85,52 @@ public class edit_peserta extends AppCompatActivity {
                             String unggulan = dataSnapshot.getValue(Peserta.class).getUnggulan();
 
                             ALUnggulan.add(unggulan);
+                            if(unggulan.equals("Unggulan")){
+                                ALUnggulanYa.add(unggulan);
+                            }
                         }
-                        if(ALUnggulan.size()<=2){
+                        if(SUnggulan.equals("Unggulan")) {
+                            if(ALUnggulanYa.size()<2){
+                                HashMap hashMap = new HashMap();
+                                hashMap.put("nama", ETNama.getText().toString());
+                                hashMap.put("umur", Integer.parseInt(ETUmur.getText().toString()));
+                                hashMap.put("club", ETClub.getText().toString());
+                                if(CBUnggulan.isChecked()){
+                                    SUnggulan = "Unggulan";
+                                }
+                                else{
+                                    SUnggulan = "Tidak";
+                                }
+                                hashMap.put("unggulan", SUnggulan);
+                                DBRef.child(SKey).updateChildren(hashMap);
+                                Toast.makeText(edit_peserta.this, "Berhasil Diubah1", Toast.LENGTH_SHORT).show();
+                            }
+                            else if(ALUnggulanYa.size()>=2){
+                                HashMap hashMap = new HashMap();
+                                hashMap.put("nama", ETNama.getText().toString());
+                                hashMap.put("umur", Integer.parseInt(ETUmur.getText().toString()));
+                                hashMap.put("club", ETClub.getText().toString());
+                                if(CBUnggulan.isChecked()){
+                                    SUnggulan = "Unggulan";
+                                }
+                                else{
+                                    SUnggulan = "Tidak";
+                                }
+                                hashMap.put("unggulan", SUnggulan);
+                                DBRef.child(SKey).updateChildren(hashMap);
+                                Toast.makeText(edit_peserta.this, "Berhasil Diubah", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                        else if(SUnggulan.equals("Tidak")){
                             HashMap hashMap = new HashMap();
                             hashMap.put("nama", ETNama.getText().toString());
                             hashMap.put("umur", Integer.parseInt(ETUmur.getText().toString()));
                             hashMap.put("club", ETClub.getText().toString());
-                            if(CBUnggulan.isChecked()){
-                                SUnggulan = "Unggulan";
-                            }
-                            else{
-                                SUnggulan = "Tidak";
-                            }
                             hashMap.put("unggulan", SUnggulan);
+                            CBUnggulan.setChecked(false);
                             DBRef.child(SKey).updateChildren(hashMap);
-//                progressBar.setIndeterminate(true);
                             Toast.makeText(edit_peserta.this, "Berhasil Diubah", Toast.LENGTH_SHORT).show();
                         }
-                        else{
-                            HashMap hashMap = new HashMap();
-                            hashMap.put("nama", ETNama.getText().toString());
-                            hashMap.put("umur", Integer.parseInt(ETUmur.getText().toString()));
-                            hashMap.put("club", ETClub.getText().toString());
-                            CBUnggulan.setChecked(false);
-                            SUnggulan = "Tidak";
-                            hashMap.put("unggulan", SUnggulan);
-                            DBRef.child(SKey).updateChildren(hashMap);
-//                progressBar.setIndeterminate(true);
-                            Toast.makeText(edit_peserta.this, "Berhasil Diubah, Unggulan Max 2", Toast.LENGTH_SHORT).show();
-                        }
-
                     }
 
                     @Override

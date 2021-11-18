@@ -158,20 +158,6 @@ public class MainActivity extends AppCompatActivity {
                             if (ALNama.contains(SNama)) {
                                 Toast.makeText(MainActivity.this, "Nama Sudah Ada", Toast.LENGTH_SHORT).show();
                             } else {
-//                                if(ALNo.size()==0){
-//                                    INo = 0;
-//                                }
-//                                else{
-//                                    INo = Collections.max(ALNo);
-//                                }
-//                                INo++;
-//                                peserta.setNo(INo);
-//                                peserta.setNama(SNama);
-//                                peserta.setUmur(IUmur);
-//                                peserta.setClub(SClub);
-                                Log.d("TAG", "unggulans: "+SCBUnggulan+ALUnggulanYa);
-//                                if(ALUnggulan.size()<=2) {
-
                                 if(SCBUnggulan.equals("Unggulan")) {
                                     if(ALUnggulanYa.size()<2){
                                         Log.d("TAG", "unggulan1: "+SCBUnggulan+ALUnggulanYa);
