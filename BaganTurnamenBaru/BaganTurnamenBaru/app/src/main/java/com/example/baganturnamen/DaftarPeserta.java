@@ -27,12 +27,7 @@ public class DaftarPeserta extends AppCompatActivity {
     DatabaseReference DBRef;
     ArrayList<Peserta> ALPeserta;
     ArrayList<String> ALKey = new ArrayList<String>();
-    ArrayList<String> ALNama = new ArrayList<String>();
-    ArrayList<Integer> ALUmur = new ArrayList<Integer>();
-    ArrayList<String> ALUnggulan = new ArrayList<String>();
-    ImageView IVKembali,kembali;
     Context context;
-//    Peserta peserta = new Peserta();
     FirebaseUser firebaseUser;
     String UID;
 
@@ -52,30 +47,16 @@ public class DaftarPeserta extends AppCompatActivity {
 //        getSupportActionBar().setDisplayUseLogoEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-
-
         RVDaftarPeserta = findViewById(R.id.idRVDaftarPeserta);
-//        IVKembali = findViewById(R.id.idIVKembali);
 
         ALPeserta = new ArrayList<Peserta>();
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         if(firebaseUser!=null) {
-
             UID = firebaseUser.getUid();
         }
         DBRef = FirebaseDatabase.getInstance().getReference("Admin/"+UID+"/Peserta");
 
         RVDaftarPeserta.setHasFixedSize(true);
-
-
-//        IVKembali.setOnClickListener(new View.OnClickListener(){
-//           @Override
-//           public void onClick(View v){
-////               Intent intent = new Intent(DaftarPeserta.this, DashboardAdmin.class);
-////               startActivity(intent);
-//               finish();
-//           }
-//        });
 
         DBRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -85,15 +66,8 @@ public class DaftarPeserta extends AppCompatActivity {
                     Peserta peserta = dataSnapshot.getValue(Peserta.class);
                     String key = dataSnapshot.getKey();
 
-//                    String nama = dataSnapshot.child("nama").getValue(String.class);
-//                    Integer umur = dataSnapshot.child("umur").getValue(Integer.class);
-//                    String unggulan = dataSnapshot.child("unggulan").getValue(String.class);
-
                     ALPeserta.add(peserta);
                     ALKey.add(key);
-//                    ALNama.add(nama);;
-//                    ALUmur.add(umur);
-//                    ALUnggulan.add(unggulan);
                 }
 
                 adapterDaftarPeserta = new AdapterDaftarPeserta(context, ALPeserta, ALKey);
@@ -108,12 +82,6 @@ public class DaftarPeserta extends AppCompatActivity {
             }
         });
 
-//        kembali.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                startActivity(new Intent(getApplicationContext(),DashboardAdmin.class));
-//            }
-//        });
     }
 
 }

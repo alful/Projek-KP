@@ -21,18 +21,21 @@ import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.HashMap;
 
 public class edit_Admin extends AppCompatActivity {
-
     DatabaseReference databaseReference;
     EditText nama,pass,email;
     Button edit;
     String Skey,Snama,Semail,Spass;
     ProgressBar progressBar;
+    String nam, mail, password;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,15 +48,38 @@ public class edit_Admin extends AppCompatActivity {
         edit=findViewById(R.id.editadm);
         databaseReference= FirebaseDatabase.getInstance().getReference().child("Admin");
 
-
         Intent intent=getIntent();
-        Skey=intent.getStringExtra("idkeys");
-        Semail=intent.getStringExtra("idemails");
-        Spass=intent.getStringExtra("idpasss");
-        Snama=intent.getStringExtra("idnamas");
-        nama.setText(Snama);
-        email.setText(Semail);
-        pass.setText(Spass);
+        Skey=intent.getStringExtra("UID");
+        Toast.makeText(this, "Tunggu Sebentar", Toast.LENGTH_SHORT).show();
+        databaseReference=FirebaseDatabase.getInstance().getReference().child("Admin").child(Skey);
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                Semail=snapshot.child("email").getValue(String.class);
+                Spass=snapshot.child("password").getValue(String.class);
+                Snama=snapshot.child("nama").getValue(String.class);
+
+                nama.setText(Snama);
+                email.setText(Semail);
+                pass.setText(Spass);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+//        Semail=intent.getStringExtra("idemails");
+//        Spass=intent.getStringExtra("idpasss");
+//        Snama=intent.getStringExtra("idnamas");
+//        nama.setText(Snama);
+//        email.setText(Semail);
+//        pass.setText(Spass);
+
+//        Log.d("TAG", "edit: "+Skey);
+//        Log.d("TAG", "edit: "+Semail);
+//        Log.d("TAG", "edit: "+Spass);
+//        Log.d("TAG", "edit: "+Snama);
 
         edit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,8 +88,6 @@ public class edit_Admin extends AppCompatActivity {
                 Log.d("TAG", "onClick: "+Skey);
 
                 UpdateData();
-
-
             }
         });
 
@@ -83,9 +107,12 @@ public class edit_Admin extends AppCompatActivity {
                     if (pass.getText().toString().length() <7)
                         pass.setError("Password Minimal 7 Huruf");
                     else {
-                        String nam = nama.getText().toString();
-                        final String mail = email.getText().toString();
-                        final String password = pass.getText().toString();
+//                        String nam = nama.getText().toString();
+                        nam = nama.getText().toString();
+//                        final String mail = email.getText().toString();
+                        mail = email.getText().toString();
+//                        final String password = pass.getText().toString();
+                        password = pass.getText().toString();
                         final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
                         AuthCredential credential= EmailAuthProvider.getCredential(Semail,Spass);
@@ -119,9 +146,10 @@ public class edit_Admin extends AppCompatActivity {
                         hashMap.put("nama", nam);
                         hashMap.put("email", mail);
                         hashMap.put("password", password);
-                        databaseReference.child(Skey).updateChildren(hashMap);
+//                        databaseReference.child(Skey).updateChildren(hashMap);
+                        databaseReference.updateChildren(hashMap);
 
-                        Toast.makeText(edit_Admin.this, "Data Tersimpan", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(edit_Admin.this, "Data Tersimpan"+nam+mail+password, Toast.LENGTH_SHORT).show();
                     }
                 }
                 else if (nama.getText().toString().isEmpty()==false && pass.getText().toString().isEmpty()== true && email.getText().toString().isEmpty()==false){

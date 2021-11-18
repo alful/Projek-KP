@@ -2,6 +2,7 @@ package com.example.baganturnamen.Full_bracket_turnament;
 
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,120 +25,153 @@ import java.util.HashMap;
 
 public class AdapterBaganFinal4 extends RecyclerView.Adapter<AdapterBaganFinal4.BaganFinal4ViewHolder> {
     Context context;
-    ArrayList<Integer> ALSemuaSkorB5;
-    ArrayList<String> ALKeySemuaPemenangB4;
-    ArrayList<Integer> ALSkorPemenangB4Peserta1;
-    ArrayList<Integer> ALSkorPemenangB4Peserta2;
-    ArrayList<String> ALKeyPemenangB4Peserta1;
-    ArrayList<String> ALKeyPemenangB4Peserta2;
-    ArrayList<String> ALNamaPemenangB3Peserta1;
-    ArrayList<String> ALNamaPemenangB3Peserta2;
-    ArrayList<String> ALNama;
-    int n=0;
+    ArrayList<String> ALSemuaNama;
+    ArrayList<Integer> ALSkorPemenangB5Peserta1;
+    ArrayList<Integer> ALSkorPemenangB5Peserta2;
+    ArrayList<String> ALKeyPemenangB5Peserta1;
+    ArrayList<String> ALKeyPemenangB5Peserta2;
+    ArrayList<String> ALNamaPemenangB4Peserta1;
+    ArrayList<String> ALNamaPemenangB4Peserta2;
+    ArrayList<Integer> ALSemuaSkorB6;
+
 
     DatabaseReference DBRef;
-    String ids;
 
-    public AdapterBaganFinal4(Context context, ArrayList<Integer> ALSemuaSkorB5,
-                              ArrayList<String> ALKeySemuaPemenangB4,
-                              ArrayList<Integer> ALSkorPemenangB4Peserta1, ArrayList<Integer> ALSkorPemenangB4Peserta2,
-                              ArrayList<String> ALKeyPemenangB4Peserta1, ArrayList<String> ALKeyPemenangB4Peserta2,
-                              ArrayList<String> ALNamaPemenangB3Peserta1, ArrayList<String> ALNamaPemenangB3Peserta2, String ids,ArrayList<String> ALNama) {
+    public AdapterBaganFinal4(Context context, ArrayList<String> ALSemuaNama,
+                              ArrayList<Integer> ALSkorPemenangB5Peserta1, ArrayList<Integer> ALSkorPemenangB5Peserta2,
+                              ArrayList<String> ALKeyPemenangB5Peserta1, ArrayList<String> ALKeyPemenangB5Peserta2,
+                              ArrayList<String> ALNamaPemenangB4Peserta1, ArrayList<String> ALNamaPemenangB4Peserta2,
+                              ArrayList<Integer> ALSemuaSkorB6) {
         this.context = context;
-        this.ALSemuaSkorB5 = ALSemuaSkorB5;
-        this.ALKeySemuaPemenangB4 = ALKeySemuaPemenangB4;
-        this.ALSkorPemenangB4Peserta1 = ALSkorPemenangB4Peserta1;
-        this.ALSkorPemenangB4Peserta2 = ALSkorPemenangB4Peserta2;
-        this.ALKeyPemenangB4Peserta1 = ALKeyPemenangB4Peserta1;
-        this.ALKeyPemenangB4Peserta2 = ALKeyPemenangB4Peserta2;
-        this.ALNamaPemenangB3Peserta1 = ALNamaPemenangB3Peserta1;
-        this.ALNamaPemenangB3Peserta2 = ALNamaPemenangB3Peserta2;
-        this.ids=ids;
-        this.ALNama=ALNama;
+        this.ALSemuaNama = ALSemuaNama;
+        this.ALSkorPemenangB5Peserta1 = ALSkorPemenangB5Peserta1;
+        this.ALSkorPemenangB5Peserta2 = ALSkorPemenangB5Peserta2;
+        this.ALKeyPemenangB5Peserta1 = ALKeyPemenangB5Peserta1;
+        this.ALKeyPemenangB5Peserta2 = ALKeyPemenangB5Peserta2;
+        this.ALNamaPemenangB4Peserta1 = ALNamaPemenangB4Peserta1;
+        this.ALNamaPemenangB4Peserta2 = ALNamaPemenangB4Peserta2;
+        this.ALSemuaSkorB6 = ALSemuaSkorB6;
     }
 
     public static class BaganFinal4ViewHolder extends RecyclerView.ViewHolder{
-        CardView CVPesertaFinal3;
-        TextView TVNamaPesertaFinal3;
-        EditText ETSkorPesertaFinal3;
+        CardView CVPesertaFinal4;
+        TextView TVNamaPesertaFinal4;
+        EditText ETSkorPesertaFinal4;
 
-        public BaganFinal4ViewHolder(@NonNull View itemView){
-            super(itemView);
-            CVPesertaFinal3 = itemView.findViewById(R.id.idCVPesertaFinal3);
-            TVNamaPesertaFinal3 = itemView.findViewById(R.id.idTVNamaPesertaFinal3);
-            ETSkorPesertaFinal3 = itemView.findViewById(R.id.idETSkorPesertaFinal3);
+        public BaganFinal4ViewHolder(@NonNull View itemview){
+            super(itemview);
+            CVPesertaFinal4 = itemview.findViewById(R.id.idCVPesertaFinal4);
+            TVNamaPesertaFinal4 = itemview.findViewById(R.id.idTVNamaPesertaFinal4);
+            ETSkorPesertaFinal4 = itemview.findViewById(R.id.idETSkorPesertaFinal4);
         }
     }
 
     @NonNull
     @Override
     public BaganFinal4ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.listitem_baganfinal3, parent, false);
-        return new AdapterBaganFinal4.BaganFinal4ViewHolder(view);
+        View VItem = LayoutInflater.from(parent.getContext()).inflate(R.layout.listitem_baganfinal4, parent, false);
+        return new AdapterBaganFinal4.BaganFinal4ViewHolder(VItem);
     }
 
     @Override
     public void onBindViewHolder(@NonNull BaganFinal4ViewHolder holder, int position) {
+        //DBRef = FirebaseDatabase.getInstance().getReference("Peserta2");//
+
         FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         String UID=firebaseUser.getUid();
 
-        DBRef = FirebaseDatabase.getInstance().getReference("Admin/"+ids+"/Peserta");
+        DBRef = FirebaseDatabase.getInstance().getReference("Admin/"+UID+"/Peserta");
 
-
-        if(ALSemuaSkorB5.size()==0&&ALKeyPemenangB4Peserta1.size()!=0&&ALKeyPemenangB4Peserta2.size()!=0) {
-            HashMap hashMap = new HashMap();
-            hashMap.put("babak5", 0);
-            for(int x=0; x<ALKeySemuaPemenangB4.size(); x++){
-                DBRef.child(ALKeySemuaPemenangB4.get(x)).child("History").updateChildren(hashMap);
-            }
-        }
-        else if(ALSkorPemenangB4Peserta1.size()!=0&&ALSkorPemenangB4Peserta2.size()!=0){
-//        if(ALSkorPemenangB4Peserta1.size()!=0&&ALSkorPemenangB4Peserta2.size()!=0){
-//            holder.TVNamaPesertaFinal2.setText("null1");
-//            holder.ETSkorPesertaFinal2.setText("null1");
-            if(ALSkorPemenangB4Peserta1.get(position)==ALSkorPemenangB4Peserta2.get(position)){
-                holder.TVNamaPesertaFinal3.setText("");
-                holder.ETSkorPesertaFinal3.setText("");
-            }
-            else if(ALSkorPemenangB4Peserta1.get(position)>ALSkorPemenangB4Peserta2.get(position)){
-//                FirebaseDatabase.getInstance().getReference("Peserta2").child(ALKeyPemenangB4Peserta2.get(position)).child("History").child("babak5").setValue(null);
-//                FirebaseDatabase.getInstance().getReference("Peserta2").child(ALKeyPemenangB4Peserta2.get(position)).child("History").child("pemenangB4").setValue(null);
-//                HashMap hashMap = new HashMap();
-//                hashMap.put("babak5", ALSemuaSkorB5.get(position));
-//                hashMap.put("pemenangB4", ALNamaPemenangB3Peserta1.get(position));
-//                DBRef.child(ALKeyPemenangB4Peserta1.get(position)).child("History").updateChildren(hashMap);
-//                DBRef.child(ALKeyPemenangB2Peserta1.get(position)).child("History").updateChildren(hashMap);
-                holder.TVNamaPesertaFinal3.setText(ALNamaPemenangB3Peserta1.get(position));
-//                holder.ETSkorPesertaFinal2.setText("1");
-                holder.ETSkorPesertaFinal3.setText(ALSemuaSkorB5.get(position).toString());
-            }
-            else if(ALSkorPemenangB4Peserta1.get(position)<ALSkorPemenangB4Peserta2.get(position)){
-//                FirebaseDatabase.getInstance().getReference("Peserta2").child(ALKeyPemenangB4Peserta1.get(position)).child("History").child("babak5").setValue(null);
-//                FirebaseDatabase.getInstance().getReference("Peserta2").child(ALKeyPemenangB4Peserta1.get(position)).child("History").child("pemenangB4").setValue(null);
-//                HashMap hashMap = new HashMap();
-//                hashMap.put("babak5", ALSemuaSkorB5.get(position));
-//                hashMap.put("pemenangB4", ALNamaPemenangB3Peserta2.get(position));
-//                DBRef.child(ALKeyPemenangB4Peserta2.get(position)).child("History").updateChildren(hashMap);
-//                DBRef.child(ALKeyPemenangB2Peserta2.get(position)).child("History").updateChildren(hashMap);
-                holder.TVNamaPesertaFinal3.setText(ALNamaPemenangB3Peserta2.get(position));
-//                holder.ETSkorPesertaFinal2.setText("2");
-                holder.ETSkorPesertaFinal3.setText(ALSemuaSkorB5.get(position).toString());
-            }
+        if(getItemCount()==1){
+            holder.ETSkorPesertaFinal4.setVisibility(View.GONE);
         }
 
-        holder.ETSkorPesertaFinal3.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+        if(ALSkorPemenangB5Peserta1.size()==0&&ALSkorPemenangB5Peserta2.size()==0){
+            holder.TVNamaPesertaFinal4.setText("");
+            holder.ETSkorPesertaFinal4.setText("");
+            Log.d("TAG", "onBindViewHolder: "+ALSkorPemenangB5Peserta1);
+            Log.d("TAG", "onBindViewHolder: "+ALSkorPemenangB5Peserta2);
+        }
+
+//        holder.TVNamaPesertaFinal4.setText("");
+//        holder.ETSkorPesertaFinal4.setText("");
+
+        else if(ALSkorPemenangB5Peserta1.size()==getItemCount()&&ALSkorPemenangB5Peserta2.size()==getItemCount()&&
+                ALSkorPemenangB5Peserta1.get(position)==ALSkorPemenangB5Peserta2.get(position)){
+            holder.TVNamaPesertaFinal4.setText("");
+            holder.ETSkorPesertaFinal4.setText("");
+        }
+
+        else if(ALSkorPemenangB5Peserta1.size()==getItemCount()&&ALSkorPemenangB5Peserta2.size()==getItemCount()&&
+                ALSkorPemenangB5Peserta1.get(position)>ALSkorPemenangB5Peserta2.get(position)){
+            holder.TVNamaPesertaFinal4.setText("");
+            holder.ETSkorPesertaFinal4.setText("");
+            Log.d("TAG", "nama: "+ALNamaPemenangB4Peserta1);
+            Log.d("TAG", "nama: "+ALNamaPemenangB4Peserta2);
+            if(ALSkorPemenangB5Peserta2.get(position)!=0&&ALKeyPemenangB5Peserta1.size()==getItemCount()){
+                holder.TVNamaPesertaFinal4.setText(ALNamaPemenangB4Peserta1.get(position));
+                HashMap hashMap = new HashMap();
+                hashMap.put("pemenangB5", ALNamaPemenangB4Peserta1.get(position));
+                DBRef.child(ALKeyPemenangB5Peserta1.get(position)).child("History").updateChildren(hashMap);
+
+                if(ALSemuaSkorB6.size()==0||ALSemuaSkorB6.size()>0&&ALSemuaSkorB6.size()<getItemCount()){
+//                    HashMap hashMap = new HashMap();
+                    hashMap.put("babak6", 0);
+                    DBRef.child(ALKeyPemenangB5Peserta1.get(position)).child("History").updateChildren(hashMap);
+                }
+                else if(ALSemuaSkorB6.size()!=0&&ALSemuaSkorB6.get(position)==0){
+                    holder.ETSkorPesertaFinal4.setText("");
+                }
+                else if(ALSemuaSkorB6.size()!=0&&ALSemuaSkorB6.get(position)!=0){
+                    holder.ETSkorPesertaFinal4.setText(ALSemuaSkorB6.get(position).toString());
+//                    HashMap hashMap = new HashMap();
+                    hashMap.put("babak6", ALSemuaSkorB6.get(position));
+                    DBRef.child(ALKeyPemenangB5Peserta1.get(position)).child("History").updateChildren(hashMap);
+                }
+            }
+        }
+        else if(ALSkorPemenangB5Peserta1.size()==getItemCount()&&ALSkorPemenangB5Peserta2.size()==getItemCount()&&
+                ALSkorPemenangB5Peserta1.get(position)<ALSkorPemenangB5Peserta2.get(position)){
+            holder.TVNamaPesertaFinal4.setText("");
+            holder.ETSkorPesertaFinal4.setText("");
+            Log.d("TAG", "nama: "+ALNamaPemenangB4Peserta1);
+            Log.d("TAG", "nama: "+ALNamaPemenangB4Peserta2);
+            if(ALSkorPemenangB5Peserta1.get(position)!=0&&ALKeyPemenangB5Peserta2.size()==getItemCount()){
+                holder.TVNamaPesertaFinal4.setText(ALNamaPemenangB4Peserta2.get(position));
+                HashMap hashMap = new HashMap();
+                hashMap.put("pemenangB5", ALNamaPemenangB4Peserta2.get(position));
+                DBRef.child(ALKeyPemenangB5Peserta2.get(position)).child("History").updateChildren(hashMap);
+
+                if(ALSemuaSkorB6.size()==0||ALSemuaSkorB6.size()>0&&ALSemuaSkorB6.size()<getItemCount()){
+//                    HashMap hashMap = new HashMap();
+                    hashMap.put("babak6", 0);
+                    DBRef.child(ALKeyPemenangB5Peserta2.get(position)).child("History").updateChildren(hashMap);
+                }
+                else if(ALSemuaSkorB6.size()!=0&&ALSemuaSkorB6.get(position)==0){
+                    holder.ETSkorPesertaFinal4.setText("");
+                }
+                else if(ALSemuaSkorB6.size()!=0&&ALSemuaSkorB6.get(position)!=0){
+                    holder.ETSkorPesertaFinal4.setText(ALSemuaSkorB6.get(position).toString());
+//                    HashMap hashMap = new HashMap();
+                    hashMap.put("babak6", ALSemuaSkorB6.get(position));
+                    DBRef.child(ALKeyPemenangB5Peserta2.get(position)).child("History").updateChildren(hashMap);
+                }
+            }
+        }
+
+        holder.ETSkorPesertaFinal4.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View view, boolean b) {
                 if(!b){
-                    String SkorFinals = holder.ETSkorPesertaFinal3.getText().toString();
+                    String SkorFinals = holder.ETSkorPesertaFinal4.getText().toString();
                     if(!SkorFinals.equals("")) {
                         HashMap hashMap = new HashMap();
-                        hashMap.put("babak5", Integer.parseInt(SkorFinals));
-                        if(ALKeyPemenangB4Peserta1.size()!=0&&ALSkorPemenangB4Peserta1.get(position)>ALSkorPemenangB4Peserta2.get(position)){
-                            DBRef.child(ALKeyPemenangB4Peserta1.get(position)).child("History").updateChildren(hashMap);
+                        hashMap.put("babak6", ALSemuaSkorB6.get(position));
+                        if(ALSkorPemenangB5Peserta1.get(position)>ALSkorPemenangB5Peserta2.get(position)){
+                            DBRef.child(ALKeyPemenangB5Peserta1.get(position)).child("History").updateChildren(hashMap);
                         }
-                        else if(ALKeyPemenangB4Peserta2.size()!=0&&ALSkorPemenangB4Peserta1.get(position)<ALSkorPemenangB4Peserta2.get(position)){
-                            DBRef.child(ALKeyPemenangB4Peserta2.get(position)).child("History").updateChildren(hashMap);
+                        else if(ALSkorPemenangB5Peserta1.get(position)<ALSkorPemenangB5Peserta2.get(position)){
+                            DBRef.child(ALKeyPemenangB5Peserta2.get(position)).child("History").updateChildren(hashMap);
                         }
                     }
 
@@ -145,23 +179,23 @@ public class AdapterBaganFinal4 extends RecyclerView.Adapter<AdapterBaganFinal4.
             }
         });
 
-        holder.ETSkorPesertaFinal3.addTextChangedListener(new TextWatcher(){
+        holder.ETSkorPesertaFinal4.addTextChangedListener(new TextWatcher(){
             @Override
             public void afterTextChanged(Editable s){
-                if(holder.ETSkorPesertaFinal3.isFocused()){
-                    String SkorFinal = holder.ETSkorPesertaFinal3.getText().toString();
+                if(holder.ETSkorPesertaFinal4.isFocused()){
+                    String SkorFinal = holder.ETSkorPesertaFinal4.getText().toString();
                     if(!SkorFinal.equals("")) {
                         int inti = Integer.parseInt(SkorFinal);
-                        if(ALSkorPemenangB4Peserta1.get(position)>ALSkorPemenangB4Peserta2.get(position)){
-                            ALSemuaSkorB5.set(position, inti);
+                        if(ALSkorPemenangB5Peserta1.get(position)>ALSkorPemenangB5Peserta2.get(position)){
+                            ALSemuaSkorB6.set(position, inti);
                         }
-                        else if(ALSkorPemenangB4Peserta1.get(position)<ALSkorPemenangB4Peserta2.get(position)){
-                            ALSemuaSkorB5.set(position, inti);
+                        else if(ALSkorPemenangB5Peserta1.get(position)<ALSkorPemenangB5Peserta2.get(position)){
+                            ALSemuaSkorB6.set(position, inti);
                         }
                     }
-                    else if(!SkorFinal.equals("")&&ALSemuaSkorB5.size()==ALSkorPemenangB4Peserta1.size()){
+                    else if(!SkorFinal.equals("")&&ALSemuaSkorB6.size()==ALSkorPemenangB5Peserta1.size()){
                         int inti = Integer.parseInt(SkorFinal);
-                        ALSemuaSkorB5.set(position, inti);
+                        ALSemuaSkorB6.set(position, inti);
                     }
                 }
             }
@@ -179,13 +213,17 @@ public class AdapterBaganFinal4 extends RecyclerView.Adapter<AdapterBaganFinal4.
     }
 
     @Override
-    public int getItemCount(){
-        n = ALNama.size();
+    public int getItemCount() {
+//        return 1;
+        int n = ALSemuaNama.size();
         if(n%2==0){
-            n = n/8;
+            n = n/32;
+        }
+        else if(n<32){
+            n = 0;
         }
         else{
-            n = (n/8)+1;
+            n = n%2;
         }
         return n;
     }

@@ -22,7 +22,7 @@
             </androidx.recyclerview.widget.RecyclerView>
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/idRVBaganFinal2"
+                android:id="@+id/idRVBaganFinal"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
@@ -30,18 +30,26 @@
             </androidx.recyclerview.widget.RecyclerView>
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/idRVBaganFinal3"
+                android:id="@+id/idRVBaganFinal2"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 tools:listitem="@layout/listitem_baganfinal2">
+            </androidx.recyclerview.widget.RecyclerView>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/idRVBaganFinal3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/listitem_baganfinal3">
             </androidx.recyclerview.widget.RecyclerView>
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/idRVBaganFinal4"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                tools:listitem="@layout/listitem_baganfinal3">
+                tools:listitem="@layout/listitem_baganfinal4">
             </androidx.recyclerview.widget.RecyclerView>
 
         </LinearLayout>

@@ -169,26 +169,18 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="2"
-        android:orientation="horizontal"
-        android:layout_margin="10dp">
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="5dp">
         <Button
             android:id="@+id/idBSimpan"
             android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
             android:text="SIMPAN"
-            android:layout_gravity="center"
-            android:layout_margin="10dp">
-        </Button>
-        <Button
-            android:id="@+id/idBHapus"
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="HAPUS"
-            android:layout_gravity="center"
-            android:layout_margin="10dp">
+            android:layout_gravity="center">
         </Button>
     </LinearLayout>
 

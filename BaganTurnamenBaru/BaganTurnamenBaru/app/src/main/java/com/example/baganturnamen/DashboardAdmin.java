@@ -26,6 +26,7 @@ public class DashboardAdmin extends AppCompatActivity {
     ImageView IVInputPeserta, IVDaftarPeserta, IVBaganTurnamen, IVLogOff, aboutus;
     DatabaseReference databaseReference,databaseReference2;
     ArrayList<String> ALNama = new ArrayList<String>();
+    ArrayList<String> ALKeyAd = new ArrayList<String>();
     String nama;
     String Snama,Skey,Spass,Semail;
     FirebaseUser firebaseUser;
@@ -42,10 +43,16 @@ public class DashboardAdmin extends AppCompatActivity {
         IVBaganTurnamen = findViewById(R.id.idIVBaganTurnamen);
         aboutus=findViewById(R.id.aboutus);
         IVLogOff = findViewById(R.id.idIVLoggOff);
-        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-        UID=firebaseUser.getUid();
-//        Intent intent=getIntent();
-//        UID=intent.getStringExtra("idkey");
+//        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+//        UID=firebaseUser.getUid();
+        Intent intent=getIntent();
+        UID=intent.getStringExtra("UID");
+        Log.d("TAG", "onCreateDB: "+UID);
+        if(UID==null){
+            firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+            UID=firebaseUser.getUid();
+            Log.d("TAG", "onCreateDB2: "+UID);
+        }
 //
 //        databaseReference= FirebaseDatabase.getInstance().getReference().child("Admin").child(UID).child("Peserta");
 ////        androidx.appcompat.widget.Toolbar toolbar= (androidx.appcompat.widget.Toolbar) findViewById(R.id.tolbar);
@@ -79,25 +86,28 @@ public class DashboardAdmin extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(DashboardAdmin.this, MainActivity.class);
-                String uid;
-                uid= FirebaseAuth.getInstance().getCurrentUser().getUid();
-                databaseReference2=FirebaseDatabase.getInstance().getReference().child("Admin").child(uid);
-                databaseReference2.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        Semail=snapshot.child("email").getValue(String.class);
-                        Spass=snapshot.child("password").getValue(String.class);
-                        Snama=snapshot.child("nama").getValue(String.class);
-                        intent.putExtra("idkeys",uid);
-                        startActivity(intent);
-                        finish();
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
-                    }
-                });
+                intent.putExtra("UID", UID);
+                startActivity(intent);
+//                String uid;
+//                uid= FirebaseAuth.getInstance().getCurrentUser().getUid();
+//                databaseReference2=FirebaseDatabase.getInstance().getReference().child("Admin").child(uid);
+//                databaseReference2.addValueEventListener(new ValueEventListener() {
+//                    @Override
+//                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                        Log.d("TAG", "onDataChange: ");
+//                        Semail=snapshot.child("email").getValue(String.class);
+//                        Spass=snapshot.child("password").getValue(String.class);
+//                        Snama=snapshot.child("nama").getValue(String.class);
+//                        intent.putExtra("idkeys",uid);
+//                        startActivity(intent);
+//                        finish();
+//                    }
+//
+//                    @Override
+//                    public void onCancelled(@NonNull DatabaseError error) {
+//
+//                    }
+//                });
             }
         });
 
@@ -115,26 +125,28 @@ public class DashboardAdmin extends AppCompatActivity {
 //                Intent intent = new Intent(DashboardAdmin.this, Bracket.class);
 //                Intent intent = new Intent(DashboardAdmin.this, BracketTurnamen.class);
                 Intent intent = new Intent(DashboardAdmin.this, Full_bracket_turnament.class);
-                String uid;
-                uid= FirebaseAuth.getInstance().getCurrentUser().getUid();
-                databaseReference2=FirebaseDatabase.getInstance().getReference().child("Admin").child(UID);
-                databaseReference2.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        Semail=snapshot.child("email").getValue(String.class);
-                        Spass=snapshot.child("password").getValue(String.class);
-                        Snama=snapshot.child("nama").getValue(String.class);
-                        String keys=snapshot.child("uid").getValue(String.class);
-                        intent.putExtra("idkeys",keys);
-                        startActivity(intent);
-                        finish();
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
-                    }
-                });
+                intent.putExtra("UID",UID);
+                startActivity(intent);
+//                String uid;
+//                uid= FirebaseAuth.getInstance().getCurrentUser().getUid();
+//                databaseReference2=FirebaseDatabase.getInstance().getReference().child("Admin").child(UID);
+//                databaseReference2.addValueEventListener(new ValueEventListener() {
+//                    @Override
+//                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                        Semail=snapshot.child("email").getValue(String.class);
+//                        Spass=snapshot.child("password").getValue(String.class);
+//                        Snama=snapshot.child("nama").getValue(String.class);
+//                        String keys=snapshot.child("uid").getValue(String.class);
+//                        intent.putExtra("idkeys",keys);
+//                        startActivity(intent);
+//                        finish();
+//                    }
+//
+//                    @Override
+//                    public void onCancelled(@NonNull DatabaseError error) {
+//
+//                    }
+//                });
             }
         });
 
@@ -159,28 +171,34 @@ public class DashboardAdmin extends AppCompatActivity {
 
     public void EditAdmin(View view) {
         Intent intent=new Intent(DashboardAdmin.this, edit_Admin.class);
-        String uid;
-        uid= FirebaseAuth.getInstance().getCurrentUser().getUid();
-        databaseReference2=FirebaseDatabase.getInstance().getReference().child("Admin").child(uid);
-        databaseReference2.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                Semail=snapshot.child("email").getValue(String.class);
-                Spass=snapshot.child("password").getValue(String.class);
-                Snama=snapshot.child("nama").getValue(String.class);
-                intent.putExtra("idkeys",uid);
-                intent.putExtra("idemails",Semail);
-                intent.putExtra("idpasss",Spass);
-                intent.putExtra("idnamas",Snama);
-                startActivity(intent);
-                finish();
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
+        intent.putExtra("UID",UID);
+//        intent.putExtra("idemails",Semail);
+//        intent.putExtra("idpasss",Spass);
+//        intent.putExtra("idnamas",Snama);
+        startActivity(intent);
+//        String uid;
+//        uid= FirebaseAuth.getInstance().getCurrentUser().getUid();
+//        databaseReference2=FirebaseDatabase.getInstance().getReference().child("Admin").child(UID);
+//        databaseReference2.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                Semail=snapshot.child("email").getValue(String.class);
+//                Spass=snapshot.child("password").getValue(String.class);
+//                Snama=snapshot.child("nama").getValue(String.class);
+////                intent.putExtra("idkeys",uid);
+//                intent.putExtra("UID",UID);
+//                intent.putExtra("idemails",Semail);
+//                intent.putExtra("idpasss",Spass);
+//                intent.putExtra("idnamas",Snama);
+////                startActivity(intent);
+////                finish();
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//
+//            }
+//        });
 //        intent.putExtra("idkeys",Skey);
 //        intent.putExtra("idemails",Semail);
 //        intent.putExtra("idpasss",Spass);

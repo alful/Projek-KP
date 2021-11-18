@@ -36,46 +36,53 @@ import java.util.HashMap;
 
 public class AdapterBagan extends RecyclerView.Adapter<AdapterBagan.BaganViewHolder>{
     Context context;
-    ArrayList<String> ALNama;
-    ArrayList<String> ALNama2;
-    ArrayList<String> ALSKey1;
-    ArrayList<String> ALSKey2;
-
-    ArrayList<Integer> ALSkorBabak1Peserta1;
-    ArrayList<Integer> ALSkorBabak1Peserta2;
+    ArrayList<String> ALSemuaKey;
+    ArrayList<String> ALKeyB1Peserta1;
+    ArrayList<String> ALKeyB1Peserta2;
+    ArrayList<String> ALSemuaNama;
+    ArrayList<String> ALNamaB1Peserta1;
+    ArrayList<String> ALNamaB1Peserta2;
+    ArrayList<Integer> ALSemuaSkorB1;
+    ArrayList<Integer> ALSkorB1Peserta1;
+    ArrayList<Integer> ALSkorB1Peserta2;
+    //    ArrayList<String> ALSKey1;
+//    ArrayList<String> ALSKey2;
+    ArrayList<Integer> ALSemuaSkorB2;
     ArrayList<Integer> ALSkorBabak2Peserta1;
     ArrayList<Integer> ALSkorBabak2Peserta2;
 
-    ArrayList<Integer> ALSemuaSkorB2;
-    String ids;
-
     DatabaseReference DBRef;
+//    FirebaseDatabase FBDB;
 
-    String skorbaru, skorbaru2, skorfinal, skey1, skey2, skeymenang1, skeymenang2;
-
-    int skora, skorb;
-    int iskorbaru, iskorbaru2;
+    String skorbaru, skorbaru2, skorfinal;
+//    int iskorbaru, iskorbaru2;
 
 
-//    public AdapterBagan(Context context, ArrayList<String> ALNama, ArrayList<String> ALNama2) {
+    //    public AdapterBagan(Context context, ArrayList<String> ALNama, ArrayList<String> ALNama2) {
 //    public AdapterBagan(Context context, ArrayList<String> ALNama, ArrayList<String> ALNama2,
 //                        ArrayList<String> ALSKey1 , ArrayList<String> ALSKey2){
-    public AdapterBagan(Context context, ArrayList<String> ALNama, ArrayList<String> ALNama2,
-                        ArrayList<String> ALSKey1 , ArrayList<String> ALSKey2,
-                        ArrayList<Integer> ALSkorBabak1Peserta1, ArrayList<Integer> ALSkorBabak1Peserta2,
+    public AdapterBagan(Context context,
+                        ArrayList<String> ALSemuaKey,
+                        ArrayList<String> ALKeyB1Peserta1 , ArrayList<String> ALKeyB1Peserta2,
+                        ArrayList<String> ALSemuaNama,
+                        ArrayList<String> ALNamaB1Peserta1, ArrayList<String> ALNamaB1Peserta2,
+                        ArrayList<Integer> ALSemuaSkorB1,
+                        ArrayList<Integer> ALSkorB1Peserta1, ArrayList<Integer> ALSkorB1Peserta2,
                         ArrayList<Integer> ALSkorBabak2Peserta1, ArrayList<Integer> ALSkorBabak2Peserta2,
-                        ArrayList<Integer> ALSemuaSkorB2,String ids){
+                        ArrayList<Integer> ALSemuaSkorB2){
         this.context = context;
-        this.ALNama = ALNama;
-        this.ALNama2 = ALNama2;
-        this.ALSKey1 = ALSKey1;
-        this.ALSKey2 = ALSKey2;
-        this.ALSkorBabak1Peserta1 = ALSkorBabak1Peserta1;
-        this.ALSkorBabak1Peserta2 = ALSkorBabak1Peserta2;
+        this.ALSemuaKey = ALSemuaKey;
+        this.ALKeyB1Peserta1 = ALKeyB1Peserta1;
+        this.ALKeyB1Peserta2 = ALKeyB1Peserta2;
+        this.ALSemuaNama = ALSemuaNama;
+        this.ALNamaB1Peserta1 = ALNamaB1Peserta1;
+        this.ALNamaB1Peserta2 = ALNamaB1Peserta2;
+        this.ALSemuaSkorB1 = ALSemuaSkorB1;
+        this.ALSkorB1Peserta1 = ALSkorB1Peserta1;
+        this.ALSkorB1Peserta2 = ALSkorB1Peserta2;
         this.ALSkorBabak2Peserta1 = ALSkorBabak2Peserta1;
         this.ALSkorBabak2Peserta2 = ALSkorBabak2Peserta2;
         this.ALSemuaSkorB2 = ALSemuaSkorB2;
-        this.ids=ids;
     }
 
     public static class BaganViewHolder extends RecyclerView.ViewHolder{
@@ -105,67 +112,97 @@ public class AdapterBagan extends RecyclerView.Adapter<AdapterBagan.BaganViewHol
     }
 
     @Override
-    public void onBindViewHolder(@NonNull AdapterBagan.BaganViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull AdapterBagan.BaganViewHolder holder, int position){
+//        DBRef = FirebaseDatabase.getInstance().getReference("Peserta");
+        //DBRef = FirebaseDatabase.getInstance().getReference("Peserta2"); ///////////////////////////////////////
         FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         String UID=firebaseUser.getUid();
 
-        DBRef = FirebaseDatabase.getInstance().getReference("Admin/"+ids+"/Peserta");
+        DBRef = FirebaseDatabase.getInstance().getReference("Admin/"+UID+"/Peserta");
+//        if(ALSKey2.size()%2!=0&&position==ALSKey2.size()){
+//            ALSKey2.add(null);
+//            ALNama2.add(null);
+//            ALSkorBabak1Peserta2.add(0);
+//            holder.CVPeserta2.setVisibility(View.GONE);
+//            holder.TVNamaPemenangB1.setText(ALNama.get(position));
+//        }
 
-        holder.TVNamaPeserta1.setText(ALNama.get(position));
-        holder.TVNamaPeserta2.setText(ALNama2.get(position));
+//        holder.TVNamaPeserta1.setText(ALNama.get(position));
+//        holder.TVNamaPeserta2.setText(ALNama2.get(position));
 
-        if(ALSkorBabak1Peserta1.get(position)==null&&ALSkorBabak1Peserta2.get(position)==null){
+
+        if(ALSemuaSkorB1.size()==0){
             HashMap hashMap = new HashMap();
             hashMap.put("babak1", 0);
-            hashMap.put("babak2", 0);
-            hashMap.put("babak3", 0);
-            hashMap.put("pemenangB1", "");
-            DBRef.child(ALSKey1.get(position)).child("History").updateChildren(hashMap);
-            DBRef.child(ALSKey2.get(position)).child("History").updateChildren(hashMap);
-            holder.ETSkorPeserta1.setText("01");
-            holder.ETSkorPeserta2.setText("01");
+            DBRef.child(ALKeyB1Peserta1.get(position)).child("History").updateChildren(hashMap);
+            DBRef.child(ALKeyB1Peserta2.get(position)).child("History").updateChildren(hashMap);
+            holder.TVNamaPeserta1.setText(ALNamaB1Peserta1.get(position));
+            holder.TVNamaPeserta2.setText(ALNamaB1Peserta2.get(position));
+            holder.ETSkorPeserta1.setText("");
+            holder.ETSkorPeserta2.setText("");
+            holder.TVNamaPemenangB1.setText("");
         }
-        else if(ALSkorBabak1Peserta1.get(position)==0&&ALSkorBabak1Peserta2.get(position)==0&&
-                ALSkorBabak2Peserta1.get(position)==0&&ALSkorBabak2Peserta2.get(position)==0){
-            holder.ETSkorPeserta1.setText("0");
-            holder.ETSkorPeserta2.setText("0");
-            holder.ETSkorPemenangB1.setText("0");
+        else if(ALSkorB1Peserta1.get(position)==ALSkorB1Peserta2.get(position)){
+            holder.TVNamaPeserta1.setText(ALNamaB1Peserta1.get(position));
+            holder.TVNamaPeserta2.setText(ALNamaB1Peserta2.get(position));
+            holder.ETSkorPeserta1.setText("");
+            holder.ETSkorPeserta2.setText("");
+            holder.TVNamaPemenangB1.setText("");
+            holder.ETSkorPemenangB1.setText("");
         }
-        else if(ALSkorBabak1Peserta1.get(position)>ALSkorBabak1Peserta2.get(position)){
-            FirebaseDatabase.getInstance().getReference("Admin/"+ids+"/Peserta").child(ALSKey2.get(position)).child("History").child("babak2").setValue(null);
-            FirebaseDatabase.getInstance().getReference("Admin/"+ids+"/Peserta").child(ALSKey2.get(position)).child("History").child("babak3").setValue(null);
-            FirebaseDatabase.getInstance().getReference("Admin/"+ids+"/Peserta").child(ALSKey2.get(position)).child("History").child("pemenangB1").setValue(null);
-
-            HashMap hashMap = new HashMap();
-            hashMap.put("pemenangB1", ALNama.get(position));
-            if(ALSkorBabak2Peserta1.get(position)==null){
-                hashMap.put("babak2", 0);
-                hashMap.put("babak3", 0);
+        else if(ALSkorB1Peserta1.get(position)>ALSkorB1Peserta2.get(position)){
+            holder.TVNamaPeserta1.setText(ALNamaB1Peserta1.get(position));
+            holder.TVNamaPeserta2.setText(ALNamaB1Peserta2.get(position));
+            holder.ETSkorPeserta1.setText(ALSkorB1Peserta1.get(position).toString());
+            holder.ETSkorPeserta2.setText("");
+            holder.TVNamaPemenangB1.setText("");
+            holder.ETSkorPemenangB1.setText("");
+            if(ALSkorB1Peserta1.get(position)!=0&&ALSkorB1Peserta2.get(position)!=0){
+                holder.ETSkorPeserta2.setText(ALSkorB1Peserta2.get(position).toString());
+                holder.TVNamaPemenangB1.setText(ALNamaB1Peserta1.get(position));
+                if(ALSemuaSkorB2.size()==0||ALSemuaSkorB2.size()>0&&ALSemuaSkorB2.size()<getItemCount()){
+                    HashMap hashMap = new HashMap();
+                    hashMap.put("babak2", 0);
+                    DBRef.child(ALKeyB1Peserta1.get(position)).child("History").updateChildren(hashMap);
+                }
+                else if(ALSemuaSkorB2.size()!=0&&ALSemuaSkorB2.get(position)==0){
+                    holder.ETSkorPemenangB1.setText("");
+                }
+                else if(ALSemuaSkorB2.size()!=0&&ALSemuaSkorB2.get(position)!=0){
+                    holder.ETSkorPemenangB1.setText(ALSemuaSkorB2.get(position).toString());
+                    HashMap hashMap = new HashMap();
+                    hashMap.put("babak2", ALSemuaSkorB2.get(position));
+                    DBRef.child(ALKeyB1Peserta1.get(position)).child("History").updateChildren(hashMap);
+                }
             }
-            DBRef.child(ALSKey1.get(position)).child("History").updateChildren(hashMap);
-            holder.TVNamaPemenangB1.setText(ALNama.get(position));
-            holder.ETSkorPeserta1.setText(ALSkorBabak1Peserta1.get(position).toString());
-            holder.ETSkorPeserta2.setText(ALSkorBabak1Peserta2.get(position).toString());
-            holder.ETSkorPemenangB1.setText(ALSemuaSkorB2.get(position).toString());
+
         }
-        else if(ALSkorBabak1Peserta1.get(position)<ALSkorBabak1Peserta2.get(position)){
-            FirebaseDatabase.getInstance().getReference("Admin/"+ids+"/Peserta").child(ALSKey1.get(position)).child("History").child("babak2").setValue(null);
-            FirebaseDatabase.getInstance().getReference("Admin/"+ids+"/Peserta").child(ALSKey1.get(position)).child("History").child("babak3").setValue(null);
-            FirebaseDatabase.getInstance().getReference("Admin/"+ids+"/Peserta").child(ALSKey1.get(position)).child("History").child("pemenangB1").setValue(null);
-
-            HashMap hashMap = new HashMap();
-            hashMap.put("pemenangB1", ALNama2.get(position));
-            if(ALSkorBabak2Peserta2.get(position)==null){
-                hashMap.put("babak2", 0);
-                hashMap.put("babak3", 0);
+        else if(ALSkorB1Peserta1.get(position)!=0&&ALSkorB1Peserta2.get(position)!=0&&
+                ALSkorB1Peserta1.get(position)<ALSkorB1Peserta2.get(position)){
+            holder.TVNamaPeserta1.setText(ALNamaB1Peserta1.get(position));
+            holder.TVNamaPeserta2.setText(ALNamaB1Peserta2.get(position));
+            holder.ETSkorPeserta1.setText("");
+            holder.ETSkorPeserta2.setText(ALSkorB1Peserta2.get(position).toString());
+            holder.TVNamaPemenangB1.setText(ALNamaB1Peserta2.get(position));
+            holder.ETSkorPemenangB1.setText("");
+            if(ALSkorB1Peserta1.get(position)!=0&&ALSkorB1Peserta2.get(position)!=0){
+                holder.ETSkorPeserta1.setText(ALSkorB1Peserta1.get(position).toString());
+                holder.TVNamaPemenangB1.setText(ALNamaB1Peserta2.get(position));
+                if(ALSemuaSkorB2.size()==0||ALSemuaSkorB2.size()>0&&ALSemuaSkorB2.size()<getItemCount()){
+                    HashMap hashMap = new HashMap();
+                    hashMap.put("babak2", 0);
+                    DBRef.child(ALKeyB1Peserta2.get(position)).child("History").updateChildren(hashMap);
+                }
+                else if(ALSemuaSkorB2.size()!=0&&ALSemuaSkorB2.get(position)==0){
+                    holder.ETSkorPemenangB1.setText("");
+                }
+                else if(ALSemuaSkorB2.size()!=0&&ALSemuaSkorB2.get(position)!=0){
+                    holder.ETSkorPemenangB1.setText(ALSemuaSkorB2.get(position).toString());
+                    HashMap hashMap = new HashMap();
+                    hashMap.put("babak2", ALSemuaSkorB2.get(position));
+                    DBRef.child(ALKeyB1Peserta2.get(position)).child("History").updateChildren(hashMap);
+                }
             }
-
-            DBRef.child(ALSKey2.get(position)).child("History").updateChildren(hashMap);
-
-            holder.TVNamaPemenangB1.setText(ALNama2.get(position));
-            holder.ETSkorPeserta2.setText(ALSkorBabak1Peserta2.get(position).toString());
-            holder.ETSkorPeserta1.setText(ALSkorBabak1Peserta1.get(position).toString());
-            holder.ETSkorPemenangB1.setText(ALSemuaSkorB2.get(position).toString());
         }
 
         holder.ETSkorPeserta1.setOnFocusChangeListener(new View.OnFocusChangeListener() {
@@ -174,8 +211,8 @@ public class AdapterBagan extends RecyclerView.Adapter<AdapterBagan.BaganViewHol
                 if(!b){
                     if(skorbaru!=null) {
                         HashMap hashMap = new HashMap();
-                        hashMap.put("babak1", ALSkorBabak1Peserta1.get(position));
-                        DBRef.child(ALSKey1.get(position)).child("History").updateChildren(hashMap);
+                        hashMap.put("babak1", ALSkorB1Peserta1.get(position));
+                        DBRef.child(ALKeyB1Peserta1.get(position)).child("History").updateChildren(hashMap);
                     }
                 }
             }
@@ -190,8 +227,8 @@ public class AdapterBagan extends RecyclerView.Adapter<AdapterBagan.BaganViewHol
 //                            if(holder.ETSkorPeserta1.isFocused()){
                 skorbaru = holder.ETSkorPeserta1.getText().toString();
                 if(!skorbaru.equals("")){
-                    iskorbaru = Integer.parseInt(skorbaru);
-                    ALSkorBabak1Peserta1.set(position, iskorbaru);
+                    int iskorbaru = Integer.parseInt(skorbaru);
+                    ALSkorB1Peserta1.set(position, iskorbaru);
                 }
             }
 
@@ -217,7 +254,7 @@ public class AdapterBagan extends RecyclerView.Adapter<AdapterBagan.BaganViewHol
                     skorbaru2 = holder.ETSkorPeserta2.getText().toString();
                     if(!skorbaru2.equals("")) {
                         int iskorbaru2 = Integer.parseInt(skorbaru2);
-                        ALSkorBabak1Peserta2.set(position, iskorbaru2);
+                        ALSkorB1Peserta2.set(position, iskorbaru2);
                     }
                 }
             }
@@ -239,10 +276,8 @@ public class AdapterBagan extends RecyclerView.Adapter<AdapterBagan.BaganViewHol
                 if(!bfokus){
                     if(skorbaru2!=null) {
                         HashMap hashMap = new HashMap();
-                        hashMap.put("babak1", ALSkorBabak1Peserta2.get(position));
-//                        hashMap.put("babak2", 0);
-//                        DBRef.child(skey2).child("History").updateChildren(hashMap);
-                        DBRef.child(ALSKey2.get(position)).child("History").updateChildren(hashMap);
+                        hashMap.put("babak1", ALSkorB1Peserta2.get(position));
+                        DBRef.child(ALKeyB1Peserta2.get(position)).child("History").updateChildren(hashMap);
                     }
                 }
             }
@@ -283,23 +318,15 @@ public class AdapterBagan extends RecyclerView.Adapter<AdapterBagan.BaganViewHol
             public void onFocusChange(View view, boolean bfokus) {
                 if(!bfokus){
                     if(skorfinal!=null) {
-//                    if(ALSemuaSkorB2.get(position)!=null) {
                         HashMap hashMap = new HashMap();
                         hashMap.put("babak2", ALSemuaSkorB2.get(position));
-                        if(ALSkorBabak1Peserta1.get(position)>ALSkorBabak1Peserta2.get(position)) {
-//                            FirebaseDatabase.getInstance().getReference("Peserta2").child(ALSKey2.get(position)).child("History").child("babak3").setValue(null);
-//                            FirebaseDatabase.getInstance().getReference("Peserta2").child(ALSKey2.get(position)).child("History").child("pemenangB2").setValue(null);
-
-                            hashMap.put("pemenangB1", ALNama.get(position));
-                            DBRef.child(ALSKey1.get(position)).child("History").updateChildren(hashMap);
+                        if(ALSkorB1Peserta1.get(position)>ALSkorB1Peserta2.get(position)) {
+                            hashMap.put("pemenangB1", ALNamaB1Peserta1.get(position));
+                            DBRef.child(ALKeyB1Peserta1.get(position)).child("History").updateChildren(hashMap);
                         }
-//                        else if(Integer.parseInt(holder.ETSkorPeserta1.getText().toString())<Integer.parseInt(holder.ETSkorPeserta2.getText().toString())) {
-                        else if(ALSkorBabak1Peserta1.get(position)<ALSkorBabak1Peserta2.get(position)) {
-//                            FirebaseDatabase.getInstance().getReference("Peserta2").child(ALSKey1.get(position)).child("History").child("babak3").setValue(null);
-//                            FirebaseDatabase.getInstance().getReference("Peserta2").child(ALSKey1.get(position)).child("History").child("pemenangB2").setValue(null);
-
-                            hashMap.put("pemenangB1", ALNama2.get(position));
-                            DBRef.child(ALSKey2.get(position)).child("History").updateChildren(hashMap);
+                        else if(ALSkorB1Peserta1.get(position)<ALSkorB1Peserta2.get(position)) {
+                            hashMap.put("pemenangB1", ALNamaB1Peserta2.get(position));
+                            DBRef.child(ALKeyB1Peserta2.get(position)).child("History").updateChildren(hashMap);
                         }
                     }
                 }
@@ -310,324 +337,15 @@ public class AdapterBagan extends RecyclerView.Adapter<AdapterBagan.BaganViewHol
 
     @Override
     public int getItemCount() {
-        return ALNama.size();
+//        return ALNama.size();
+        int n = ALSemuaNama.size();
+        if(n%2==0){
+            n = n/2;
+        }
+        else{
+            n = n%2;
+        }
+        return n;
     }
 
 }
-
-
-
-
-
-
-
-
-
-//        if(ALSKey2.size()%2!=0&&position==ALSKey2.size()){
-//            ALSKey2.add(null);
-//            ALNama2.add(null);
-//            ALSkorBabak1Peserta2.add(0);
-//            holder.CVPeserta2.setVisibility(View.GONE);
-//            holder.TVNamaPemenangB1.setText(ALNama.get(position));
-//        }
-//
-//        holder.TVNamaPeserta1.setText(ALNama.get(position));
-//        holder.TVNamaPeserta2.setText(ALNama2.get(position));
-//
-////        if(ALSkorBabak1Peserta1.get(position).equals(0)) {
-//        if(ALSkorBabak1Peserta1.get(position)==null) {
-//            holder.ETSkorPeserta1.setText("");
-////            if(ALSkorBabak1Peserta2.get(position).equals(0)) {
-//            if(ALSkorBabak1Peserta2.get(position)==null) {
-//                holder.ETSkorPeserta2.setText("");
-//            }
-//            else{
-//                holder.ETSkorPeserta2.setText(ALSkorBabak1Peserta2.get(position).toString());
-//            }
-//        }
-////        else if(ALSkorBabak1Peserta2.get(position).equals(0)) {
-//        else if(ALSkorBabak1Peserta2.get(position)==null) {
-//            holder.ETSkorPeserta2.setText("");
-////            if(ALSkorBabak1Peserta1.get(position).equals(0)) {
-//            if(ALSkorBabak1Peserta1.get(position)==null) {
-//                holder.ETSkorPeserta1.setText("");
-//            }
-//            else{
-//                holder.ETSkorPeserta1.setText(ALSkorBabak1Peserta1.get(position).toString());
-//            }
-//        }
-//        else {
-//
-//            holder.ETSkorPeserta1.setText(ALSkorBabak1Peserta1.get(position).toString());
-//            holder.ETSkorPeserta2.setText(ALSkorBabak1Peserta2.get(position).toString());
-//
-//            skeymenang1 = ALSKey1.get(position);
-//            skeymenang2 = ALSKey2.get(position);
-//
-//            skora = Integer.parseInt(holder.ETSkorPeserta1.getText().toString());
-//            skorb = Integer.parseInt(holder.ETSkorPeserta2.getText().toString());
-//
-//            if (skora > skorb) {
-////            if (ALSkorBabak1Peserta1.get(position) > ALSkorBabak1Peserta2.get(position)) {
-//                holder.TVNamaPemenangB1.setText(ALNama.get(position));
-//                if (ALSKey1.get(position) != null) {
-////                    if(ALSkorBabak2Peserta1.get(position).toString().equals("0")){
-//                    if(ALSkorBabak2Peserta1.get(position)==null){
-//                        holder.ETSkorPemenangB1.setText("");
-//                    }
-//                    else{
-//                        holder.ETSkorPemenangB1.setText(ALSkorBabak2Peserta1.get(position).toString());
-//                        HashMap hashMap = new HashMap();
-//                        hashMap.put("pemenangB1", ALNama.get(position));
-//                        DBRef.child(ALSKey1.get(position)).child("History").updateChildren(hashMap);
-////                            ALSKeyPemenang.add(ALSKey1.get(position));
-//                    }
-//                }
-//
-//            } else if (skora < skorb) {
-////            } else if (ALSkorBabak1Peserta1.get(position) < ALSkorBabak1Peserta2.get(position)) {
-//                holder.TVNamaPemenangB1.setText(ALNama2.get(position));
-//                if (ALSKey2.get(position) != null) {
-////                    if(ALSkorBabak2Peserta2.get(position).toString().equals("0")){
-//                    if(ALSkorBabak2Peserta2.get(position)==null){
-//                        holder.ETSkorPemenangB1.setText("");
-//                    }
-//                    else{
-//                        holder.ETSkorPemenangB1.setText(ALSkorBabak2Peserta2.get(position).toString());
-//                        HashMap hashMap = new HashMap();
-//                        hashMap.put("pemenangB1", ALNama2.get(position));
-//                        DBRef.child(ALSKey2.get(position)).child("History").updateChildren(hashMap);
-//                    }
-//                }
-//            } else {
-//                holder.ETSkorPemenangB1.setText("");
-//            }
-//        }
-//
-//        if (ALSkorBabak1Peserta1.get(position)== null && ALSkorBabak1Peserta2.get(position) ==null)
-//        {
-//
-//        }
-//        else if (ALSkorBabak1Peserta1.get(position)!= null && ALSkorBabak1Peserta2.get(position) ==null)
-//        {
-//
-//        }
-//        else {
-//            if (holder.ETSkorPemenangB1.getText().toString().equals("")) {
-//                holder.ETSkorPemenangB1.setText(Integer.toString(0));
-//
-//
-//                if (ALSkorBabak1Peserta1.get(position) > ALSkorBabak1Peserta2.get(position)) {
-//                    DBRef.child(ALSKey1.get(position)).child("History").addValueEventListener(new ValueEventListener() {
-//                        @Override
-//                        public void onDataChange(@NonNull DataSnapshot snapshot) {
-//
-//                            Integer sas = snapshot.child("babak2").getValue(Integer.class);
-//                            Log.d("TAG", "onDataChange: " + sas);
-//                            if (sas == null) {
-//                                HashMap hashMap = new HashMap();
-//                                hashMap.put("babak2", 0);
-//                                DBRef.child(ALSKey1.get(position)).child("History").updateChildren(hashMap);
-//
-//                            } else
-//                                holder.ETSkorPemenangB1.setText(Integer.toString(sas));
-//                        }
-//
-//                        @Override
-//                        public void onCancelled(@NonNull DatabaseError error) {
-//
-//                        }
-//                    });
-//
-//
-////                DBRef.child(ALKeyPemenangB2Peserta1.get(position)).child("History").updateChildren(hashMap);
-//                } else if (ALSkorBabak1Peserta1.get(position) < ALSkorBabak1Peserta2.get(position)) {
-//                    //                            DBRef.child(ALKeyPemenangB1Peserta2.get(position)).child("History").updateChildren(hashMap);
-//                    DBRef.child(ALSKey2.get(position)).child("History").addValueEventListener(new ValueEventListener() {
-//                        @Override
-//                        public void onDataChange(@NonNull DataSnapshot snapshot) {
-//
-//                            Integer sas = snapshot.child("babak2").getValue(Integer.class);
-//                            Log.d("TAG", "onDataChange: " + sas);
-//                            if (sas == null) {
-//                                HashMap hashMap = new HashMap();
-//                                hashMap.put("babak2", 0);
-//                                DBRef.child(ALSKey2.get(position)).child("History").updateChildren(hashMap);
-//
-//                            } else
-//                                holder.ETSkorPemenangB1.setText(Integer.toString(sas));
-//                        }
-//
-//                        @Override
-//                        public void onCancelled(@NonNull DatabaseError error) {
-//
-//                        }
-//                    });
-//                }
-//
-//
-//            }
-//        }
-//        holder.ETSkorPeserta1.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-//            @Override
-//            public void onFocusChange(View view, boolean b) {
-//                if(!b){
-//                    if(skorbaru!=null) {
-//                        HashMap hashMap = new HashMap();
-//                        hashMap.put("babak1", ALSkorBabak1Peserta1.get(position));
-////                        DBRef.child(skey1).child("History").updateChildren(hashMap);
-//                        DBRef.child(ALSKey1.get(position)).child("History").updateChildren(hashMap);
-//                    }
-//                }
-//            }
-//        });
-//
-//
-//        holder.ETSkorPeserta1.addTextChangedListener(new TextWatcher(){
-//
-//
-//            @Override
-//            public void afterTextChanged(Editable s){
-////                            if(holder.ETSkorPeserta1.isFocused()){
-//                skorbaru = holder.ETSkorPeserta1.getText().toString();
-//                if(!skorbaru.equals("")){
-//                    iskorbaru = Integer.parseInt(skorbaru);
-//                }
-//                if(!skorbaru.equals("")) {
-//                    ALSkorBabak1Peserta1.set(position, iskorbaru);
-//                }
-//            }
-//
-//            @Override
-//            public void beforeTextChanged(CharSequence s, int start, int count, int after){
-//
-//            }
-//
-//            @Override
-//            public void onTextChanged(CharSequence s, int start, int before, int count){
-//
-//            }
-//
-//
-//        });
-//
-//
-//        holder.ETSkorPeserta2.addTextChangedListener(new TextWatcher(){
-//
-//            @Override
-//            public void afterTextChanged(Editable s){
-//                if(holder.ETSkorPeserta2.isFocused()){
-//                    skorbaru2 = holder.ETSkorPeserta2.getText().toString();
-//                    if(!skorbaru2.equals("")) {
-//                        int iskorbaru2 = Integer.parseInt(skorbaru2);
-//                        ALSkorBabak1Peserta2.set(position, iskorbaru2);
-//                    }
-//                }
-//            }
-//
-//            @Override
-//            public void beforeTextChanged(CharSequence s, int start, int count, int after){
-//
-//            }
-//
-//            @Override
-//            public void onTextChanged(CharSequence s, int start, int before, int count){
-//
-//            }
-//        });
-//
-//        holder.ETSkorPeserta2.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-//            @Override
-//            public void onFocusChange(View view, boolean bfokus) {
-//                if(!bfokus){
-//                    if(skorbaru2!=null) {
-//                        HashMap hashMap = new HashMap();
-//                        hashMap.put("babak1", ALSkorBabak1Peserta2.get(position));
-////                        DBRef.child(skey2).child("History").updateChildren(hashMap);
-//                        DBRef.child(ALSKey2.get(position)).child("History").updateChildren(hashMap);
-//                    }
-//                }
-//            }
-//        });
-//
-//
-//        holder.ETSkorPemenangB1.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-//            @Override
-//            public void onFocusChange(View view, boolean b) {
-//                if (b) {
-//
-//                    Log.d("TAG", "onFocusChange: pencet");
-//                }
-//                if (!b) {
-//                    Log.d("TAG", "onFocusChange: lepas");
-//
-//                        if (!ALSemuaSkorB2.get(position).equals("")) {
-//                            Log.d("TAG", "onFocusChange: lepas " + position);
-//
-//                            if (ALSkorBabak1Peserta1.get(position) > ALSkorBabak1Peserta2.get(position)) {
-//                                HashMap hashMap = new HashMap();
-//                                hashMap.put("babak2", ALSemuaSkorB2.get(position));
-//                                hashMap.put("pemenangB1", ALNama.get(position));
-//
-//                                //                            DBRef.child(ALKeyPemenangB1Peserta1.get(position)).child("History").updateChildren(hashMap);
-//                                DBRef.child(ALSKey1.get(position)).child("History").updateChildren(hashMap);
-//                            } else if (ALSkorBabak1Peserta1.get(position) < ALSkorBabak1Peserta2.get(position)) {
-//                                HashMap hashMap = new HashMap();
-//                                hashMap.put("babak2", ALSemuaSkorB2.get(position));
-//                                hashMap.put("pemenangB1", ALNama.get(position));
-//
-//                                //                            DBRef.child(ALKeyPemenangB1Peserta2.get(position)).child("History").updateChildren(hashMap);
-//                                DBRef.child(ALSKey2.get(position)).child("History").updateChildren(hashMap);
-//                            }
-//
-//                        }
-//
-//                }
-//            }
-//        });
-//
-//        holder.ETSkorPemenangB1.addTextChangedListener(new TextWatcher() {
-//            @Override
-//            public void afterTextChanged(Editable s) {
-//                if (holder.ETSkorPemenangB1.isFocused()) {
-//                    skorfinal = holder.ETSkorPemenangB1.getText().toString();
-//                    Log.d("TAG", "afterTsssextChanged: " + skorfinal);
-//                    if (!skorfinal.equals("")) {
-//                        int inti = Integer.parseInt(skorfinal);
-//                        if (ALSkorBabak1Peserta1.get(position) > ALSkorBabak1Peserta2.get(position)) {
-//                            Log.d("TAG", "sebebes1: " + position + ALSemuaSkorB2 + inti);
-//                            ALSemuaSkorB2.add(position, inti);
-//                            Log.d("TAG", "sebebes2: " + position + ALSemuaSkorB2 + inti);
-//                        } else if (ALSkorBabak1Peserta1.get(position) < ALSkorBabak1Peserta2.get(position)) {
-//                            Log.d("TAG", "sebecil1: " + position + inti + ALSemuaSkorB2);
-//                            ALSemuaSkorB2.add(position, inti);
-//                            Log.d("TAG", "sebecil2: " + position + inti + ALSemuaSkorB2);
-//                        }
-//                    }
-//                    else if (!skorfinal.equals("") && ALSemuaSkorB2.size() == ALSkorBabak1Peserta1.size()) {
-//                        int inti = Integer.parseInt(skorfinal);
-//                        ALSemuaSkorB2.set(position, inti);
-//                    }
-//                }
-//            }
-//
-//            @Override
-//            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-//
-//            }
-//
-//            @Override
-//            public void onTextChanged(CharSequence s, int start, int before, int count) {
-//
-//            }
-//        });
-//
-//    }
-//
-//    @Override
-//    public int getItemCount() {
-//        return ALNama.size();
-//    }
-//    }
-//
-//

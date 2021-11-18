@@ -1,6 +1,7 @@
 package com.example.baganturnamen;
 
 public class Peserta {
+    private Integer No;
     private String Nama;
     private String Club;
     private Integer Umur;
@@ -18,11 +19,20 @@ public class Peserta {
 
     }
 
-    public Peserta(String nama, String club, Integer umur, String unggulan) {
+    public Peserta(Integer no, String nama, String club, Integer umur, String unggulan) {
+        this.No = no;
         this.Nama = nama;
         this.Club = club;
         this.Umur = umur;
         this.Unggulan = unggulan;
+    }
+
+    public Integer getNo() {
+        return No;
+    }
+
+    public void setNo(Integer no) {
+        No = no;
     }
 
     public String getNama() {
